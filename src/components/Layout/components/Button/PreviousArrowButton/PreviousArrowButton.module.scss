@@ -1,0 +1,25 @@
+.wrapper {
+          top: 36%;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          line-height: 1;
+          text-align: center;
+          color: #adadad;
+          background: white;
+          border: 1px solid #cecece;
+          position: absolute;
+          z-index: 1;
+          transition: all .3s ease;
+          font-family: feather;
+          left: -15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+}
+
+.wrapper:hover {
+          background: var(--btn-hover-color);
+          color: white;
+}
+
