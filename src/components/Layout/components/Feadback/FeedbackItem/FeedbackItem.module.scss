@@ -1,0 +1,42 @@
+.wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 385px;
+          margin: 0 auto;
+}
+
+.content, .content h5 {
+          text-align: center;
+}
+
+.content {
+          font-size: 14px ;
+          color: var(--title-text-color);
+          margin-bottom: 20px;
+}
+.content h5 {
+          font-size: 26px;
+          font-family: var(--heading-text);
+          margin: 0 0 12px;
+          color: #000;
+}
+
+.ratting {
+          display: flex;
+          gap: 8px;
+          margin-bottom: 5px;
+}
+
+.avatar {
+          margin-bottom: 12px;
+}
+
+.avatar img {
+          width: 83px;
+          border-radius: 50%;
+}
+
+.name {
+          font-size: 12px;
+}

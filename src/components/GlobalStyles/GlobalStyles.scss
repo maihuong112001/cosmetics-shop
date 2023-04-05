@@ -1,10 +1,17 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Lato&display=swap');
+
 
 :root {
     --primary: #fe2c55;
     --default-layout-header-height: 114px;
     --default-layout-width: 100%;
+    --heading-text: Cormorant Garamon;
+    --title-text-color: #868686;
+    --title-text-size: 14px;
+    --btn-hover-color: #cb8161;
+    
 }
 
 * {
@@ -18,10 +25,11 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lato';
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizespeed;
+
 }
 .anticon svg {
     display: flex !important;
