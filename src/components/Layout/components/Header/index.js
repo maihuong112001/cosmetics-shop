@@ -14,7 +14,7 @@ function Header() {
         <Row className="pt-4 text-white">
           <Col span={8}>
             <Space className="ml-10">
-              <EnvironmentTwoTone twoToneColor="#fff" />
+              <EnvironmentTwoTone className="icon-ant" twoToneColor="#fff" />
               <a href="./">Store Location</a>
               <Divider type="vertical" />
               <MailTwoTone twoToneColor="#fff" />
@@ -26,7 +26,7 @@ function Header() {
               Summer sale discount off 30%! <a href="./">Shop Now</a>
             </p>
           </Col>
-          <Col className="pl-96" span={8}>
+          <Col className="pl-72" span={8}>
             <Space wrap>
               <Select
                 className="w-35"

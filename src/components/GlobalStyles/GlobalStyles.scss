@@ -29,3 +29,17 @@ body {
 button:focus-visible {
     outline: -webkit-focus-ring-color auto 0;
 }
+input:focus-visible {
+    outline: -webkit-focus-ring-color auto 0;
+
+}
+:where(.css-dev-only-do-not-override-1e3x2xa)[class^="ant-col"], :where(.css-dev-only-do-not-override-1e3x2xa)[class*=" ant-col"] {
+    font-size: 12px;
+}
+:where(.css-dev-only-do-not-override-1e3x2xa)[class^="ant-space"], :where(.css-dev-only-do-not-override-1e3x2xa)[class*=" ant-space"] {
+    font-size: 12px;
+}
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-select-single .ant-select-selector {
+    font-size: 11px;
+    color: white;
+}
