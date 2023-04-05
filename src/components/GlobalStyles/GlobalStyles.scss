@@ -26,3 +26,6 @@ body {
 .anticon svg {
     display: flex !important;
 }
+button:focus-visible {
+    outline: -webkit-focus-ring-color auto 0;
+}

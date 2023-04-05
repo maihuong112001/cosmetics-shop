@@ -7,6 +7,9 @@ const images = {
     usd:require('@/assets/images/usd.svg'),
     gbp:require('@/assets/images/gbp.svg'),
     eur:require('@/assets/images/eur.svg'),
+    home_clean:require('@/assets/images/home-clean.jpg'),
+    home_collection:require('@/assets/images/home-collection.jpg'),
+    arboard_1:require('@/assets/images/Artboard_1.jpg'),
 };
 
 export default images;

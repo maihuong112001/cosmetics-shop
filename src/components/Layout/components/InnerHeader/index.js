@@ -1,0 +1,795 @@
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
+import images from "@/assets/images";
+import {
+  SearchOutlined,
+  UserOutlined,
+  HeartOutlined,
+  ShoppingCartOutlined,
+} from "@ant-design/icons";
+
+const navigation = {
+  categories: [
+    {
+      id: "shop",
+      name: "SHOP",
+      featured: [
+        {
+          name: "New Arrivals",
+          href: "#",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/Untitled-2.jpg?v=1667532503",
+          imageAlt:
+            "Models sitting back to back, wearing Basic Tee in black and bone.",
+        },
+        {
+          name: "Basic Tees",
+          href: "#",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/Untitled-1.jpg?v=1667532503",
+          imageAlt:
+            "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+        },
+      ],
+      sections: [
+        {
+          id: "clothing",
+          name: "Clothing",
+          items: [
+            { name: "Tops", href: "#" },
+            { name: "Dresses", href: "#" },
+            { name: "Pants", href: "#" },
+            { name: "Denim", href: "#" },
+            { name: "Sweaters", href: "#" },
+            { name: "T-Shirts", href: "#" },
+            { name: "Jackets", href: "#" },
+            { name: "Activewear", href: "#" },
+            { name: "Browse All", href: "#" },
+          ],
+        },
+        {
+          id: "accessories",
+          name: "Accessories",
+          items: [
+            { name: "Watches", href: "#" },
+            { name: "Wallets", href: "#" },
+            { name: "Bags", href: "#" },
+            { name: "Sunglasses", href: "#" },
+            { name: "Hats", href: "#" },
+            { name: "Belts", href: "#" },
+          ],
+        },
+        {
+          id: "brands",
+          name: "Brands",
+          items: [
+            { name: "Full Nelson", href: "#" },
+            { name: "My Way", href: "#" },
+            { name: "Re-Arranged", href: "#" },
+            { name: "Counterfeit", href: "#" },
+            { name: "Significant Other", href: "#" },
+          ],
+        },
+      ],
+    },
+  ],
+  pages: [
+    {
+      id: "home",
+      name: "HOME",
+      featured: [
+        {
+          name: "New Arrival",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/home-collection.jpg?v=1667882668",
+          imageAlt:
+            "Models sitting back to back, wearing Basic Tee in black and bone.",
+        },
+        {
+          name: "Basic Tee",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/home-clean.jpg?v=1667882630",
+          imageAlt:
+            "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+        },
+        {
+          name: "Arrivals",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/Artboard_1_copy.jpg?v=1670472693",
+          imageAlt:
+            "Models sitting back to back, wearing Basic Tee in black and bone.",
+        },
+        {
+          name: "Basi",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/home-modern.jpg?v=1667882704",
+          imageAlt:
+            "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+        },
+        {
+          name: "Ne Arrivals",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/home-minimal.jpg?v=1667882684",
+          imageAlt:
+            "Models sitting back to back, wearing Basic Tee in black and bone.",
+        },
+        {
+          name: "Basic Tes",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/home-split-slider.jpg?v=1667882775",
+          imageAlt:
+            "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+        },
+        {
+          name: "New Arriva",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/home-parallax.jpg?v=1667882714",
+          imageAlt:
+            "Models sitting back to back, wearing Basic Tee in black and bone.",
+        },
+        {
+          name: "home-style",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/home-style.jpg?v=1667882743",
+          imageAlt:
+            "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+        },
+      ],
+    },
+  ],
+  blogs: [
+    {
+      id: "blog",
+      name: "BLOG",
+      featured: [
+        {
+          name: "articles",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/articles/Untitled-2_06_1080x.jpg?v=1667465811",
+          imageAlt:
+            "Models sitting back to back, wearing Basic Tee in black and bone.",
+        },
+        {
+          name: "Untitled",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/articles/Untitled-2_08_180x.jpg?v=1667465723",
+          imageAlt:
+            "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+        },
+        {
+          name: "Hypoallergenic Wedding Bands",
+          href: "./",
+          imageSrc:
+            "https://cdn.shopify.com/s/files/1/0673/3588/1018/articles/Untitled-2_07_180x.jpg?v=1667465781",
+          imageAlt:
+            "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+        },
+      ],
+      sections: [
+        {
+          id: "clothing",
+          name: "Layout & Post",
+          items: [
+            { name: "Blog Standard", href: "./" },
+            { name: "Blog Grid", href: "./" },
+            { name: "Blog Grid mix", href: "./" },
+            { name: "List", href: "./" },
+            { name: "Post Sidebar", href: "./" },
+            { name: "T-Post One Column", href: "./" },
+            { name: "Post Prallax Image", href: "./" },
+            { name: "Post Sticky", href: "./" },
+            { name: "Post Simple Title", href: "./" },
+          ],
+        },
+        {
+          id: "Product",
+          name: "Product",
+          items: [
+            { name: "Grid columns", href: "#" },
+            { name: "Grid column", href: "#" },
+            { name: "Grid modern", href: "#" },
+            { name: "Grid sticky", href: "#" },
+            { name: "Slider", href: "#" },
+            { name: "Bottom", href: "#" },
+            { name: "Grid col", href: "#" },
+            { name: "Grid moder", href: "#" },
+            
+          ],
+        },
+      ],
+    },
+  ],
+  products: [
+    {
+      id: "product",
+      name: "PRODUCT",
+      sections: [
+        {
+          id: "ProductLayout",
+          name: "Product Layout",
+          items: [
+            { name: "Grid 1 columns", href: "#" },
+            { name: "Grid 2 columns", href: "#" },
+            { name: "Grid mode", href: "#" },
+            { name: "Grid sticky", href: "#" },
+            { name: "Slider full-width", href: "#" },
+            { name: "Bottom Thumbnails", href: "#" },
+            { name: "Left Thumbnails", href: "#" },
+            { name: "Right Thumbnails", href: "#" },
+            { name: "Without Thumbnails", href: "#" },
+            { name: "Group Product", href: "#" },
+            { name: "Right Sidebar", href: "#" },
+            { name: "Left Sidebar", href: "#" },
+           
+          ],
+        },
+        {
+          id: "grid",
+          name: "Grid",
+          items: [
+            { name: "Pre-order productHot", href: "#" },
+            { name: "Grid 2 columns", href: "#" },
+            { name: "Grid mod", href: "#" },
+            { name: "Grid sticky", href: "#" },
+            { name: "Slider full-width", href: "#" },
+            { name: "Bottom Thumbnails", href: "#" },
+            { name: "Left Thumbnails", href: "#" },
+            { name: "Right Thumbnails", href: "#" },
+           
+            { name: "Left Sidebar", href: "#" },
+            { name: "Right Sidebar", href: "#" },
+            
+            { name: "Without Thumbnails", href: "#" },
+          ],
+        },
+        {
+          id: "Featured",
+          name: "Featured",
+          items: [
+            { name: "Grid 1 columns", href: "#" },
+           
+            { name: "Grid mo", href: "#" },
+            { name: "Grid sticky", href: "#" },
+            { name: "Slider full-width", href: "#" },
+            { name: "Bottom Thumbnails", href: "#" },
+            { name: "Left Thumbnails", href: "#" },
+            
+            { name: "Without Thumbnails", href: "#" },
+            { name: "Left Sidebar", href: "#" },
+            { name: "Right Sidebar", href: "#" },
+            { name: "Right Thumbnails", href: "#" },
+            
+          ],
+        },
+        {
+          id: "ProductCard",
+          name: "Product Card",
+          items: [
+            { name: "Grid 1 columns", href: "#" },
+            { name: "Grid 2 columns", href: "#" },
+            { name: "Grid m", href: "#" },
+            { name: "Grid sticky", href: "#" },
+            { name: "Slider full-width", href: "#" },
+            { name: "Bottom Thumbnails", href: "#" },
+            { name: "Left Thumbnails", href: "#" },
+            { name: "Right Thumbnails", href: "#" },
+            { name: "Without Thumbnails", href: "#" },
+            { name: "Left Sidebar", href: "#" },
+            { name: "Right Sidebar", href: "#" },
+           
+            
+          ],
+        },
+      ],
+    },
+  ],
+  featureds: [
+    {
+      id: "featured",
+      name: "FEATURED",
+      sections: [
+        {
+          id: "ProductLayout",
+          name: "Product Layout",
+          items: [
+            { name: "Grid 1 columns", href: "#" },
+            { name: "Grid 2 columns", href: "#" },
+            { name: "Bottom Thumbnails", href: "#" },
+            { name: "Left Thumbnails", href: "#" },
+            { name: "Right Thumbnails", href: "#" },
+            { name: "Without Thumbnails", href: "#" },
+            { name: "Left Sidebar", href: "#" },
+            { name: "Right Sidebar", href: "#" },
+           
+            
+          ],
+        },
+        {
+          id: "Portfolio",
+          name: "Portfolio",
+          items: [
+            { name: "Slider full-width", href: "#" },
+            { name: "Bottom Thumbnails", href: "#" },
+            { name: "Left Thumbnails", href: "#" },
+            { name: "Right Thumbnails", href: "#" },
+            { name: "Without Thumbnails", href: "#" },
+            { name: "Left Sidebar", href: "#" },
+            { name: "Right Sidebar", href: "#" },
+            
+            
+          ],
+        },
+        {
+          id: "Featured",
+          name: "Featured",
+          items: [
+            { name: "Grid 1 columns", href: "#" },
+            { name: "Bottom Thumbnails", href: "#" },
+            { name: "Left Thumbnails", href: "#" },
+            { name: "Right Thumbnails", href: "#" },
+            { name: "Without Thumbnails", href: "#" },
+            { name: "Left Sidebar", href: "#" },
+            { name: "Right Sidebar", href: "#" },
+            
+          ],
+        },
+        {
+          id: "ProductCard",
+          name: "Product Card",
+          items: [
+            { name: "Grid 1 columns", href: "#" },
+            { name: "Grid 2 columns", href: "#" },
+            { name: "Grid Thumbnails", href: "#" },
+            { name: "Grid sticky", href: "#" },
+            { name: "Without Thumbnails", href: "#" },
+            { name: "Left Sidebar", href: "#" },
+            { name: "Right Sidebar", href: "#" },
+            { name: "Right Thumbnails", href: "#" },
+           
+          ],
+        },
+        {
+          id: "InstagramShop",
+          name: "Instagram Shop",
+          items: [
+            { name: "Instagram Shop Slider", href: "#" },
+            { name: "Instagram Shop Grid Modern", href: "#" },
+            { name: "Instagram Shop Grid (No padding)", href: "#" },
+            { name: "Instagram Shop in Portfolio", href: "#" },
+            { name: "Slider full-width", href: "#" },
+            { name: "Bottom Thumbnails", href: "#" },
+            { name: "Left Thumbnails", href: "#" },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export default function Example() {
+  return (
+    <div className="bg-transparent">
+      <header className="relative bg-transparent">
+        <nav aria-label="Top" className="mx-auto w-100 px-4">
+          <div>
+            <div className="flex h-16">
+              {/* logo */}
+              <div className="flex lg:ml-5">
+                <a href="./">
+                  <span className="sr-only">Your Company</span>
+                  <img src={images.logo} alt="logo" className="h-12"></img>
+                </a>
+              </div>
+              {/* Flyout menus */}
+              <Popover.Group className="hidden lg:ml-auto lg:block lg:self-stretch">
+                <div className="flex h-full space-x-8">
+                  {/* pages */}
+                  {navigation.pages.map((category) => (
+                    <Popover key={category.name} className="flex">
+                      {() => (
+                        <>
+                          <div className="relative mt-1">
+                            <Popover.Button>{category.name}</Popover.Button>
+                          </div>
+
+                          <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-200"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="transition ease-in duration-150"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                          >
+                            <Popover.Panel className="absolute inset-x-0 top-full text-gray-500">
+                              <div className="relative bg-white">
+                                <div className="mx-auto px-8 pt-14 pb-14">
+                                  <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                                    {category.featured.map((item) => (
+                                      <div
+                                        key={item.name}
+                                        className="group relative"
+                                      >
+                                        <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                          <img
+                                            src={item.imageSrc}
+                                            alt={item.imageAlt}
+                                            className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                                          />
+                                        </div>
+                                        <div className="mt-3 flex justify-center">
+                                          <div>
+                                            <h3 className="text-md text-gray-700">
+                                              <a href={item.href}>
+                                                <span
+                                                  aria-hidden="true"
+                                                  className="absolute inset-0"
+                                                />
+                                                {item.name}
+                                              </a>
+                                            </h3>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            </Popover.Panel>
+                          </Transition>
+                        </>
+                      )}
+                    </Popover>
+                  ))}
+                  {/* shop */}
+                  {navigation.categories.map((category) => (
+                    <Popover key={category.name} className="flex">
+                      {() => (
+                        <>
+                          <div className="relative mt-1">
+                            <Popover.Button>{category.name}</Popover.Button>
+                          </div>
+
+                          <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-200"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="transition ease-in duration-150"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                          >
+                            <Popover.Panel className="absolute inset-x-0 top-full text-gray-500">
+                              <div
+                                className="absolute inset-0 top-1/2 bg-transparent shadow"
+                                aria-hidden="true"
+                              />
+
+                              <div className="relative bg-white">
+                                <div className="mx-auto px-8">
+                                  <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
+                                    <div className="col-start-2 grid grid-cols-2 gap-x-8">
+                                      {category.featured.map((item) => (
+                                        <div
+                                          key={item.name}
+                                          className="group relative text-base sm:text-md"
+                                        >
+                                          <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                                            <img
+                                              src={item.imageSrc}
+                                              alt={item.imageAlt}
+                                              className="object-cover object-center"
+                                            />
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                    <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-md">
+                                      {category.sections.map((section) => (
+                                        <div key={section.name}>
+                                          <p
+                                            id={`${section.name}-heading`}
+                                            className="font-medium text-gray-900"
+                                          >
+                                            {section.name}
+                                          </p>
+                                          <ul
+                                            role="list"
+                                            aria-labelledby={`${section.name}-heading`}
+                                            className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                          >
+                                            {section.items.map((item) => (
+                                              <li
+                                                key={item.name}
+                                                className="flex"
+                                              >
+                                                <a
+                                                  href={item.href}
+                                                  className="hover:text-gray-800"
+                                                >
+                                                  {item.name}
+                                                </a>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </Popover.Panel>
+                          </Transition>
+                        </>
+                      )}
+                    </Popover>
+                  ))}
+
+                  {/* blogs */}
+                  {navigation.blogs.map((category) => (
+                    <Popover key={category.name} className="flex">
+                      {() => (
+                        <>
+                          <div className="relative mt-1">
+                            <Popover.Button>{category.name}</Popover.Button>
+                          </div>
+
+                          <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-200"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="transition ease-in duration-150"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                          >
+                            <Popover.Panel className="absolute inset-x-0 top-full text-gray-500">
+                              <div className="relative ">
+                                <div className="mx-auto px-8 bg-white w-2/4">
+                                  <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
+                                    <div className="col-start-2 grid grid-cols-2 gap-x-8">
+                                      {category.featured.map((item) => (
+                                        <div
+                                          key={item.name}
+                                          className="group relative text-base text-md"
+                                        >
+                                          <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                                            <img
+                                              src={item.imageSrc}
+                                              alt={item.imageAlt}
+                                              className="object-cover object-center"
+                                            />
+                                          </div>
+                                          <a
+                                            href={item.href}
+                                            className="mt-6 block font-medium text-gray-900"
+                                          >
+                                            <span
+                                              className="absolute inset-0 z-10"
+                                              aria-hidden="true"
+                                            />
+                                            {item.name}
+                                          </a>
+                                          <p
+                                            aria-hidden="true"
+                                            className="mt-1 pb-8"
+                                          >
+                                            Shop now
+                                          </p>
+                                        </div>
+                                      ))}
+                                    </div>
+                                    <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-md">
+                                      {category.sections.map((section) => (
+                                        <div key={section.name}>
+                                          <p
+                                            id={`${section.name}-heading`}
+                                            className="font-medium text-gray-900"
+                                          >
+                                            {section.name}
+                                          </p>
+                                          <ul
+                                            role="list"
+                                            aria-labelledby={`${section.name}-heading`}
+                                            className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                          >
+                                            {section.items.map((item) => (
+                                              <li
+                                                key={item.name}
+                                                className="flex"
+                                              >
+                                                <a
+                                                  href={item.href}
+                                                  className="hover:text-gray-800"
+                                                >
+                                                  {item.name}
+                                                </a>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </Popover.Panel>
+                          </Transition>
+                        </>
+                      )}
+                    </Popover>
+                  ))}
+
+                  {/* products */}
+                  {navigation.products.map((category) => (
+                    <Popover key={category.name} className="flex">
+                      {() => (
+                        <>
+                          <div className="relative mt-1">
+                            <Popover.Button>{category.name}</Popover.Button>
+                          </div>
+
+                          <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-200"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="transition ease-in duration-150"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                          >
+                            <Popover.Panel className="absolute inset-x-0 top-full text-gray-500">
+                              <div
+                                className="absolute inset-0 top-1/2 bg-transparent shadow"
+                                aria-hidden="true"
+                              />
+
+                              <div className="relative bg-white w-100">
+                                <div className="mx-auto px-14 w-100">
+                                  <div className="py-16">
+                                    <div className="flex gap-x-96 gap-y-10 text-md">
+                                      {category.sections.map((section) => (
+                                        <div key={section.name}>
+                                          <p
+                                            id={`${section.name}-heading`}
+                                            className="font-medium text-gray-900"
+                                          >
+                                            {section.name}
+                                          </p>
+                                          <ul
+                                            role="list"
+                                            aria-labelledby={`${section.name}-heading`}
+                                            className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                          >
+                                            {section.items.map((item) => (
+                                              <li
+                                                key={item.name}
+                                                className="flex"
+                                              >
+                                                <a
+                                                  href={item.href}
+                                                  className="hover:text-gray-800"
+                                                >
+                                                  {item.name}
+                                                </a>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </Popover.Panel>
+                          </Transition>
+                        </>
+                      )}
+                    </Popover>
+                  ))}
+
+                  {/* featureds */}
+                  {navigation.featureds.map((category) => (
+                    <Popover key={category.name} className="flex">
+                      {() => (
+                        <>
+                          <div className="relative mt-1">
+                            <Popover.Button>{category.name}</Popover.Button>
+                          </div>
+
+                          <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-200"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="transition ease-in duration-150"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                          >
+                            <Popover.Panel className="absolute inset-x-0 top-full text-gray-500">
+                              <div
+                                className="absolute inset-0 top-1/2 bg-transparent shadow"
+                                aria-hidden="true"
+                              />
+
+                              <div className="relative bg-white w-100">
+                                <div className="mx-auto px-10 w-100">
+                                  <div className="py-16">
+                                    <div className="flex gap-x-64 gap-y-10 text-md">
+                                      {category.sections.map((section) => (
+                                        <div key={section.name}>
+                                          <p
+                                            id={`${section.name}-heading`}
+                                            className="font-medium text-gray-900"
+                                          >
+                                            {section.name}
+                                          </p>
+                                          <ul
+                                            role="list"
+                                            aria-labelledby={`${section.name}-heading`}
+                                            className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                          >
+                                            {section.items.map((item) => (
+                                              <li
+                                                key={item.name}
+                                                className="flex"
+                                              >
+                                                <a
+                                                  href={item.href}
+                                                  className="hover:text-gray-800"
+                                                >
+                                                  {item.name}
+                                                </a>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </Popover.Panel>
+                          </Transition>
+                        </>
+                      )}
+                    </Popover>
+                  ))}
+                </div>
+              </Popover.Group>
+
+              <div className="ml-auto mr-8 flex items-center">
+                {/* Search */}
+                <div className="flex lg:ml-6">
+                  <SearchOutlined className="ml-20" />
+                </div>
+
+                <div className="flex lg:ml-6">
+                  <UserOutlined className="ml-3" />
+                </div>
+                <div className="flex lg:ml-6">
+                  <HeartOutlined className="ml-3" />
+                </div>
+
+                {/* Cart */}
+                <div className="ml-4 flow-root lg:ml-6">
+                  <ShoppingCartOutlined className="ml-3" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+  );
+}
