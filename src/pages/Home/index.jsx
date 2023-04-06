@@ -80,13 +80,13 @@ function Home() {
     <div className={cx("wrapper")}>
       <Carousel effect="fade">
         <div>
-          <img src={images.slider_1} alt="slider-2" className="w-100"></img>
+          <img src={images.slider_1} alt="slider-2" className="w-full"></img>
         </div>
         <div>
-          <img src={images.slider_2} alt="slider-2" className="w-100"></img>
+          <img src={images.slider_2} alt="slider-2" className="w-full"></img>
         </div>
         <div>
-          <img src={images.slider_3} alt="slider-2" className="w-100"></img>
+          <img src={images.slider_3} alt="slider-2" className="w-full"></img>
         </div>
       </Carousel>
       <Row className={cx("banner")}>

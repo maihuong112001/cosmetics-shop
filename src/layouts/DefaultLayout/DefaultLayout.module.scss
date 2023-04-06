@@ -4,15 +4,13 @@
     align-items: center;
     
 }
-
 .container {
     width: var(--default-layout-width);
     display: flex;
     z-index: 1;
     top: 0;
-    position: absolute;
+    margin-top: -200px;
 }
-
 .content {
     width: 100%;
     flex: 99;
