@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 
 import images from "@/assets/images";
-import { navigation } from "./constants";
+import { navigation } from "@/data/menuDropdown.mock";
 import ActionHeader from "../ActionHeader";
 
 export default function InnerHeader() {

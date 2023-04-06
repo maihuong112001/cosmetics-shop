@@ -21,22 +21,22 @@ const topCategories = [
     image: imagesHome.top_cate_1,
   },
   {
-    id: 1,
+    id: 2,
     name: 'WEDDING & BRIDAL',
     image: imagesHome.top_cate_2,
   },
   {
-    id: 1,
+    id: 3,
     name: 'EARNINGS',
     image: imagesHome.top_cate_3,
   },
   {
-    id: 1,
+    id: 4,
     name: 'BRACELETS',
     image: imagesHome.top_cate_4,
   },
   {
-    id: 1,
+    id: 5,
     name: 'CHARMS',
     image: imagesHome.top_cate_5,
   },
@@ -128,7 +128,7 @@ function Home() {
       <div className="w-[70%] m-auto">
         <Slider {...settings}>
           {topCategories.map((category) =>  (
-            <div className={cx("category-item")}>
+            <div key={category.id} className={cx("category-item")}>
             <div className="rounded-[50%]">
               <img src={category.image} alt="" className="rounded-[50%] cursor-pointer"/>
             </div>

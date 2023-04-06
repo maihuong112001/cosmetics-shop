@@ -1,68 +1,4 @@
 export const navigation = {
-    categories: [
-      {
-        id: "shop",
-        name: "SHOP",
-        featured: [
-          {
-            name: "New Arrivals",
-            href: "#",
-            imageSrc:
-              "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/Untitled-2.jpg?v=1667532503",
-            imageAlt:
-              "Models sitting back to back, wearing Basic Tee in black and bone.",
-          },
-          {
-            name: "Basic Tees",
-            href: "#",
-            imageSrc:
-              "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/Untitled-1.jpg?v=1667532503",
-            imageAlt:
-              "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
-          },
-        ],
-        sections: [
-          {
-            id: "clothing",
-            name: "Clothing",
-            items: [
-              { name: "Tops", href: "#" },
-              { name: "Dresses", href: "#" },
-              { name: "Pants", href: "#" },
-              { name: "Denim", href: "#" },
-              { name: "Sweaters", href: "#" },
-              { name: "T-Shirts", href: "#" },
-              { name: "Jackets", href: "#" },
-              { name: "Activewear", href: "#" },
-              { name: "Browse All", href: "#" },
-            ],
-          },
-          {
-            id: "accessories",
-            name: "Accessories",
-            items: [
-              { name: "Watches", href: "#" },
-              { name: "Wallets", href: "#" },
-              { name: "Bags", href: "#" },
-              { name: "Sunglasses", href: "#" },
-              { name: "Hats", href: "#" },
-              { name: "Belts", href: "#" },
-            ],
-          },
-          {
-            id: "brands",
-            name: "Brands",
-            items: [
-              { name: "Full Nelson", href: "#" },
-              { name: "My Way", href: "#" },
-              { name: "Re-Arranged", href: "#" },
-              { name: "Counterfeit", href: "#" },
-              { name: "Significant Other", href: "#" },
-            ],
-          },
-        ],
-      },
-    ],
     pages: [
       {
         id: "home",
@@ -131,6 +67,70 @@ export const navigation = {
               "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/home-style.jpg?v=1667882743",
             imageAlt:
               "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+          },
+        ],
+      },
+    ],
+    categories: [
+      {
+        id: "shop",
+        name: "SHOP",
+        featured: [
+          {
+            name: "New Arrivals",
+            href: "#",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/Untitled-2.jpg?v=1667532503",
+            imageAlt:
+              "Models sitting back to back, wearing Basic Tee in black and bone.",
+          },
+          {
+            name: "Basic Tees",
+            href: "#",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0673/3588/1018/files/Untitled-1.jpg?v=1667532503",
+            imageAlt:
+              "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
+          },
+        ],
+        sections: [
+          {
+            id: "clothing",
+            name: "Clothing",
+            items: [
+              { name: "Tops", href: "#" },
+              { name: "Dresses", href: "#" },
+              { name: "Pants", href: "#" },
+              { name: "Denim", href: "#" },
+              { name: "Sweaters", href: "#" },
+              { name: "T-Shirts", href: "#" },
+              { name: "Jackets", href: "#" },
+              { name: "Activewear", href: "#" },
+              { name: "Browse All", href: "#" },
+            ],
+          },
+          {
+            id: "accessories",
+            name: "Accessories",
+            items: [
+              { name: "Watches", href: "#" },
+              { name: "Wallets", href: "#" },
+              { name: "Bags", href: "#" },
+              { name: "Sunglasses", href: "#" },
+              { name: "Hats", href: "#" },
+              { name: "Belts", href: "#" },
+            ],
+          },
+          {
+            id: "brands",
+            name: "Brands",
+            items: [
+              { name: "Full Nelson", href: "#" },
+              { name: "My Way", href: "#" },
+              { name: "Re-Arranged", href: "#" },
+              { name: "Counterfeit", href: "#" },
+              { name: "Significant Other", href: "#" },
+            ],
           },
         ],
       },
@@ -354,3 +354,4 @@ export const navigation = {
       },
     ],
   };
+  
