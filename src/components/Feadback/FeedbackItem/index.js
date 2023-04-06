@@ -2,7 +2,7 @@
 import classNames from "classnames/bind";
 import styles from "./FeedbackItem.module.scss";
 import imagesAboutUs from "@/assets/images/AboutUs";
-import { ReactComponent as StarIcon } from "../../../../../assets/images/star.svg";
+import { ReactComponent as StarIcon } from "@/assets/images/star.svg";
 
 const cx = classNames.bind(styles);
 

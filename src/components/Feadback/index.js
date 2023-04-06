@@ -3,7 +3,6 @@ import classNames from "classnames/bind";
 import styles from "./Feedback.module.scss";
 import FeedbackItem from "./FeedbackItem";
 import Slider from "react-slick";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import {NextArrowButton, PreviousArrowButton} from '../Button'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

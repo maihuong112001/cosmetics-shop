@@ -1,10 +1,10 @@
 import { Carousel, Col, Row } from "antd";
 import {ArrowRightOutlined} from "@ant-design/icons";
 import classNames from "classnames/bind";
-import SubscribeForm from "@/components/Layout/components/SubscribeForm";
-import BrandCard from "@/components/Layout/components/BrandCard";
-import Feedback from "@/components/Layout/components/Feadback";
-import { NextArrowButton, PreviousArrowButton } from "@/components/Layout/components/Button";
+import SubscribeForm from "@/components/SubscribeForm";
+import BrandCard from "@/components/BrandCard";
+import Feedback from "@/components/Feadback";
+import { NextArrowButton, PreviousArrowButton } from "@/components/Button";
 import { ReactComponent as DiamondIcon } from "../../assets/images/Home/diamond.svg";
 import { ReactComponent as NeckLaceIcon } from "../../assets/images/Home/necklace.svg";
 import Slider from "react-slick";
