@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
+import { DownOutlined, } from "@ant-design/icons";
 
 import images from "@/assets/images";
 import { navigation } from "@/data/menuDropdown.mock";
@@ -12,7 +13,7 @@ export default function InnerHeader() {
         <nav aria-label="Top" className="mx-auto w-100 px-4">
           <div>
             <div className="flex h-16">
-              {/* logo */}
+              
               <div className="flex lg:ml-5">
                 <a href="./">
                   <span className="sr-only">Your Company</span>
@@ -21,7 +22,7 @@ export default function InnerHeader() {
               </div>
               {/* Flyout menus */}
               <Popover.Group className="hidden lg:ml-auto lg:block lg:self-stretch">
-                <div className="flex h-full space-x-8">
+                <div className="flex h-full space-x-8 pl-16">
                   {/* pages */}
                   {navigation.pages.map((category) => (
                     <Popover key={category.name} className="flex">
@@ -29,6 +30,7 @@ export default function InnerHeader() {
                         <>
                           <div className="relative mt-1">
                             <Popover.Button>{category.name}</Popover.Button>
+                            <DownOutlined className="text-sm ml-1" />
                           </div>
 
                           <Transition
@@ -87,6 +89,7 @@ export default function InnerHeader() {
                         <>
                           <div className="relative mt-1">
                             <Popover.Button>{category.name}</Popover.Button>
+                            <DownOutlined className="text-sm ml-1" />
                           </div>
 
                           <Transition
@@ -165,6 +168,7 @@ export default function InnerHeader() {
                         <>
                           <div className="relative mt-1">
                             <Popover.Button>{category.name}</Popover.Button>
+                            <DownOutlined className="text-sm ml-1" />
                           </div>
 
                           <Transition
@@ -259,6 +263,7 @@ export default function InnerHeader() {
                         <>
                           <div className="relative mt-1">
                             <Popover.Button>{category.name}</Popover.Button>
+                            <DownOutlined className="text-sm ml-1" />
                           </div>
 
                           <Transition
@@ -321,6 +326,7 @@ export default function InnerHeader() {
                         <>
                           <div className="relative mt-1">
                             <Popover.Button>{category.name}</Popover.Button>
+                            <DownOutlined className="text-sm ml-1" />
                           </div>
 
                           <Transition
