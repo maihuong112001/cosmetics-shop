@@ -4,13 +4,13 @@ import { Space, Tag } from "antd";
 import {
   SearchOutlined,
   HeartOutlined,
-  ShoppingCartOutlined,
   CloseOutlined,
 } from "@ant-design/icons";
 
 import styles from "./ActionHeader.module.scss";
 import GlideModal from "../Modal/GlideModal/GlideModal";
 import SignIn from "@/components/SignIn";
+import ProductCard from "@/components/ProductCard"
 
 const cx = classNames.bind(styles);
 const onSearch = (value) => console.log(value);
@@ -82,15 +82,14 @@ export default function ActionHeader() {
           </GlideModal>
         )}
       </div>
+      {/*Modal Sign In */}
       <SignIn />
       <div className="flex lg:ml-6">
         <HeartOutlined className={cx("ant-icon")} />
       </div>
 
-      {/* Cart */}
-      <div className="ml-4 flow-root lg:ml-6">
-        <ShoppingCartOutlined className={cx("ant-icon")} />
-      </div>
+      {/*Product Cart */}
+      <ProductCard/>
     </div>
   );
 }
