@@ -4,6 +4,7 @@ import classNames from "classnames/bind";
 import SubscribeForm from "@/components/Layout/components/SubscribeForm";
 import BrandCard from "@/components/Layout/components/BrandCard";
 import Feedback from "@/components/Layout/components/Feadback";
+import ProductCard from "@/components/Layout/components/ProductCard";
 import { NextArrowButton, PreviousArrowButton } from "@/components/Layout/components/Button";
 import { ReactComponent as DiamondIcon } from "../../assets/images/Home/diamond.svg";
 import { ReactComponent as NeckLaceIcon } from "../../assets/images/Home/necklace.svg";
@@ -170,6 +171,12 @@ function Home() {
           <img src={imagesHome.collection_img} alt=""/>
         </Col>
       </Row>
+      <h3 className={cx("heading")}>TRENDING PRODUCTS</h3>
+      <div className="w-[95%] m-auto">
+        <Slider {...settings}>
+        <ProductCard/> <ProductCard/> <ProductCard/><ProductCard/> <ProductCard/> <ProductCard/>
+        </Slider>
+      </div>
       <Row className={cx("collection-banner")} >
         <Col flex="50%" className={cx("collection")}>
           <div className="box-border overflow-hidden">
