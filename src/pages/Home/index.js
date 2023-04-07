@@ -1,11 +1,10 @@
 import { Carousel, Col, Row } from "antd";
 import {ArrowRightOutlined} from "@ant-design/icons";
 import classNames from "classnames/bind";
-import SubscribeForm from "@/components/Layout/components/SubscribeForm";
-import BrandCard from "@/components/Layout/components/BrandCard";
-import Feedback from "@/components/Layout/components/Feadback";
-import ProductCard from "@/components/Layout/components/ProductCard";
-import { NextArrowButton, PreviousArrowButton } from "@/components/Layout/components/Button";
+import SubscribeForm from "@/components/SubscribeForm";
+import BrandCard from "@/components/BrandCard";
+import Feedback from "@/components/Feadback";
+import { NextArrowButton, PreviousArrowButton } from "@/components/Button";
 import { ReactComponent as DiamondIcon } from "../../assets/images/Home/diamond.svg";
 import { ReactComponent as NeckLaceIcon } from "../../assets/images/Home/necklace.svg";
 import Slider from "react-slick";
@@ -22,22 +21,22 @@ const topCategories = [
     image: imagesHome.top_cate_1,
   },
   {
-    id: 1,
+    id: 2,
     name: 'WEDDING & BRIDAL',
     image: imagesHome.top_cate_2,
   },
   {
-    id: 1,
+    id: 3,
     name: 'EARNINGS',
     image: imagesHome.top_cate_3,
   },
   {
-    id: 1,
+    id: 4,
     name: 'BRACELETS',
     image: imagesHome.top_cate_4,
   },
   {
-    id: 1,
+    id: 5,
     name: 'CHARMS',
     image: imagesHome.top_cate_5,
   },
@@ -81,13 +80,13 @@ function Home() {
     <div className={cx("wrapper")}>
       <Carousel effect="fade">
         <div>
-          <img src={images.slider_1} alt="slider-2" className="w-100"></img>
+          <img src={images.slider_1} alt="slider-2" className="w-full"></img>
         </div>
         <div>
-          <img src={images.slider_2} alt="slider-2" className="w-100"></img>
+          <img src={images.slider_2} alt="slider-2" className="w-full"></img>
         </div>
         <div>
-          <img src={images.slider_3} alt="slider-2" className="w-100"></img>
+          <img src={images.slider_3} alt="slider-2" className="w-full"></img>
         </div>
       </Carousel>
       <Row className={cx("banner")}>
@@ -129,7 +128,7 @@ function Home() {
       <div className="w-[70%] m-auto">
         <Slider {...settings}>
           {topCategories.map((category) =>  (
-            <div className={cx("category-item")}>
+            <div key={category.id} className={cx("category-item")}>
             <div className="rounded-[50%]">
               <img src={category.image} alt="" className="rounded-[50%] cursor-pointer"/>
             </div>
@@ -171,12 +170,6 @@ function Home() {
           <img src={imagesHome.collection_img} alt=""/>
         </Col>
       </Row>
-      <h3 className={cx("heading")}>TRENDING PRODUCTS</h3>
-      <div className="w-[95%] m-auto">
-        <Slider {...settings}>
-        <ProductCard/> <ProductCard/> <ProductCard/><ProductCard/> <ProductCard/> <ProductCard/>
-        </Slider>
-      </div>
       <Row className={cx("collection-banner")} >
         <Col flex="50%" className={cx("collection")}>
           <div className="box-border overflow-hidden">
