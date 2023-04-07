@@ -10,7 +10,7 @@ import {
 import styles from "./ActionHeader.module.scss";
 import GlideModal from "../Modal/GlideModal/GlideModal";
 import SignIn from "@/components/SignIn";
-import ProductCard from "@/components/ProductCard"
+import ProductCard from "@/components/Card"
 
 const cx = classNames.bind(styles);
 const onSearch = (value) => console.log(value);

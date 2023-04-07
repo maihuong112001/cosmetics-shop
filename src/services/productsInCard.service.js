@@ -1,4 +1,4 @@
-import { products } from "@/data/productCard.mock";
+import { products } from "@/data/productsInCard.mock";
 
 export const productCardsService = {
   getAllProductCard() {
