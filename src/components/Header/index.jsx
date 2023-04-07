@@ -7,32 +7,23 @@ import { DownOutlined, CheckOutlined } from "@ant-design/icons";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import InnerHeader from "../InnerHeader";
+import { currency } from "@/data/currency.mock";
 
 const cx = classNames.bind(styles);
-const people = [
+const languages = [
   {
     id: 1,
-    name: "USD",
-    avatar:
-      "https://cdn.shopify.com/s/files/1/0673/3588/1018/t/2/assets/usd.svg?19041994",
+    name: "English",
   },
   {
     id: 2,
-    name: "EUR",
-    avatar:
-      "https://cdn.shopify.com/s/files/1/0673/3588/1018/t/2/assets/eur.svg?19041994",
-  },
-  {
-    id: 3,
-    name: "GBP",
-    avatar:
-      "https://cdn.shopify.com/s/files/1/0673/3588/1018/t/2/assets/gbp.svg?19041994",
+    name: "VietNam",
   },
 ];
 
 function Header() {
-  const [selected, setSelected] = useState(people[1]);
-
+  const [selected, setSelected] = useState(currency[1]);
+  const [selectedLanguage, setSelectedLanguage] = useState(languages[1]);
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner-about")}>
@@ -51,16 +42,16 @@ function Header() {
               Summer sale discount off 30%! <a href="./">Shop Now</a>
             </p>
           </Col>
-          <Col className="pl-60" span={8}>
+          <Col className="flex pl-[16%]" span={8}>
             <Listbox value={selected} onChange={setSelected}>
               {({ open }) => (
-                <div className="relative mt-1">
-                  <Listbox.Button className="relative w-[30%] cursor bg-transparent py-1.5 text-left text-white">
+                <div className="relative mt-1 w-[40%] mr-0">
+                  <Listbox.Button className="relative w-[100%] cursor bg-transparent py-1.5 text-left text-white">
                     <span className="flex items-center">
                       <img
                         src={selected.avatar}
                         alt=""
-                        className="h-5 w-5 flex-shrink-0 rounded-full"
+                        className="h-5 w-5 flex-shrink-0"
                       />
                       <span className="ml-3 block truncate">
                         {selected.name}
@@ -81,8 +72,8 @@ function Header() {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <Listbox.Options className="absolute z-10 max-h-56 w-[50%] overflow-auto bg-white pb-1 pt-10 px-4 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                      {people.map((person) => (
+                    <Listbox.Options className="absolute z-10 max-h-56 w-[110px] overflow-auto bg-white pb-1 pt-10 px-4 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                      {currency.map((person) => (
                         <Listbox.Option
                           key={person.id}
                           className={({ active }) =>
@@ -101,7 +92,7 @@ function Header() {
                                 <img
                                   src={person.avatar}
                                   alt=""
-                                  className="h-5 w-5 flex-shrink-0 rounded-full"
+                                  className="h-5 w-5 flex-shrink-0"
                                 />
                                 <span
                                   className={classNames(
@@ -135,25 +126,81 @@ function Header() {
                 </div>
               )}
             </Listbox>
+            <Divider className="flex mt-[10px]" type="vertical" />
 
-            <Divider type="vertical" />
-            <Space wrap>
-              <Select
-                className="w-[80px] text-white"
-                defaultValue="English"
-                bordered={false}
-                options={[
-                  {
-                    value: "English",
-                    label: "English",
-                  },
-                  {
-                    value: "VietNam",
-                    label: "VietNam",
-                  },
-                ]}
-              />
-            </Space>
+            <Listbox value={selectedLanguage} onChange={setSelectedLanguage}>
+              {({ open }) => (
+                <div className=" mt-1 w-[50%]">
+                  <Listbox.Button className="relative w-[70%] cursor bg-transparent py-1.5 text-white">
+                    <span className="flex items-center">
+                      {selectedLanguage.name}
+                    </span>
+                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center">
+                      <DownOutlined
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </Listbox.Button>
+
+                  <Transition
+                    show={open}
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options className="absolute z-10 w-[100px] max-h-56 overflow-auto bg-white pb-1 pt-8 px-4 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                      {languages.map((person) => (
+                        <Listbox.Option
+                          key={person.id}
+                          className={({ active }) =>
+                            classNames(
+                              active
+                                ? "bg-white text-[#cb8161] cursor"
+                                : "text-gray-900",
+                              "relative cursor-default select-none border-t-[1px] p-3 pl-2 pr-2"
+                            )
+                          }
+                          value={person}
+                        >
+                          {({ selectedLanguage, active }) => (
+                            <>
+                              <div className="flex items-center">
+                                <span
+                                  className={classNames(
+                                    selectedLanguage
+                                      ? "font-semibold"
+                                      : "font-normal",
+                                    "ml-3 block truncate"
+                                  )}
+                                >
+                                  {person.name}
+                                </span>
+                              </div>
+
+                              {selectedLanguage ? (
+                                <span
+                                  className={classNames(
+                                    active ? "text-white" : "text-indigo-600",
+                                    "absolute inset-y-0 right-0 flex items-center pr-4"
+                                  )}
+                                >
+                                  <CheckOutlined
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                </span>
+                              ) : null}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              )}
+            </Listbox>
           </Col>
         </Row>
       </div>
