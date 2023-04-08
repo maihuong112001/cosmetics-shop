@@ -3,9 +3,9 @@ import classNames from "classnames/bind";
 import styles from "./Feedback.module.scss";
 import FeedbackItem from "./FeedbackItem";
 import Slider from "react-slick";
-import {NextArrowButton, PreviousArrowButton} from '../Button'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import {ArrowButton} from '../Button'
+import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+
 
 const cx = classNames.bind(styles);
 
@@ -14,8 +14,8 @@ const settings = {
       infinite: true,
       slidesToShow: 3,
       slidesToScroll: 1,
-      nextArrow: <NextArrowButton />,
-      prevArrow: <PreviousArrowButton />,
+      nextArrow: <ArrowButton small left><LeftOutlined/></ArrowButton>,
+      prevArrow: <ArrowButton small right><RightOutlined/></ArrowButton>,
       responsive: [
         {
 

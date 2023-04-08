@@ -1,94 +1,69 @@
-import { Carousel, Col, Row } from "antd";
+import {Col, Row } from "antd";
 import {ArrowRightOutlined} from "@ant-design/icons";
 import classNames from "classnames/bind";
 import SubscribeForm from "@/components/SubscribeForm";
 import BrandCard from "@/components/BrandCard";
 import Feedback from "@/components/Feadback";
-import { NextArrowButton, PreviousArrowButton } from "@/components/Button";
+import ProductCard from "@/components/ProductCard";
+import { SectionLine } from "@/components/Line";
 import { ReactComponent as DiamondIcon } from "../../assets/images/Home/diamond.svg";
 import { ReactComponent as NeckLaceIcon } from "../../assets/images/Home/necklace.svg";
 import Slider from "react-slick";
 import styles from "./Home.module.scss";
 import images from "@/assets/images";
 import imagesHome from "@/assets/images/Home";
+import {categories} from '@/data/categories.mock';
+import { bannerSettings, settings } from "@/services/settings.services";
 
 const cx = classNames.bind(styles);
 
-const topCategories = [
-  {
-    id: 1,
-    name: 'NECKLACES',
-    image: imagesHome.top_cate_1,
-  },
-  {
-    id: 2,
-    name: 'WEDDING & BRIDAL',
-    image: imagesHome.top_cate_2,
-  },
-  {
-    id: 3,
-    name: 'EARNINGS',
-    image: imagesHome.top_cate_3,
-  },
-  {
-    id: 4,
-    name: 'BRACELETS',
-    image: imagesHome.top_cate_4,
-  },
-  {
-    id: 5,
-    name: 'CHARMS',
-    image: imagesHome.top_cate_5,
-  },
-]
-  
 
-const settings = {
-  dots: false,
-  infinite: true,
-  slidesToShow: 5,
-  slidesToScroll: 1,
-  nextArrow: <NextArrowButton />,
-  prevArrow: <PreviousArrowButton />,
-  responsive: [
-    {
 
-      breakpoint: 1200,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        infinite: true,
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
-  ]}
 function Home() {
   return (
     <div className={cx("wrapper")}>
-      <Carousel effect="fade">
-        <div>
-          <img src={images.slider_1} alt="slider-2" className="w-full"></img>
+      <Slider {...bannerSettings} >
+      <div className="relative">
+          <img src={images.slider_1} alt="slider-2" className={cx('fade-in', 'lazyloaded')} style={{width: '100%'}}></img>
+          <div className="absolute top-0 w-full h-full left-0 flex justify-center">
+            <div className="absolute z-10 flex justify-start top-[35%] max-w-[1440px] mx-auto px-[15px] w-full flex-col">
+              <h2 className={cx('banner-content', 'leftright')}>
+                Discover a  
+                <br/>
+                world of jewelry
+                </h2>
+              <a href="/" className={cx("button-slider")}>EXPLORE BESTSELLER</a>
+            </div>
+          </div>
         </div>
-        <div>
-          <img src={images.slider_2} alt="slider-2" className="w-full"></img>
+        <div className="relative">
+          <img src={images.slider_2} alt="slider-2" className={cx('fade-in', 'lazyloaded')} style={{width: '100%'}}></img>
+          <div className="absolute top-0 w-full h-full left-0 flex justify-center">
+            <div className="absolute z-10 flex justify-start top-[35%] max-w-[1440px] mx-auto px-[15px] w-full flex-col">
+              <h2 className={cx('banner-content', 'leftright')}>
+                Discover a  
+                <br/>
+                Best of the Best
+              </h2>
+              <a href="/" className={cx("button-slider")}>EXPLORE BESTSELLER</a>
+            </div>
+          </div>
         </div>
-        <div>
-          <img src={images.slider_3} alt="slider-2" className="w-full"></img>
+        <div className="relative">
+          <img src={images.slider_3} alt="slider-2" className={cx('fade-in', 'lazyloaded')} style={{width: '100%'}}></img>
+          <div className="absolute top-0 w-full h-full left-0 flex justify-center">
+            <div className="absolute z-10 flex justify-start top-[35%] max-w-[1440px] mx-auto px-[15px] w-full flex-col">
+              <h2 className={cx('banner-content', 'leftright')}>
+                Oh, 
+                <br/>
+                Hello Newness!
+                </h2>
+                <a href="/" className={cx("button-slider")}>EXPLORE BESTSELLER</a>
+            </div>
+          </div>
         </div>
-      </Carousel>
+      </Slider>
+
       <Row className={cx("banner")}>
           <Col flex="36.75%" className={cx("banner-item")}>
             <div className="box-border overflow-hidden">
@@ -124,16 +99,16 @@ function Home() {
             </div>
           </Col>
         </Row>
-      <h3 className={cx("heading")}>TOP CATEGORIES</h3>
-      <div className="w-[70%] m-auto">
-        <Slider {...settings}>
-          {topCategories.map((category) =>  (
+      <h3 className={cx("heading")} style={{margin: '30px auto'}}>TOP CATEGORIES</h3>
+      <div className="w-[80%] m-auto ">
+        <Slider {...settings} className="px-[20px] ">
+          {categories.map((category) =>  (
             <div key={category.id} className={cx("category-item")}>
-            <div className="rounded-[50%]">
-              <img src={category.image} alt="" className="rounded-[50%] cursor-pointer"/>
+              <div className="rounded-[50%]">
+                <img src={category.image} alt="" className="rounded-[50%] cursor-pointer"/>
+              </div>
+              <a href="/" className={cx("category-item__title")}>{category.name}</a>
             </div>
-            <a href="/" className={cx("category-item__title")}>{category.name}</a>
-          </div>
           ))}
           
         </Slider>
@@ -170,6 +145,12 @@ function Home() {
           <img src={imagesHome.collection_img} alt=""/>
         </Col>
       </Row>
+      <h3 className={cx("heading")} style={{margin: '30px auto'}}>TRENDING PRODUCTS</h3>
+      <div className="w-[95%] m-auto">
+        <Slider {...settings}>
+        <ProductCard/> <ProductCard/> <ProductCard/><ProductCard/> <ProductCard/> <ProductCard/>
+        </Slider>
+      </div>
       <Row className={cx("collection-banner")} >
         <Col flex="50%" className={cx("collection")}>
           <div className="box-border overflow-hidden">
@@ -207,6 +188,7 @@ function Home() {
         <Feedback/>
       </div>
       <SubscribeForm/>
+      <SectionLine/>
       <BrandCard/>
     </div>
   );

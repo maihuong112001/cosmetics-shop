@@ -1,8 +1,5 @@
 .wrapper {
           top: 36%;
-          width: 34px;
-          height: 34px;
-          border-radius: 50%;
           line-height: 1;
           text-align: center;
           color: #adadad;
@@ -12,7 +9,7 @@
           z-index: 1;
           transition: all .3s ease;
           font-family: feather;
-          right: -15px;
+          
           display: flex;
           justify-content: center;
           align-items: center;
@@ -24,4 +21,19 @@
           color: white;
 }
 
+.small {
+          width: 34px;
+          height: 34px;
+}
 
+.right {
+          right: -15px;
+}
+
+.left {
+          left: -15px;
+}
+
+.circle {
+          border-radius: 50%;
+}
