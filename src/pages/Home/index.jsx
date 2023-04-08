@@ -4,7 +4,7 @@ import {ArrowRightOutlined} from "@ant-design/icons";
 import classNames from "classnames/bind";
 import SubscribeForm from "@/components/SubscribeForm";
 import BrandCard from "@/components/BrandCard";
-import Feedback from "@/components/Feadback";
+import Feedback from "@/components/Feedback";
 import ProductCard from "@/components/ProductCard";
 import { SectionLine } from "@/components/Line";
 import { ReactComponent as DiamondIcon } from "../../assets/images/Home/diamond.svg";
@@ -152,7 +152,7 @@ function Home() {
         <Slider {...settings}>
           {
             products.map((product) => (
-              <ProductCard img1={product.img_1} img2={product.img_2} name={product.name} price={product.price}/>
+              <ProductCard img1={product.img_1} img2={product.img_2} name={product.name} price={product.price} key={product.id}/>
             ))
           }
         

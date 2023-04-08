@@ -45,3 +45,37 @@ export const settings = {
               }
             }
           ]}
+
+export const feedbackSettings = {
+  dots: false,
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      nextArrow: <ArrowButton small left><LeftOutlined/></ArrowButton>,
+      prevArrow: <ArrowButton small right><RightOutlined/></ArrowButton>,
+      responsive: [
+        {
+
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+	}

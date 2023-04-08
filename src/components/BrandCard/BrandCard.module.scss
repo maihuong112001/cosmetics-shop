@@ -5,17 +5,15 @@
 
 .item {
           cursor: pointer;
-
-}
-
-.item img {
-          margin: auto;
-          max-width: 175px;
-          max-height: 175px;
-          transition: all .5s ease; 
-}
-
-.item:hover img {
-          transform: scale(0.8);
+          img {
+                    margin: auto;
+                    max-width: 175px;
+                    max-height: 175px;
+                    transition: all .5s ease; 
+          }
+          &:hover img {
+                    transform: scale(0.8);
+          
+          }
 
 }

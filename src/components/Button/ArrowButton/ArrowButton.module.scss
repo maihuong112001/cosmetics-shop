@@ -9,16 +9,13 @@
           z-index: 1;
           transition: all .3s ease;
           font-family: feather;
-          
           display: flex;
           justify-content: center;
           align-items: center;
-}
-
-
-.wrapper:hover {
-          background: var(--btn-hover-color);
-          color: white;
+          &:hover {
+                    background: var(--btn-hover-color);
+                    color: white;
+          }
 }
 
 .small {

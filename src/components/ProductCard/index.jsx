@@ -26,12 +26,12 @@ function ProductCard(props) {
             <div className={cx("cart-form")}>
               <form>
                 <div className="border-r-[1px] border-r-[rgba(255,255,255,.5)] flex px-[20px] items-center">
-                  <div className="h-[20px] w-[20px] rounded-[50%] hover:bg-white bg-transparent flex justify-center items-center" >
-                    <MinusOutlined style={{fontSize: '8px', color:'#fff'}} className="hover:text-black"/>
+                  <div className={cx('qty-btn')} >
+                    <MinusOutlined style={{fontSize: '12px', color:'#fff'}} className={cx('gsx')}/>
                   </div>
-                  <input className="bg-transparent w-[30px] leading-[40px]" ></input>
-                  <div className="h-[20px] w-[20px] rounded-[50%] hover:bg-white bg-transparent flex justify-center items-center" >
-                    <PlusOutlined style={{fontSize: '8px', color: '#fff'}} />
+                  <input className="bg-transparent w-[30px] leading-[40px]" value={1} pattern="[0-9]"></input>
+                  <div className={cx('qty-btn')}>
+                    <PlusOutlined style={{fontSize: '12px', color: '#fff'}} />
                   </div>
                 </div>
                 <div className={cx('cart-btn')}>
