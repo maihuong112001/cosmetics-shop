@@ -1,6 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "./ProductCard.module.scss";
 import { ReactComponent as StarIcon } from "@/assets/images/star.svg";
+import { ReactComponent as CompareIcon } from "@/assets/images/Products/down-up-arrow-svgrepo-com.svg";
+import { ReactComponent as SearchIcon } from "@/assets/images/Products/search-svgrepo-com.svg";
 import { NormalButton } from "../Button";
 import { HeartOutlined, ShoppingOutlined, PlusOutlined, MinusOutlined } from "@ant-design/icons";
 
@@ -20,8 +22,8 @@ function ProductCard(props) {
               </div>
             <div className={cx("button")}>
               <NormalButton><HeartOutlined/></NormalButton>
-              <NormalButton><HeartOutlined/></NormalButton>
-              <NormalButton><HeartOutlined/></NormalButton>
+              <NormalButton><CompareIcon/></NormalButton>
+              <NormalButton><SearchIcon/></NormalButton>
             </div>
             <div className={cx("cart-form")}>
               <form>

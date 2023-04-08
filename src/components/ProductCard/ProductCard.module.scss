@@ -22,6 +22,30 @@
 			opacity: 1;
 			visibility: visible;
 			transform: translateY(0);
+			&:hover {
+				color: #fff;
+				-webkit-animation-name: beat;
+				animation-name: beat;
+				-webkit-animation-duration: .9s;
+				animation-duration: .9s;
+				-webkit-animation-timing-function: ease-in-out;
+				animation-timing-function: ease-in-out;
+				-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+				svg path {
+					color: #fff !important;
+					fill: #fff;
+					stroke: #fff !important;
+				}
+				svg polyline {
+					stroke: #fff !important;
+					color: #fff !important;
+				}
+				svg g {
+					stroke: #fff !important;
+					color: #fff !important;
+				}
+			      }
 		}
 		.button button:nth-child(2) {
 			transition-delay: 0.1s;
@@ -36,6 +60,30 @@
 		}
 	}
 		
+}
+
+@keyframes beat {
+	0% {
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1);
+		-ms-transform: scale(1);
+		-o-transform: scale(1);
+		transform: scale(1);
+	      }
+	      50% {
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+		-ms-transform: scale(1.1);
+		-o-transform: scale(1.1);
+		transform: scale(1.1);
+	      }
+	      100% {
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1);
+		-ms-transform: scale(1);
+		-o-transform: scale(1);
+		transform: scale(1);
+	      }
 }
 
 .image {
