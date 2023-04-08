@@ -37,14 +37,14 @@ function Header() {
           <Col span={8}>
             <Space className="ml-10">
               <EnvironmentTwoTone className="icon-ant" twoToneColor="#fff" />
-              <a href="./">Store Location</a>
+              <a href="./" className="text-[13px]">Store Location</a>
               <Divider type="vertical" />
               <MailTwoTone twoToneColor="#fff" />
-              <a href="./">support@mojuri.com</a>
+              <a href="./" className="text-[13px]">support@mojuri.com</a>
             </Space>
           </Col>
           <Col span={8}>
-            <p className="text-center">
+            <p className="text-center text-[13px]">
               Summer sale discount off 30%! <a href="./">Shop Now</a>
             </p>
           </Col>
@@ -52,12 +52,12 @@ function Header() {
             <Listbox value={selectedCurency} onChange={setSelectedCurency}>
               {({ open }) => (
                 <div className="relative mt-1 w-[40%] mr-0">
-                  <Listbox.Button className="relative w-[100%] cursor bg-transparent py-1.5 text-left text-white">
+                  <Listbox.Button className="relative w-[100%] text-[13px] cursor bg-transparent py-1.5 text-left text-white">
                     <span className="flex items-center">
                       <img
                         src={selectedCurency.avatar}
                         alt=""
-                        className="h-5 w-5 flex-shrink-0"
+                        className="h-7 w-7 flex-shrink-0"
                       />
                       <span className="ml-3 block truncate">
                         {selectedCurency.name}
@@ -94,11 +94,11 @@ function Header() {
                         >
                           {({ selected, active }) => (
                             <>
-                              <div className="flex items-center">
+                              <div className="flex items-center text-[13px]">
                                 <img
                                   src={person.avatar}
                                   alt=""
-                                  className="h-5 w-5 flex-shrink-0"
+                                  className="h-7 w-7 flex-shrink-0"
                                 />
                                 <span
                                   className={classNames(
@@ -137,7 +137,7 @@ function Header() {
             <Listbox value={selectedLanguage} onChange={setSelectedLanguage}>
               {({ open }) => (
                 <div className=" mt-1 w-[50%]">
-                  <Listbox.Button className="relative w-[70%] cursor bg-transparent py-1.5 text-white">
+                  <Listbox.Button className="relative w-[70%] cursor bg-transparent py-1.5 text-white text-[13px]">
                     <span className="flex items-center">
                       {selectedLanguage.name}
                     </span>
@@ -156,7 +156,7 @@ function Header() {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <Listbox.Options className="absolute z-10 w-[100px] max-h-56 overflow-auto bg-white pb-1 pt-8 px-4 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                    <Listbox.Options className="absolute z-10 w-[120px] h-36 overflow-auto bg-white pb-1 pt-8 px-4 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                       {languages.map((person) => (
                         <Listbox.Option
                           key={person.id}
@@ -172,7 +172,7 @@ function Header() {
                         >
                           {({ selectedLanguage, active }) => (
                             <>
-                              <div className="flex items-center">
+                              <div className="flex text-[13px] items-center">
                                 <span
                                   className={classNames(
                                     selectedLanguage

@@ -157,7 +157,7 @@ export const navigation = {
               "Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.",
           },
           {
-            name: "Hypoallergenic Wedding Bands",
+            name: "Wedding Bands",
             href: "./",
             imageSrc:
               "https://cdn.shopify.com/s/files/1/0673/3588/1018/articles/Untitled-2_07_180x.jpg?v=1667465781",
@@ -278,7 +278,7 @@ export const navigation = {
         ],
       },
     ],
-    featureds: [
+    featured: [
       {
         id: "featured",
         name: "FEATURED",

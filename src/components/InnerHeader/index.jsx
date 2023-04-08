@@ -4,11 +4,12 @@ import { DownOutlined } from "@ant-design/icons";
 import { useLocation } from "react-router-dom";
 
 import images from "@/assets/images";
-import { navigation } from "@/data/menuDropdown.mock";
+import { menuDropdownService } from "@/services/menuDropdown.service";
 import ActionHeader from "../ActionHeader";
 
 export default function InnerHeader() {
   const location = useLocation();
+  const data = menuDropdownService.getAllMenuDropdown();
   return (
     <div className="bg-transparent">
       <header className="relative bg-transparent">
@@ -35,7 +36,7 @@ export default function InnerHeader() {
               <Popover.Group className="hidden lg:ml-auto lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8 pl-16">
                   {/* pages */}
-                  {navigation.pages.map((category) => (
+                  {data.pages.map((category) => (
                     <Popover key={category.name} className="flex">
                       {() => (
                         <>
@@ -60,7 +61,7 @@ export default function InnerHeader() {
                                     {category.featured.map((item) => (
                                       <div
                                         key={item.name}
-                                        className="group relative"
+                                        className="group relative text-[14px]"
                                       >
                                         <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                                           <img
@@ -94,7 +95,7 @@ export default function InnerHeader() {
                     </Popover>
                   ))}
                   {/* shop */}
-                  {navigation.categories.map((category) => (
+                  {data.categories.map((category) => (
                     <Popover key={category.name} className="flex">
                       {() => (
                         <>
@@ -148,7 +149,7 @@ export default function InnerHeader() {
                                             {section.items.map((item) => (
                                               <li
                                                 key={item.name}
-                                                className="flex"
+                                                className="flex text-[14px]"
                                               >
                                                 <a
                                                   href={item.href}
@@ -173,7 +174,7 @@ export default function InnerHeader() {
                   ))}
 
                   {/* blogs */}
-                  {navigation.blogs.map((category) => (
+                  {data.blogs.map((category) => (
                     <Popover key={category.name} className="flex">
                       {() => (
                         <>
@@ -210,7 +211,7 @@ export default function InnerHeader() {
                                           </div>
                                           <a
                                             href={item.href}
-                                            className="mt-6 block font-medium text-gray-900"
+                                            className="mt-6 block font-medium text-[14px] text-gray-600"
                                           >
                                             <span
                                               className="absolute inset-0 z-10"
@@ -220,7 +221,7 @@ export default function InnerHeader() {
                                           </a>
                                           <p
                                             aria-hidden="true"
-                                            className="mt-1 pb-8"
+                                            className="mt-1 pb-8 text-[12px]"
                                           >
                                             Shop now
                                           </p>
@@ -232,7 +233,7 @@ export default function InnerHeader() {
                                         <div key={section.name}>
                                           <p
                                             id={`${section.name}-heading`}
-                                            className="font-medium text-gray-900"
+                                            className="font-medium text-[14px] text-gray-900"
                                           >
                                             {section.name}
                                           </p>
@@ -243,7 +244,7 @@ export default function InnerHeader() {
                                             {section.items.map((item) => (
                                               <li
                                                 key={item.name}
-                                                className="flex"
+                                                className="flex text-[14px]"
                                               >
                                                 <a
                                                   href={item.href}
@@ -268,7 +269,7 @@ export default function InnerHeader() {
                   ))}
 
                   {/* products */}
-                  {navigation.products.map((category) => (
+                  {data.products.map((category) => (
                     <Popover key={category.name} className="flex">
                       {() => (
                         <>
@@ -295,7 +296,7 @@ export default function InnerHeader() {
                                         <div key={section.name}>
                                           <p
                                             id={`${section.name}-heading`}
-                                            className="font-medium text-gray-900"
+                                            className="font-medium text-[14px] text-gray-900"
                                           >
                                             {section.name}
                                           </p>
@@ -306,7 +307,7 @@ export default function InnerHeader() {
                                             {section.items.map((item) => (
                                               <li
                                                 key={item.name}
-                                                className="flex"
+                                                className="flex text-[14px]"
                                               >
                                                 <a
                                                   href={item.href}
@@ -331,7 +332,7 @@ export default function InnerHeader() {
                   ))}
 
                   {/* featureds */}
-                  {navigation.featureds.map((category) => (
+                  {data.featured.map((category) => (
                     <Popover key={category.name} className="flex">
                       {() => (
                         <>
@@ -358,7 +359,7 @@ export default function InnerHeader() {
                                         <div key={section.name}>
                                           <p
                                             id={`${section.name}-heading`}
-                                            className="font-medium text-gray-900"
+                                            className="font-medium text-[14px] text-gray-900"
                                           >
                                             {section.name}
                                           </p>
@@ -369,7 +370,7 @@ export default function InnerHeader() {
                                             {section.items.map((item) => (
                                               <li
                                                 key={item.name}
-                                                className="flex"
+                                                className="flex text-[14px]"
                                               >
                                                 <a
                                                   href={item.href}

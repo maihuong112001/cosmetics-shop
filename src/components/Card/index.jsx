@@ -77,7 +77,7 @@ function Card() {
                           <h3>
                             <a href={product.href}>{product.name}</a>
                           </h3>
-                          <p className="ml-4">{product.price}</p>
+                          <p className="ml-4 mr-3">{product.price}</p>
                         </div>
                         <p className="mt-1 text-sm text-gray-500">
                           {product.color}
@@ -89,7 +89,7 @@ function Card() {
                         <div className="flex">
                           <button
                             type="button"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                            className="font-medium text-indigo-600 hover:text-indigo-500 mr-3"
                           >
                             Remove
                           </button>
@@ -102,7 +102,7 @@ function Card() {
             </div>
           </div>
         </div>
-        <div className="bg-white w-full">
+        <div className="bg-white w-full pt-6">
           <div className="flex justify-center space-x-12 border-b-[1px] border-gray-300">
             <div className="text-md text-center py-6">
               <GiftFilled className="border-[1px] border-gray-200 bg-gray-200 rounded-full p-4" />

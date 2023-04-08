@@ -31,7 +31,7 @@ function ProductCard(props) {
                   <div className={cx('qty-btn')} >
                     <MinusOutlined style={{fontSize: '12px', color:'#fff'}} className={cx('gsx')}/>
                   </div>
-                  <input className="bg-transparent w-[30px] leading-[40px]" value={1} pattern="[0-9]"></input>
+                  <input className="bg-transparent w-[30px] leading-[40px]" value={1} readOnly pattern="[0-9]"></input>
                   <div className={cx('qty-btn')}>
                     <PlusOutlined style={{fontSize: '12px', color: '#fff'}} />
                   </div>

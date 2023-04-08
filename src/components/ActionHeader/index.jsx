@@ -19,7 +19,7 @@ export default function ActionHeader() {
   const [isShowSearchModal, setIsShowSearchModal] = useState(false);
 
   return (
-    <div className="ml-auto mr-8 flex items-center">
+    <div className="ml-auto mr-10 flex items-center">
       <div className="flex lg:ml-6">
         <SearchOutlined
           className={cx("ant-icon")}
