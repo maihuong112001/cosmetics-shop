@@ -8,6 +8,7 @@ import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import InnerHeader from "../InnerHeader";
 import { currency } from "@/data/currency.mock";
+import { useLocation } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 const languages = [
@@ -22,11 +23,16 @@ const languages = [
 ];
 
 function Header() {
-  const [selected, setSelected] = useState(currency[1]);
+  const [selectedCurency, setSelectedCurency] = useState(currency[1]);
   const [selectedLanguage, setSelectedLanguage] = useState(languages[1]);
+  const location = useLocation();
   return (
     <header className={cx("wrapper")}>
-      <div className={cx("inner-about")}>
+      <div
+        className={`${cx("inner-about")} ${
+          location.pathname !== "/" && "bg-black"
+        } `}
+      >
         <Row className="pt-4 text-white">
           <Col span={8}>
             <Space className="ml-10">
@@ -43,18 +49,18 @@ function Header() {
             </p>
           </Col>
           <Col className="flex pl-[16%]" span={8}>
-            <Listbox value={selected} onChange={setSelected}>
+            <Listbox value={selectedCurency} onChange={setSelectedCurency}>
               {({ open }) => (
                 <div className="relative mt-1 w-[40%] mr-0">
                   <Listbox.Button className="relative w-[100%] cursor bg-transparent py-1.5 text-left text-white">
                     <span className="flex items-center">
                       <img
-                        src={selected.avatar}
+                        src={selectedCurency.avatar}
                         alt=""
                         className="h-5 w-5 flex-shrink-0"
                       />
                       <span className="ml-3 block truncate">
-                        {selected.name}
+                        {selectedCurency.name}
                       </span>
                     </span>
                     <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -204,8 +210,12 @@ function Header() {
           </Col>
         </Row>
       </div>
-      <div className="w-100 h-54 mt-6">
-        <Row className="text-white ml-2">
+      <div
+        className={`${cx("action-header")} ${
+          location.pathname !== "/" && "bg-white text-black"
+        } `}
+      >
+        <Row className="text-white ml-2 mt-10">
           <Col span={24}>
             <InnerHeader />
           </Col>

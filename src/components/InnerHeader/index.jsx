@@ -1,23 +1,34 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import { DownOutlined, } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
+import { useLocation } from "react-router-dom";
 
 import images from "@/assets/images";
 import { navigation } from "@/data/menuDropdown.mock";
 import ActionHeader from "../ActionHeader";
 
 export default function InnerHeader() {
+  const location = useLocation();
   return (
     <div className="bg-transparent">
       <header className="relative bg-transparent">
         <nav aria-label="Top" className="mx-auto w-100 px-4">
           <div>
-            <div className="flex h-16">
-              
+            <div
+              className={`flex h-16 ${
+                location.pathname !== "/" && "text-black flex h-6"
+              } `}
+            >
               <div className="flex lg:ml-5">
                 <a href="./">
                   <span className="sr-only">Your Company</span>
-                  <img src={images.logo} alt="logo" className="h-12"></img>
+                  <img
+                    src={`${
+                      location.pathname !== "/" ? `${images.logo_black}`:`${images.logo}`
+                    } `}
+                    alt="logo"
+                    className="h-12"
+                  ></img>
                 </a>
               </div>
               {/* Flyout menus */}

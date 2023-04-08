@@ -60,7 +60,7 @@ function Card() {
         <div className="bg-white">
           <div className="mt-8">
             <div className="flow-root">
-              <ul className="-my-6 divide-y divide-gray-200">
+              <ul className="-my-6 divide-y divide-gray-200 max-h-[200px] overflow-y-auto">
                 {products.map((product) => (
                   <li key={product.id} className="flex py-6">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -138,7 +138,7 @@ function Card() {
               </a>
 
               <a
-                href="./"
+                href="./card"
                 className="w-[48%] text-center bg-white text-black border-[1px] border-black px-6 py-4 text-base font-medium shadow-sm hover:bg-[#cb8161] hover:text-white hover:border-[#cb8161]"
               >
                 VIEW CARD

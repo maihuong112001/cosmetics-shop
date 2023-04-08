@@ -1,5 +1,6 @@
 const images = {
     logo: require('@/assets/images/logo-white.png'),
+    logo_black: require('@/assets/images/logo-black.png'),
     noImage: require('@/assets/images/no-image.png'),
     slider_1:require('@/assets/images/slider-1.jpg'),
     slider_2:require('@/assets/images/slider-2.jpg'),
