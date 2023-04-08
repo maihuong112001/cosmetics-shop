@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {Col, Row } from "antd";
 import {ArrowRightOutlined} from "@ant-design/icons";
 import classNames from "classnames/bind";
@@ -13,6 +14,7 @@ import styles from "./Home.module.scss";
 import images from "@/assets/images";
 import imagesHome from "@/assets/images/Home";
 import {categories} from '@/data/categories.mock';
+import { products } from '@/data/product.mock';
 import { bannerSettings, settings } from "@/services/settings.services";
 
 const cx = classNames.bind(styles);
@@ -148,7 +150,12 @@ function Home() {
       <h3 className={cx("heading")} style={{margin: '30px auto'}}>TRENDING PRODUCTS</h3>
       <div className="w-[95%] m-auto">
         <Slider {...settings}>
-        <ProductCard/> <ProductCard/> <ProductCard/><ProductCard/> <ProductCard/> <ProductCard/>
+          {
+            products.map((product) => (
+              <ProductCard img1={product.img_1} img2={product.img_2} name={product.name} price={product.price}/>
+            ))
+          }
+        
         </Slider>
       </div>
       <Row className={cx("collection-banner")} >

@@ -1,24 +1,22 @@
 import classNames from "classnames/bind";
 import styles from "./ProductCard.module.scss";
-import imagesProduct from "@/assets/images/Products";
 import { ReactComponent as StarIcon } from "@/assets/images/star.svg";
 import { NormalButton } from "../Button";
 import { HeartOutlined, ShoppingOutlined, PlusOutlined, MinusOutlined } from "@ant-design/icons";
 
-
 const cx = classNames.bind(styles);
 
-function ProductCard() {
+function ProductCard(props) {
   return (
           <div className={cx("wrapper")}>
             <div className={cx("inner-about")}>
 
             <div className={cx("image")}>
               <div className={cx("preloading-img")} style={{paddingTop: '100%'}}>
-            	  <img src={imagesProduct.product_2} alt="" className={cx("img-visible fade-in lazyloaded")}/>
+            	  <img src={(props.img1)} alt="" className={cx("img-visible fade-in lazyloaded")}/>
               </div>
               <div className={cx("preloading-img")} style={{paddingTop: '100%'}}>
-            	  <img src={imagesProduct.product_1} alt="" className={cx("img-hidden", "fade-in", "lazyloaded")}/>
+            	  <img src={props.img2} alt="" className={cx("img-hidden", "fade-in", "lazyloaded")}/>
               </div>
             <div className={cx("button")}>
               <NormalButton><HeartOutlined/></NormalButton>
@@ -48,10 +46,10 @@ function ProductCard() {
                 <StarIcon/><StarIcon/><StarIcon/><StarIcon/><StarIcon/>
               </div>
               <div className={cx("name")}>
-              <a href="/">Charm Club Bracelet</a>
+              <a href="/">{props.name}</a>
               </div>
               <div className={cx("price")}>
-                <span>2,342,656₫</span>
+                <span>{props.price}</span>
               </div>
             </div>
           </div>
