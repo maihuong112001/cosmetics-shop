@@ -11,32 +11,32 @@
           padding: auto 15px;
           margin: 0 auto;
           width: 100%;
-}
-
-.inner-about input {
-          width: 100%;
-          font-size: 14px;
-          
-          padding: 0 0 5px;
-}
-.inner-about input, .inner-about button {
-          border: 0;
-          background: transparent;
-          border-bottom: 2px solid black;
-          height: auto;
-}
-
-.inner-about button {
-          font-size: 12px;
-          font-weight: 600;
-          padding: 0 15px 5px;
-          cursor: pointer;
-}
-
-.inner-about button:hover {
-          color: #cb8161;
-          font-style: italic;
-          border-color: #cb8161;
+          input {
+                    width: 100%;
+                    font-size: 14px;
+                    padding: 0 0 5px;
+          }
+          input, button {
+                    border: 0;
+                    background: transparent;
+                    border-bottom: 2px solid black;
+                    height: auto;
+          }
+          button {
+                    font-size: 12px;
+                    font-weight: 600;
+                    padding: 0 15px 5px;
+                    cursor: pointer;
+                    &:hover {
+                              color: #cb8161;
+                              font-style: italic;
+                              border-color: #cb8161;
+                    }
+          }
+          p {
+                    color: var(--title-text-color);
+                    font-size: var(--title-text-size);
+          }
 }
 
 .heading {
@@ -44,9 +44,4 @@
           margin: 0 auto;
           font-size: 30px;
           font-weight: 500;
-}
-
-.inner-about p {
-          color: var(--title-text-color);
-          font-size: var(--title-text-size);
 }
