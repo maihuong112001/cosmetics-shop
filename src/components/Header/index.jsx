@@ -7,7 +7,7 @@ import { DownOutlined, CheckOutlined } from "@ant-design/icons";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import InnerHeader from "../InnerHeader";
-import { currency } from "@/data/currency.mock";
+import { currencyService } from "@/services/curency.service";
 import { useLocation } from "react-router-dom";
 
 const cx = classNames.bind(styles);
@@ -23,7 +23,8 @@ const languages = [
 ];
 
 function Header() {
-  const [selectedCurency, setSelectedCurency] = useState(currency[1]);
+  const dataCurrency=currencyService.getAddCurrency();
+  const [selectedCurrency, setSelectedCurrency] = useState(dataCurrency[1]);
   const [selectedLanguage, setSelectedLanguage] = useState(languages[1]);
   const location = useLocation();
   return (
@@ -49,18 +50,18 @@ function Header() {
             </p>
           </Col>
           <Col className="flex pl-[16%]" span={8}>
-            <Listbox value={selectedCurency} onChange={setSelectedCurency}>
+            <Listbox value={selectedCurrency} onChange={setSelectedCurrency}>
               {({ open }) => (
                 <div className="relative mt-1 w-[40%] mr-0">
                   <Listbox.Button className="relative w-[100%] text-[13px] cursor bg-transparent py-1.5 text-left text-white">
                     <span className="flex items-center">
                       <img
-                        src={selectedCurency.avatar}
+                        src={selectedCurrency.avatar}
                         alt=""
                         className="h-7 w-7 flex-shrink-0"
                       />
                       <span className="ml-3 block truncate">
-                        {selectedCurency.name}
+                        {selectedCurrency.name}
                       </span>
                     </span>
                     <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -79,7 +80,7 @@ function Header() {
                     leaveTo="opacity-0"
                   >
                     <Listbox.Options className="absolute z-10 max-h-56 w-[110px] overflow-auto bg-white pb-1 pt-10 px-4 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                      {currency.map((person) => (
+                      {dataCurrency.map((person) => (
                         <Listbox.Option
                           key={person.id}
                           className={({ active }) =>

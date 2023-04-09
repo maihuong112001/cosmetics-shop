@@ -1,11 +1,12 @@
 import { CarTwoTone, GiftFilled } from "@ant-design/icons";
 import { Divider } from "antd";
 
-import { products } from "@/data/productsInCard.mock";
+import { productCardsService } from "@/services/productsInCard.service";
 
 function Card() {
+  const dataProductCard = productCardsService.getAllProductCard();
   return (
-    <div className="w-full pt-[200px]">
+    <div className="w-full pt-[220px]">
       <div className=" flow-root">
         <div className="bg-white text-center ">
           <h5 className="font-base text-[30px] pt-4 pb-16">Shopping Cart</h5>
@@ -29,7 +30,7 @@ function Card() {
             </div>
             <div className="flow-root pt-10">
               <ul className="-my-6 divide-y divide-gray-200">
-                {products.map((product) => (
+                {dataProductCard.map((product) => (
                   <li key={product.id} className="flex py-6">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
