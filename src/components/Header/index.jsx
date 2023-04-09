@@ -9,6 +9,8 @@ import styles from "./Header.module.scss";
 import InnerHeader from "../InnerHeader";
 import { currencyService } from "@/services/curency.service";
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useCallback } from "react";
 
 const cx = classNames.bind(styles);
 const languages = [
@@ -27,6 +29,31 @@ function Header() {
   const [selectedCurrency, setSelectedCurrency] = useState(dataCurrency[1]);
   const [selectedLanguage, setSelectedLanguage] = useState(languages[1]);
   const location = useLocation();
+  const [isFixed, setIsFixed] = useState(false);
+  const changePageY = useCallback(
+    ()=>{
+      console.log(window.pageYOffset);
+      if (!isFixed&&window.pageYOffset>200) {
+        setIsFixed(true)
+      }else{
+        if (isFixed&& window.pageYOffset<200) {
+          setIsFixed(false)
+          console.log(isFixed);
+        }
+      }
+    },
+    [isFixed],
+  )
+  
+  useEffect(() => {
+    
+    window.addEventListener('scroll',changePageY)
+  
+    return () => {
+      window.removeEventListener('scroll',changePageY);
+    }
+  }, [changePageY, isFixed])
+  
   return (
     <header className={cx("wrapper")}>
       <div
@@ -216,9 +243,9 @@ function Header() {
           location.pathname !== "/" && "bg-white text-black border-[1px] border-gray-300"
         } `}
       >
-        <Row className="text-white ml-2 mt-10">
+        <Row className="text-white mt-10">
           <Col span={24}>
-            <InnerHeader />
+            <InnerHeader isFixed={isFixed} />
           </Col>
         </Row>
       </div>
