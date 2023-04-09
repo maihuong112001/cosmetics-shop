@@ -40,8 +40,8 @@ export default function InnerHeader() {
                     <Popover key={category.name} className="flex">
                       {() => (
                         <>
-                          <div className="relative mt-1">
-                            <Popover.Button>{category.name}</Popover.Button>
+                          <div className="relative mt-2">
+                            <Popover.Button className="tracking-wider">{category.name}</Popover.Button>
                             <DownOutlined className="text-sm ml-1" />
                           </div>
 
@@ -99,8 +99,8 @@ export default function InnerHeader() {
                     <Popover key={category.name} className="flex">
                       {() => (
                         <>
-                          <div className="relative mt-1">
-                            <Popover.Button>{category.name}</Popover.Button>
+                          <div className="relative mt-2">
+                            <Popover.Button className="tracking-wider">{category.name}</Popover.Button>
                             <DownOutlined className="text-sm ml-1" />
                           </div>
 
@@ -178,8 +178,8 @@ export default function InnerHeader() {
                     <Popover key={category.name} className="flex">
                       {() => (
                         <>
-                          <div className="relative mt-1">
-                            <Popover.Button>{category.name}</Popover.Button>
+                          <div className="relative mt-2">
+                            <Popover.Button className="tracking-wider">{category.name}</Popover.Button>
                             <DownOutlined className="text-sm ml-1" />
                           </div>
 
@@ -273,8 +273,8 @@ export default function InnerHeader() {
                     <Popover key={category.name} className="flex">
                       {() => (
                         <>
-                          <div className="relative mt-1">
-                            <Popover.Button>{category.name}</Popover.Button>
+                          <div className="relative mt-2">
+                            <Popover.Button className="tracking-wider">{category.name}</Popover.Button>
                             <DownOutlined className="text-sm ml-1" />
                           </div>
 
@@ -336,8 +336,8 @@ export default function InnerHeader() {
                     <Popover key={category.name} className="flex">
                       {() => (
                         <>
-                          <div className="relative mt-1">
-                            <Popover.Button>{category.name}</Popover.Button>
+                          <div className="relative mt-2 space-x-1">
+                            <Popover.Button className="tracking-wider">{category.name}</Popover.Button>
                             <DownOutlined className="text-sm ml-1" />
                           </div>
 

@@ -83,13 +83,13 @@ export default function ActionHeader() {
         )}
       </div>
       {/*Modal Sign In */}
-      <SignIn />
+      <SignIn className={cx("ant-icon")} />
       <div className="flex lg:ml-6">
         <HeartOutlined className={cx("ant-icon")} />
       </div>
 
       {/*Product Cart */}
-      <ProductCard/>
+      <ProductCard className={cx("ant-icon")} />
     </div>
   );
 }

@@ -213,7 +213,7 @@ function Header() {
       </div>
       <div
         className={`${cx("action-header")} ${
-          location.pathname !== "/" && "bg-white text-black"
+          location.pathname !== "/" && "bg-white text-black border-[1px] border-gray-300"
         } `}
       >
         <Row className="text-white ml-2 mt-10">
