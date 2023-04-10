@@ -32,13 +32,11 @@ function Header() {
   const [isFixed, setIsFixed] = useState(false);
   const changePageY = useCallback(
     ()=>{
-      console.log(window.pageYOffset);
       if (!isFixed&&window.pageYOffset>200) {
         setIsFixed(true)
       }else{
         if (isFixed&& window.pageYOffset<200) {
           setIsFixed(false)
-          console.log(isFixed);
         }
       }
     },

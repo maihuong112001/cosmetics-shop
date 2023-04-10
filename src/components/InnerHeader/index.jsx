@@ -9,9 +9,15 @@ import ActionHeader from "../ActionHeader";
 
 export default function InnerHeader({ isFixed }) {
   const location = useLocation();
-  const data = menuDropdownService.getAllMenuDropdown();
+  const dataNavigation = menuDropdownService.getAllMenuDropdown();
   return (
-    <header className={` bg-transparent ${isFixed?"fixed top-0 bg-white shadow-md text-black w-full h-28 pt-8":"relative"}`}>
+    <header
+      className={` bg-transparent ${
+        isFixed
+          ? "fixed top-0 bg-white shadow-md text-black w-full h-28 pt-8"
+          : "relative"
+      }`}
+    >
       <nav aria-label="Top" className="mx-auto w-100 px-4">
         <div
           className={`flex h-16 ${
@@ -36,7 +42,7 @@ export default function InnerHeader({ isFixed }) {
           <Popover.Group className="hidden lg:ml-auto lg:block lg:self-stretch">
             <div className="flex h-full space-x-8 pl-16">
               {/* pages */}
-              {data.pages.map((category) => (
+              {dataNavigation.pages.map((category) => (
                 <Popover key={category.name} className="flex">
                   {() => (
                     <>
@@ -56,7 +62,12 @@ export default function InnerHeader({ isFixed }) {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Popover.Panel className="absolute inset-x-0 top-full text-gray-500">
+                        <Popover.Panel
+                          className={`absolute inset-x-0 -mt-6 top-full text-gray-500 ${
+                            location.pathname !== "/" &&
+                            "absolute inset-x-0 top-full text-gray-500 mt-4 shadow-2xl"
+                          } `}
+                        >
                           <div className="relative bg-white">
                             <div className="mx-auto px-8 pt-14 pb-14">
                               <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
@@ -97,7 +108,7 @@ export default function InnerHeader({ isFixed }) {
                 </Popover>
               ))}
               {/* shop */}
-              {data.categories.map((category) => (
+              {dataNavigation.categories.map((category) => (
                 <Popover key={category.name} className="flex">
                   {() => (
                     <>
@@ -117,7 +128,12 @@ export default function InnerHeader({ isFixed }) {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Popover.Panel className="absolute inset-x-0 top-full text-gray-500">
+                        <Popover.Panel
+                          className={`absolute inset-x-0 top-full text-gray-500 ${
+                            location.pathname !== "/" &&
+                            "absolute inset-x-0 top-full text-gray-500 mt-4 shadow-2xl"
+                          } `}
+                        >
                           <div className="relative bg-white">
                             <div className="mx-auto px-8">
                               <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
@@ -178,7 +194,7 @@ export default function InnerHeader({ isFixed }) {
               ))}
 
               {/* blogs */}
-              {data.blogs.map((category) => (
+              {dataNavigation.blogs.map((category) => (
                 <Popover key={category.name} className="flex">
                   {() => (
                     <>
@@ -198,9 +214,19 @@ export default function InnerHeader({ isFixed }) {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Popover.Panel className="absolute inset-x-0 top-full text-gray-500">
+                        <Popover.Panel
+                          className={`absolute inset-x-0 top-full text-gray-500 ${
+                            location.pathname !== "/" &&
+                            "absolute inset-x-0 top-full text-gray-500 mt-4"
+                          } `}
+                        >
                           <div className="relative ">
-                            <div className="mx-auto px-8 bg-white w-2/4">
+                            <div
+                              className={`mx-auto px-8 bg-white w-2/4 ${
+                                location.pathname !== "/" &&
+                                "mx-auto px-8 bg-white w-2/4 shadow-2xl"
+                              } `}
+                            >
                               <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
                                 <div className="col-start-2 grid grid-cols-2 gap-x-8">
                                   {category.featured.map((item) => (
@@ -275,7 +301,7 @@ export default function InnerHeader({ isFixed }) {
               ))}
 
               {/* products */}
-              {data.products.map((category) => (
+              {dataNavigation.products.map((category) => (
                 <Popover key={category.name} className="flex">
                   {() => (
                     <>
@@ -295,7 +321,12 @@ export default function InnerHeader({ isFixed }) {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Popover.Panel className="absolute inset-x-0 top-full text-gray-500">
+                        <Popover.Panel
+                          className={`absolute inset-x-0 top-full text-gray-500 ${
+                            location.pathname !== "/" &&
+                            "absolute inset-x-0 top-full text-gray-500 mt-4 shadow-2xl"
+                          } `}
+                        >
                           <div className="relative bg-white w-100">
                             <div className="mx-auto px-14 w-100">
                               <div className="py-16">
@@ -340,7 +371,7 @@ export default function InnerHeader({ isFixed }) {
               ))}
 
               {/* featureds */}
-              {data.featured.map((category) => (
+              {dataNavigation.featured.map((category) => (
                 <Popover key={category.name} className="flex">
                   {() => (
                     <>
@@ -360,7 +391,12 @@ export default function InnerHeader({ isFixed }) {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Popover.Panel className="absolute inset-x-0 top-full text-gray-500">
+                        <Popover.Panel
+                          className={`absolute inset-x-0 top-full text-gray-500 ${
+                            location.pathname !== "/" &&
+                            "absolute inset-x-0 top-full text-gray-500 mt-4 shadow-2xl"
+                          } `}
+                        >
                           <div className="relative bg-white w-100">
                             <div className="mx-auto px-10 w-100">
                               <div className="py-16">
