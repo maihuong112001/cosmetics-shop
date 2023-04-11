@@ -7,8 +7,17 @@ import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
-export default function ActionHeader() {
+export default function SignIn() {
   const [isShowSignInModal, setIsShowSignInModal] = useState(false);
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+   
+    console.log(username ,":", password);
+  };
   return (
     <div className="flex lg:ml-6">
       <UserOutlined
@@ -36,23 +45,26 @@ export default function ActionHeader() {
                     </h2>
                   </div>
                   <form
+                    onSubmit={handleSubmit}
                     className="mt-8 space-y-10 mx-10"
-                    action="#"
+                    action="/account"
                     method="POST"
                   >
                     <div className="space-y-6 shadow-sm">
                       <div>
-                        <label htmlFor="email-address" className="sr-only">
+                        <label htmlFor="username" className="sr-only">
                           Email*
                         </label>
                         <input
-                          id="email-address"
-                          name="email"
+                          id="username"
+                          name="username"
                           type="email"
                           autoComplete="email"
                           required
                           className="relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
                           placeholder="Email*"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
                         />
                       </div>
                       <div>
@@ -63,6 +75,8 @@ export default function ActionHeader() {
                           id="password"
                           name="password"
                           type="password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
                           autoComplete="current-password"
                           required
                           className="mt-4 relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
@@ -88,12 +102,12 @@ export default function ActionHeader() {
                       </div>
 
                       <div className="text-md">
-                        <a
-                          href="#./"
+                        <Link
+                          to="./"
                           className="font-lg font-semibold text-indigo-600 hover:text-indigo-500"
                         >
                           Forgot your password?
-                        </a>
+                        </Link>
                       </div>
                     </div>
 

@@ -1,4 +1,4 @@
-import { productService } from "@/services/product.service";
+
 
 function Product() {
   return(
@@ -10,6 +10,3 @@ function Product() {
 
 export default Product;
 
-// function getAll() {
-//   const data = productService.getAllProduct();
-// }
