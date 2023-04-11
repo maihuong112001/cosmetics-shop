@@ -10,7 +10,7 @@ import {
 import styles from "./ActionHeader.module.scss";
 import GlideModal from "../Modal/GlideModal/GlideModal";
 import SignIn from "@/components/SignIn";
-import ProductCard from "@/components/Card"
+import ProductCard from "@/components/Card";
 
 const cx = classNames.bind(styles);
 const onSearch = (value) => console.log(value);
@@ -46,9 +46,7 @@ export default function ActionHeader() {
                   className="block mt-20 w-full border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-inset placeholder:text-gray-400 sm:leading-6"
                 />
                 <div className="absolute inset-y-0 right-0 flex items-center">
-                  <div className="absolute inset-y-0 right-0 flex items-center">
-                    <SearchOutlined className={cx("ant-icon-close")} />
-                  </div>
+                  <SearchOutlined className={cx("ant-icon-close")} />
                 </div>
               </div>
               <Space className="text-black mt-16 pb-12" size={[0, 8]} wrap>

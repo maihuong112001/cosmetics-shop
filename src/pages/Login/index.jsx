@@ -1,4 +1,7 @@
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import { useState } from "react";
 function Login() {
+  const [isShowPassword, setIsShowPassword] = useState(false);
   return (
     <div className="w-full pt-[220px] mb-[80px] px-[12%]">
       <h2 className="mt-6 py-12 text-center text-[38px] tracking-wide font-semi text-gray-900">
@@ -31,11 +34,26 @@ function Login() {
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={isShowPassword ? 'text':'password'}
                   required
                   className="mt-4 relative w-[80%] text-[14px] block border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
                   placeholder="Password*"
                 />
+                <div className="w-[30%] -mt-14 absolute text-gray-600 text-[19px] text-end">
+                  {isShowPassword ? (
+                    <EyeOutlined
+                      onClick={() => {
+                        setIsShowPassword(false);
+                      }}
+                    />
+                  ) : (
+                    <EyeInvisibleOutlined
+                      onClick={() => {
+                        setIsShowPassword(true);
+                      }}
+                    />
+                  )}
+                </div>
               </div>
             </div>
             <div className="text-md">
@@ -57,7 +75,9 @@ function Login() {
           </form>
         </div>
         <div className="W-[400px]">
-          <p className="text-[22px] tracking-wide font-semi text-gray-900">New customer?</p>
+          <p className="text-[22px] tracking-wide font-semi text-gray-900">
+            New customer?
+          </p>
           <p className="text-gray-400 py-10">
             Sign up for early Sale access plus tailored new arrivals, trends and
             promotions. To opt out, click unsubscribe in our emails.

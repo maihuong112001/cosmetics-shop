@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import { UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { EyeOutlined,EyeInvisibleOutlined } from "@ant-design/icons";
 
 import styles from "./SignIn.module.scss";
 import { Link } from "react-router-dom";
@@ -9,14 +10,15 @@ const cx = classNames.bind(styles);
 
 export default function SignIn() {
   const [isShowSignInModal, setIsShowSignInModal] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   
-    console.log(username ,":", password);
+
+    console.log(username, ":", password);
   };
   return (
     <div className="flex lg:ml-6">
@@ -74,7 +76,7 @@ export default function SignIn() {
                         <input
                           id="password"
                           name="password"
-                          type="password"
+                          type={isShowPassword ? 'text':'password'}
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           autoComplete="current-password"
@@ -82,6 +84,21 @@ export default function SignIn() {
                           className="mt-4 relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
                           placeholder="Password*"
                         />
+                        <div className="w-full pr-52 -mt-14 absolute text-gray-600 text-[19px] text-end">
+                          {isShowPassword ? (
+                            <EyeOutlined
+                              onClick={() => {
+                                setIsShowPassword(false);
+                              }}
+                            />
+                          ) : (
+                            <EyeInvisibleOutlined
+                              onClick={() => {
+                                setIsShowPassword(true);
+                              }}
+                            />
+                          )}
+                        </div>
                       </div>
                     </div>
 
