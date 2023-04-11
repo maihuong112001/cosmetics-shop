@@ -441,7 +441,7 @@ export default function InnerHeader({ isFixed }) {
               ))}
             </div>
           </Popover.Group>
-          <ActionHeader />
+          <ActionHeader isFixed={isFixed}/>
         </div>
       </nav>
     </header>

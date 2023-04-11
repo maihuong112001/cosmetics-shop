@@ -1,12 +1,21 @@
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { InfoCircleTwoTone } from "@ant-design/icons";
 
-export default function MyAccount() {
+import { setUser } from "@/store/slices/user.slice";
+
+export default function MyAccount({ setIsLoggedIn }) {
+  const slice = setUser(useSelector);
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
   return (
     <div className="mt-96 p-28">
       <div className="text-center py-10">
         <h1 className="text-[40px] font-serif">My Account</h1>
       </div>
+
       <div className="flex pt-10">
         <div className="w-[250px]">
           <Link
@@ -23,6 +32,7 @@ export default function MyAccount() {
           </Link>
           <Link
             to={"/"}
+            onClick={handleLogout}
             className="border-b-[1px] border-gray-200 flex w-full pl-8 px-3 py-5 text-md font-semi text-black bg-gray-100 hover:text-[#cb8161]"
           >
             Log out
@@ -30,8 +40,8 @@ export default function MyAccount() {
         </div>
         <div className="w-[60%] pl-10">
           <p className="text-gray-500 pb-6">
-            Hello Nguyen Huong ( not Nguyen Huong?
-            <Link to="/" className="text-red-600">
+            Hello: {slice.type} (
+            <Link to="/" onClick={handleLogout} className="text-red-600">
               Log Out)
             </Link>
           </p>

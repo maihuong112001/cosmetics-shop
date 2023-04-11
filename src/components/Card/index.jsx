@@ -8,26 +8,34 @@ import {
   GiftFilled,
   CodepenSquareFilled,
   StarFilled,
+  MinusOutlined,
+  PlusOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
-import { Button, Drawer } from "antd";
+import { Button, Drawer, Badge } from "antd";
 
 import { productCardsService } from "@/services/productsInCard.service";
+import { useLocation } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
-function Card() {
-  const dataProductsCard=productCardsService.getAllProductCard();
+function Card({ isFixed }) {
+  const location = useLocation();
+  const dataProductsCard = productCardsService.getAllProductCard();
   const [isShowCardModal, setIsShowCardInModal] = useState(false);
   return (
     <div className="ml-4 flow-root lg:ml-6">
-      <ShoppingCartOutlined
-        className={cx("ant-icon")}
-        onClick={() => {
-          setIsShowCardInModal(true);
-        }}
-      />
-
+      <Badge count={5} size="small">
+        <ShoppingCartOutlined
+          size="large"
+          className={`${cx("ant-icon")} ${
+            (isFixed || location.pathname !== "/") && "text-black"
+          } `}
+          onClick={() => {
+            setIsShowCardInModal(true);
+          }}
+        />
+      </Badge>
       <Drawer
         closable={false}
         placement="right"
@@ -85,8 +93,29 @@ function Card() {
                         </p>
                       </div>
                       <div className="flex flex-1 items-end justify-between text-sm">
-                        <p className="text-gray-500 text[14px]">Qty {product.quantity}</p>
-
+                        <div className={cx("cart-form")}>
+                          <form>
+                            <div className="flex border-[1px] mt-2 border-gray-300 px-2 pt-2">
+                              <div className={cx("qty-btn")}>
+                                <MinusOutlined
+                                  style={{ fontSize: "12px", color: "black" }}
+                                  className={cx("gsx")}
+                                />
+                              </div>
+                              <input
+                                className="bg-transparent w-[30px] leading-[40px]"
+                                value={product.quantity}
+                                readOnly
+                                pattern="[0-9]"
+                              ></input>
+                              <div className={cx("qty-btn")}>
+                                <PlusOutlined
+                                  style={{ fontSize: "12px", color: "black" }}
+                                />
+                              </div>
+                            </div>
+                          </form>
+                        </div>
                         <div className="flex">
                           <button
                             type="button"

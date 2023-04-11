@@ -1,8 +1,15 @@
-import { CarTwoTone, GiftFilled } from "@ant-design/icons";
+import {
+  CarTwoTone,
+  GiftFilled,
+  MinusOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
+import classNames from "classnames/bind";
+import styles from "./Card.module.scss";
 import { Divider } from "antd";
 
 import { productCardsService } from "@/services/productsInCard.service";
-
+const cx = classNames.bind(styles);
 function Card() {
   const dataProductCard = productCardsService.getAllProductCard();
   return (
@@ -53,7 +60,29 @@ function Card() {
                         </p>
                       </div>
                       <div className="justify-center absolute text-center text-[14px] -mt-[5px] ml-[30%] space-y-3">
-                        <p className="text-gray-500">Qty: {product.quantity}</p>
+                        <div className={cx("cart-form")}>
+                          <form>
+                            <div className="flex border-[1px] h-14 mt-2 border-gray-300 px-2 pt-3">
+                              <div className={cx("qty-btn")}>
+                                <MinusOutlined
+                                  style={{ fontSize: "12px", color: "black" }}
+                                  className={cx("gsx")}
+                                />
+                              </div>
+                              <input
+                                className="bg-transparent w-[30px] leading-[40px]"
+                                value={product.quantity}
+                                readOnly
+                                pattern="[0-9]"
+                              ></input>
+                              <div className={cx("qty-btn")}>
+                                <PlusOutlined
+                                  style={{ fontSize: "12px", color: "black" }}
+                                />
+                              </div>
+                            </div>
+                          </form>
+                        </div>
 
                         <div className="">
                           <button

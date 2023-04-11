@@ -1,15 +1,40 @@
+import supabase from "@/services/supabase";
+import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Register() {
+  const [form, setForm] = useState({ email: "", password: "" });
+  const handleChangeForm = useCallback((e) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }, []);
+
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      try {
+        const { data, error } = await supabase.auth.signUp(form);
+        if (error) {
+          throw new Error(error.message);
+        }else{
+          console.log(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      console.log(form);
+    },
+    [form]
+  );
+
   return (
     <div className="w-full pt-[220px] px-[30%]">
       <h2 className="mt-6 py-12 text-center text-[38px] tracking-wide font-semi text-gray-900">
         Create Account
       </h2>
 
-      <form className="mt-8 space-y-12 mx-10" action="#" method="POST">
+      <form className="mt-8 space-y-12 mx-10" onSubmit={handleSubmit}>
         <div className="space-y-8 shadow-sm">
-          <div>
+          {/* <div>
             <label htmlFor="email-address" className="sr-only">
               First Name
             </label>
@@ -34,15 +59,17 @@ function Register() {
               className="relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
               placeholder="Last Name"
             />
-          </div>
+          </div> */}
           <div>
             <label htmlFor="email-address" className="sr-only">
               Email*
             </label>
             <input
+              onChange={handleChangeForm}
               id="email-address"
               name="email"
               type="email"
+              value={form.email}
               required
               className="relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
               placeholder="Email*"
@@ -53,10 +80,12 @@ function Register() {
               Password
             </label>
             <input
+              onChange={handleChangeForm}
               id="password"
               name="password"
               type="password"
               required
+              value={form.password}
               className="mt-4 relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
               placeholder="Password*"
             />
@@ -77,7 +106,7 @@ function Register() {
       </form>
       <div className="mx-10 pt-10 pb-10">
         <Link
-          to={'/account/login'}
+          to={"/account/login"}
           className="group border-[1px] text-black tracking-wider border-black relative flex w-full justify-center px-3 py-4 text-md font-semi hover:text-white hover:bg-[#cb8161]"
         >
           SIGN IN

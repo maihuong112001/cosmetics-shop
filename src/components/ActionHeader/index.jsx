@@ -1,6 +1,6 @@
 import { useState } from "react";
 import classNames from "classnames/bind";
-import { Space, Tag } from "antd";
+import { Badge, Space, Tag } from "antd";
 import {
   SearchOutlined,
   HeartOutlined,
@@ -11,18 +11,21 @@ import styles from "./ActionHeader.module.scss";
 import GlideModal from "../Modal/GlideModal/GlideModal";
 import SignIn from "@/components/SignIn";
 import ProductCard from "@/components/Card";
+import { useLocation } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 const onSearch = (value) => console.log(value);
 
-export default function ActionHeader() {
+export default function ActionHeader({ isFixed }) {
   const [isShowSearchModal, setIsShowSearchModal] = useState(false);
-
+  const location = useLocation();
   return (
     <div className="ml-auto mr-10 flex items-center">
       <div className="flex lg:ml-6">
         <SearchOutlined
-          className={cx("ant-icon")}
+          className={`${cx("ant-icon")} ${
+            (isFixed || location.pathname !== "/") && "text-black"
+          } `}
           onClick={() => setIsShowSearchModal(true)}
         />
         {isShowSearchModal && (
@@ -81,13 +84,23 @@ export default function ActionHeader() {
         )}
       </div>
       {/*Modal Sign In */}
-      <SignIn className={cx("ant-icon")} />
+      <SignIn
+        className={`${cx("ant-icon")} ${
+          (isFixed || location.pathname !== "/") && "text-black"
+        } `}
+      />
       <div className="flex lg:ml-6">
-        <HeartOutlined className={cx("ant-icon")} />
+        <Badge count={5} size="small">
+          <HeartOutlined
+            className={`${cx("ant-icon")} ${
+              (isFixed || location.pathname !== "/") && "text-black"
+            } `}
+          />
+        </Badge>
       </div>
 
       {/*Product Cart */}
-      <ProductCard className={cx("ant-icon")} />
+      <ProductCard isFixed={isFixed} className={cx("ant-icon")} />
     </div>
   );
 }

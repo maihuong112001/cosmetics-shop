@@ -1,25 +1,44 @@
 import classNames from "classnames/bind";
 import { UserOutlined } from "@ant-design/icons";
-import { useState } from "react";
-import { EyeOutlined,EyeInvisibleOutlined } from "@ant-design/icons";
+import { useCallback, useState } from "react";
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./SignIn.module.scss";
 import { Link } from "react-router-dom";
+import supabase from "@/services/supabase";
 
 const cx = classNames.bind(styles);
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const [isShowSignInModal, setIsShowSignInModal] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [form, setForm] = useState({ email: "", password: "" });
+  const handleChangeForm = useCallback((e) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }, []);
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setIsShowSignInModal(false);
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword(form);
+        if (error) {
+          navigate("/account/login");
+          throw new Error(error.message);
+        } else {
+          navigate("/account");
+          console.log(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      console.log(form);
+    },
+    [form, navigate]
+  );
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log(username, ":", password);
-  };
   return (
     <div className="flex lg:ml-6">
       <UserOutlined
@@ -58,33 +77,33 @@ export default function SignIn() {
                           Email*
                         </label>
                         <input
-                          id="username"
-                          name="username"
+                          id="email"
+                          name="email"
                           type="email"
                           autoComplete="email"
                           required
                           className="relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
                           placeholder="Email*"
-                          value={username}
-                          onChange={(e) => setUsername(e.target.value)}
+                          value={form.email}
+                          onChange={handleChangeForm}
                         />
                       </div>
-                      <div>
+                      <div className="relative">
                         <label htmlFor="password" className="sr-only">
                           Password
                         </label>
                         <input
                           id="password"
                           name="password"
-                          type={isShowPassword ? 'text':'password'}
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
+                          type={isShowPassword ? "text" : "password"}
+                          value={form.password}
+                          onChange={handleChangeForm}
                           autoComplete="current-password"
                           required
                           className="mt-4 relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
                           placeholder="Password*"
                         />
-                        <div className="w-full pr-52 -mt-14 absolute text-gray-600 text-[19px] text-end">
+                        <div className="right-8 -mt-14 absolute text-gray-600 text-[19px]">
                           {isShowPassword ? (
                             <EyeOutlined
                               onClick={() => {
