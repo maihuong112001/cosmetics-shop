@@ -8,11 +8,9 @@ import {
   GiftFilled,
   CodepenSquareFilled,
   StarFilled,
-  MinusOutlined,
-  PlusOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
-import { Button, Drawer, Badge } from "antd";
+import { Button, Drawer, Badge, InputNumber } from "antd";
 
 import { productCardsService } from "@/services/productsInCard.service";
 import { useLocation } from "react-router-dom";
@@ -23,6 +21,9 @@ function Card({ isFixed }) {
   const location = useLocation();
   const dataProductsCard = productCardsService.getAllProductCard();
   const [isShowCardModal, setIsShowCardInModal] = useState(false);
+  const onChangeQuantity = (value) => {
+    console.log("changed", value);
+  };
   return (
     <div className="ml-4 flow-root lg:ml-6">
       <Badge count={5} size="small">
@@ -93,29 +94,12 @@ function Card({ isFixed }) {
                         </p>
                       </div>
                       <div className="flex flex-1 items-end justify-between text-sm">
-                        <div className={cx("cart-form")}>
-                          <form>
-                            <div className="flex border-[1px] mt-2 border-gray-300 px-2 pt-2">
-                              <div className={cx("qty-btn")}>
-                                <MinusOutlined
-                                  style={{ fontSize: "12px", color: "black" }}
-                                  className={cx("gsx")}
-                                />
-                              </div>
-                              <input
-                                className="bg-transparent w-[30px] leading-[40px]"
-                                value={product.quantity}
-                                readOnly
-                                pattern="[0-9]"
-                              ></input>
-                              <div className={cx("qty-btn")}>
-                                <PlusOutlined
-                                  style={{ fontSize: "12px", color: "black" }}
-                                />
-                              </div>
-                            </div>
-                          </form>
-                        </div>
+                        <InputNumber
+                          min={1}
+                          max={100}
+                          defaultValue={product.quantity}
+                          onChange={onChangeQuantity}
+                        />
                         <div className="flex">
                           <button
                             type="button"

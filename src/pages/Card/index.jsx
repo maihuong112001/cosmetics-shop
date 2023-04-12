@@ -1,17 +1,13 @@
-import {
-  CarTwoTone,
-  GiftFilled,
-  MinusOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
-import classNames from "classnames/bind";
-import styles from "./Card.module.scss";
-import { Divider } from "antd";
+import { CarTwoTone, GiftFilled } from "@ant-design/icons";
+import { Divider, InputNumber } from "antd";
 
 import { productCardsService } from "@/services/productsInCard.service";
-const cx = classNames.bind(styles);
+
 function Card() {
   const dataProductCard = productCardsService.getAllProductCard();
+  const onChangeQuantity = (value) => {
+    console.log("changed", value);
+  };
   return (
     <div className="w-full pt-[220px]">
       <div className=" flow-root">
@@ -60,29 +56,12 @@ function Card() {
                         </p>
                       </div>
                       <div className="justify-center absolute text-center text-[14px] -mt-[5px] ml-[30%] space-y-3">
-                        <div className={cx("cart-form")}>
-                          <form>
-                            <div className="flex border-[1px] h-14 mt-2 border-gray-300 px-2 pt-3">
-                              <div className={cx("qty-btn")}>
-                                <MinusOutlined
-                                  style={{ fontSize: "12px", color: "black" }}
-                                  className={cx("gsx")}
-                                />
-                              </div>
-                              <input
-                                className="bg-transparent w-[30px] leading-[40px]"
-                                value={product.quantity}
-                                readOnly
-                                pattern="[0-9]"
-                              ></input>
-                              <div className={cx("qty-btn")}>
-                                <PlusOutlined
-                                  style={{ fontSize: "12px", color: "black" }}
-                                />
-                              </div>
-                            </div>
-                          </form>
-                        </div>
+                        <InputNumber
+                          min={1}
+                          max={100}
+                          defaultValue={product.quantity}
+                          onChange={onChangeQuantity}
+                        />
 
                         <div className="">
                           <button
