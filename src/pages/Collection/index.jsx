@@ -1,9 +1,7 @@
-import { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Collection.module.scss";
 import CategoriesSlider from "@/components/CategoriesSlider";
 import { Row, Col, Select, Menu } from "antd";
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import ProductCard from "@/components/ProductCard";
 
 const cx = classNames.bind(styles);

@@ -100,7 +100,7 @@ function Register() {
       </form>
       <div className="mx-10 pt-10 pb-10">
         <Link
-          to={"/account/login"}
+          to={"/login"}
           className="group border-[1px] text-black tracking-wider border-black relative flex w-full justify-center px-3 py-4 text-md font-semi hover:text-white hover:bg-[#cb8161]"
         >
           SIGN IN

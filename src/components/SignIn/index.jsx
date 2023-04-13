@@ -25,6 +25,7 @@ export default function SignIn() {
   const handleLogout = () => {
     supabase.auth.signOut();
     setIsShowSignInModal(false);
+    navigate("/login");
   };
   const handleSubmit = useCallback(
     async (e) => {

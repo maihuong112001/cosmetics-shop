@@ -15,7 +15,12 @@ import Cart from "@/pages/Cart";
 import { useEffect } from "react";
 import supabase from "@/services/supabase";
 
-export const RoutesConfig = ({wishlist,productList, addtoWishlist, wishlistt}) => {
+export const RoutesConfig = ({
+  wishlist,
+  productList,
+  addtoWishlist,
+  wishlistt,
+}) => {
   const dispatch = useDispatch();
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -33,22 +38,29 @@ export const RoutesConfig = ({wishlist,productList, addtoWishlist, wishlistt}) =
   }, [dispatch]);
 
   return (
-    <Routes >
+    <Routes>
       <Route path="/" element={<DefaultLayout />}>
-        <Route  index element={<Home wishlist={wishlist} productList={productList}  addtoWishlist={addtoWishlist}/>} />
-        <Route path="/wishlist" element={<Wishlist wishlistt={wishlistt}   />} />
+        <Route
+          index
+          element={
+            <Home
+              wishlist={wishlist}
+              productList={productList}
+              addtoWishlist={addtoWishlist}
+            />
+          }
+        />
+        <Route path="/wishlist" element={<Wishlist wishlistt={wishlistt} />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/collection" element={<Collection />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/account/register" element={<Register />} />
         <Route path="/" element={<GuardRoute />}>
           <Route path="/cart" element={<Cart />} />
-          
+
           <Route path="/account" element={<MyAccount />} />
         </Route>
       </Route>
-
-      <Route path="/collection" element={<Collection />} />
-      <Route path="/product" element={<Product />} />
-      <Route path="/account/register" element={<Register />} />
-      <Route path="/account/login" element={<Login />} />
     </Routes>
   );
 };

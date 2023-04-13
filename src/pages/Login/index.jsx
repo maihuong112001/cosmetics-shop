@@ -2,12 +2,12 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { useState, useCallback } from "react";
 import MyAccount from "../MyAccount";
 import supabase from "@/services/supabase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/store/slices/user.slice";
 
 function Login() {
   const [isShowPassword, setIsShowPassword] = useState(false);
-
+  const { user } = useSelector((st) => st.user);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ function Login() {
 
   return (
     <div>
-      {isLoggedIn ? (
+      {isLoggedIn || user ? (
         <MyAccount setIsLoggedIn={setIsLoggedIn} />
       ) : (
         <div className="w-full pt-[220px] mb-[80px] px-[12%]">
