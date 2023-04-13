@@ -19,17 +19,19 @@ function Login() {
       e.preventDefault();
 
       try {
-        const { data, error } = await supabase.auth.signInWithPassword(form);
+        const { data, error } = await supabase.auth.signInWithPassword(form)
         if (error) {
           throw new Error(error.message);
-        } else {
+        }else{
           setIsLoggedIn(true);
           dispatch(setUser(data.user));
+          console.log(data);
         }
       } catch (error) {
         alert(error);
         console.error(error);
       }
+      
     },
     [dispatch, form]
   );

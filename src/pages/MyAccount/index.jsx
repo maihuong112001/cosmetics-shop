@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { InfoCircleTwoTone } from "@ant-design/icons";
 import { useSelector } from "react-redux";
+import supabase from "@/services/supabase";
 
 
-export default function MyAccount({ setIsLoggedIn }) {
-  const {user} = useSelector(state=>state.users)
+export default function MyAccount() {
+  const {user} = useSelector(state=>state.user)
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    supabase.auth.signOut();
   };
   return (
     <div className="mt-96 p-28">

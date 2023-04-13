@@ -3,7 +3,7 @@ import { Divider, InputNumber } from "antd";
 
 import { productCardsService } from "@/services/productsInCard.service";
 
-function Card() {
+function Cart() {
   const dataProductCard = productCardsService.getAllProductCard();
   const onChangeQuantity = (value) => {
     console.log("changed", value);
@@ -193,7 +193,7 @@ function Card() {
   );
 }
 
-export default Card;
+export default Cart;
 
 // function getAll() {
 //   const data = productService.getAllProduct();

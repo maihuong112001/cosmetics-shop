@@ -10,7 +10,7 @@ import {
 import styles from "./ActionHeader.module.scss";
 import GlideModal from "../Modal/GlideModal/GlideModal";
 import SignIn from "@/components/SignIn";
-import ProductCard from "@/components/Card";
+import ProductCard from "@/components/Cart";
 import { useLocation } from "react-router-dom";
 
 const cx = classNames.bind(styles);

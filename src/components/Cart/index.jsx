@@ -152,10 +152,10 @@ function Card({ isFixed }) {
               </a>
 
               <a
-                href="./card"
+                href="./cart"
                 className="w-[48%] text-center bg-white text-black border-[1px] border-black px-6 py-4 text-base font-medium shadow-sm hover:bg-[#cb8161] hover:text-white hover:border-[#cb8161]"
               >
-                VIEW CARD
+                VIEW CART
               </a>
             </div>
           </div>
