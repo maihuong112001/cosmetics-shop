@@ -8,13 +8,14 @@ import Product from "@/pages/Product";
 import Register from "@/pages/Register";
 import Login from "@/pages/Login";
 import MyAccount from "@/pages/MyAccount";
+import Wishlist from "@/pages/Wishlist";
 import { useDispatch } from "react-redux";
 import GuardRoute from "./GuardRoute";
 import Cart from "@/pages/Cart";
 import { useEffect } from "react";
 import supabase from "@/services/supabase";
 
-export const RoutesConfig = () => {
+export const RoutesConfig = ({wishlist,productList, addtoWishlist, wishlistt}) => {
   const dispatch = useDispatch();
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -32,18 +33,22 @@ export const RoutesConfig = () => {
   }, [dispatch]);
 
   return (
-    <Routes>
+    <Routes >
       <Route path="/" element={<DefaultLayout />}>
-        <Route index element={<Home />} />
-        <Route path="/collection" element={<Collection />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/account/register" element={<Register />} />
+        <Route  index element={<Home wishlist={wishlist} productList={productList}  addtoWishlist={addtoWishlist}/>} />
+        <Route path="/wishlist" element={<Wishlist wishlistt={wishlistt}   />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<GuardRoute />}>
           <Route path="/cart" element={<Cart />} />
+          
           <Route path="/account" element={<MyAccount />} />
         </Route>
       </Route>
+
+      <Route path="/collection" element={<Collection />} />
+      <Route path="/product" element={<Product />} />
+      <Route path="/account/register" element={<Register />} />
+      <Route path="/account/login" element={<Login />} />
     </Routes>
   );
 };

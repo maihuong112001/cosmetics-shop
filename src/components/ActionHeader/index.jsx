@@ -6,7 +6,7 @@ import {
   HeartOutlined,
   CloseOutlined,
 } from "@ant-design/icons";
-
+import { Link } from "react-router-dom";
 import styles from "./ActionHeader.module.scss";
 import GlideModal from "../Modal/GlideModal/GlideModal";
 import SignIn from "@/components/SignIn";
@@ -90,13 +90,14 @@ export default function ActionHeader({ isFixed }) {
         } `}
       />
       <div className="flex lg:ml-6">
+        <Link to="/wishlist">
         <Badge count={5} size="small">
           <HeartOutlined
             className={`${cx("ant-icon")} ${
               (isFixed || location.pathname !== "/") && "text-black"
             } `}
           />
-        </Badge>
+        </Badge></Link>
       </div>
 
       {/*Product Cart */}

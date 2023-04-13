@@ -11,6 +11,7 @@
           position: relative;
           transition: all 0.3s ease;
           transform: translateY(50px);
+          overflow: hidden;
           &:hover {
                     background: var(--btn-hover-color);
           }
