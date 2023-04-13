@@ -3,15 +3,18 @@ import { UserOutlined } from "@ant-design/icons";
 import { useCallback, useState } from "react";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-
-import styles from "./SignIn.module.scss";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { setUser } from "@/store/slices/user.slice";
+import styles from "./SignIn.module.scss";
 import supabase from "@/services/supabase";
 
 const cx = classNames.bind(styles);
 
 export default function SignIn() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isShowSignInModal, setIsShowSignInModal] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
@@ -29,14 +32,14 @@ export default function SignIn() {
           throw new Error(error.message);
         } else {
           navigate("/account");
-          console.log(data);
+          dispatch(setUser(data.user));
         }
       } catch (error) {
         console.error(error);
       }
       console.log(form);
     },
-    [form, navigate]
+    [dispatch, form, navigate]
   );
 
   return (

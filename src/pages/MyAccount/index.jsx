@@ -1,12 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { InfoCircleTwoTone } from "@ant-design/icons";
+import { useSelector } from "react-redux";
 
-import { setUser } from "@/store/slices/user.slice";
 
 export default function MyAccount({ setIsLoggedIn }) {
-  const slice = setUser(useSelector);
+  const {user} = useSelector(state=>state.users)
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
@@ -40,12 +39,12 @@ export default function MyAccount({ setIsLoggedIn }) {
         </div>
         <div className="w-[60%] pl-10">
           <p className="text-gray-500 pb-6">
-            Hello: {slice.type} (
+            Hello:  {user?.email}
             <Link to="/" onClick={handleLogout} className="text-red-600">
-              Log Out)
+              (Log Out)
             </Link>
           </p>
-          <p className="text-gray-500 pb-6">Email: mhuong112001@gmail.com</p>
+          <p className="text-gray-500 pb-6">Email: {user?.email}</p>
           <h1 className="text-[18px] pb-6">Order History</h1>
           <div className="text-gray-500">
             <InfoCircleTwoTone twoToneColor="#eb2f96" />

@@ -2,12 +2,15 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { useState, useCallback } from "react";
 import MyAccount from "../MyAccount";
 import supabase from "@/services/supabase";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/store/slices/user.slice";
 
 function Login() {
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
+  const dispatch = useDispatch();
   const handleChangeForm = useCallback((e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }, []);
@@ -16,19 +19,19 @@ function Login() {
       e.preventDefault();
 
       try {
-        const { data, error } = await supabase.auth.signInWithPassword(form)
+        const { data, error } = await supabase.auth.signInWithPassword(form);
         if (error) {
           throw new Error(error.message);
-        }else{
+        } else {
           setIsLoggedIn(true);
-          console.log(data);
+          dispatch(setUser(data.user));
         }
       } catch (error) {
+        alert(error);
         console.error(error);
       }
-      console.log(form);
     },
-    [form]
+    [dispatch, form]
   );
 
   return (

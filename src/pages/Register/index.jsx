@@ -1,9 +1,13 @@
 import supabase from "@/services/supabase";
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
+  const [isShowPassword, setIsShowPassword] = useState(false);
   const handleChangeForm = useCallback((e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }, []);
@@ -15,15 +19,16 @@ function Register() {
         const { data, error } = await supabase.auth.signUp(form);
         if (error) {
           throw new Error(error.message);
-        }else{
+        } else {
           console.log(data);
+          navigate("/account/login");
         }
       } catch (error) {
-        console.error(error);
+        alert(error);
       }
       console.log(form);
     },
-    [form]
+    [form, navigate]
   );
 
   return (
@@ -34,32 +39,6 @@ function Register() {
 
       <form className="mt-8 space-y-12 mx-10" onSubmit={handleSubmit}>
         <div className="space-y-8 shadow-sm">
-          {/* <div>
-            <label htmlFor="email-address" className="sr-only">
-              First Name
-            </label>
-            <input
-              id="firstName"
-              name="firstName"
-              type="text"
-              required
-              className="relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
-              placeholder="First Name"
-            />
-          </div>
-          <div>
-            <label htmlFor="email-address" className="sr-only">
-              Last Name
-            </label>
-            <input
-              id="lastName"
-              name="lastName"
-              type="text"
-              required
-              className="relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
-              placeholder="Last Name"
-            />
-          </div> */}
           <div>
             <label htmlFor="email-address" className="sr-only">
               Email*
@@ -83,12 +62,27 @@ function Register() {
               onChange={handleChangeForm}
               id="password"
               name="password"
-              type="password"
+              type={isShowPassword ? "text" : "password"}
               required
               value={form.password}
               className="mt-4 relative text-[14px] block w-full border-0 py-4 px-3 text-gray-900 ring-1 ring-gray-300 placeholder:text-gray-400"
               placeholder="Password*"
             />
+            <div className="right-[33%] -mt-14 absolute text-gray-600 text-[19px]">
+              {isShowPassword ? (
+                <EyeOutlined
+                  onClick={() => {
+                    setIsShowPassword(false);
+                  }}
+                />
+              ) : (
+                <EyeInvisibleOutlined
+                  onClick={() => {
+                    setIsShowPassword(true);
+                  }}
+                />
+              )}
+            </div>
           </div>
         </div>
         <p className="text-gray-400 font-semi text-[15px]">
