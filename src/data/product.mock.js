@@ -10,48 +10,60 @@ export const listShirt = [
 export const products = [
   {
     id: 1,
-    img_1: imagesProducts.product_1,
-    img_2: imagesProducts.product_2,
+    images: {
+      img_1: imagesProducts.product_1,
+      img_2: imagesProducts.product_2,
+    },
     name: "CHARM CLUB BRACELET",
     price: "2,342,656₫",
     preOrder: false,
   },
   {
     id: 2,
-    img_1: imagesProducts.product_3,
-    img_2: imagesProducts.product_4,
+    images: {
+      img_1: imagesProducts.product_3,
+      img_2: imagesProducts.product_4,
+    },
     name: "LARGE CHARLOTTE HOOPS",
-    price: "5,001,669₫",
+    price: "5,017,485₫",
     preOrder: false,
   },
   {
     id: 3,
-    img_1: imagesProducts.product_1,
-    img_2: imagesProducts.product_2,
+    images: {
+      img_1: imagesProducts.product_1,
+      img_2: imagesProducts.product_2,
+    },
     name: "CHARM CLUB BRACELET",
     price: "2,342,656₫",
     preOrder: false,
   },
   {
     id: 4,
-    img_1: imagesProducts.product_3,
-    img_2: imagesProducts.product_4,
+    images: {
+      img_1: imagesProducts.product_3,
+      img_2: imagesProducts.product_4,
+    },
     name: "LARGE CHARLOTTE HOOPS",
     price: "5,001,669₫",
     preOrder: false,
   },
   {
     id: 5,
-    img_1: imagesProducts.product_1,
-    img_2: imagesProducts.product_2,
+    images: {
+      img_1: imagesProducts.product_1,
+      img_2: imagesProducts.product_2,
+    },
     name: "CHARM CLUB BRACELET",
     price: "2,342,656₫",
     preOrder: false,
   },
   {
     id: 6,
-    img_1: imagesProducts.product_3,
-    img_2: imagesProducts.product_4,
+    images: {
+      img_1: imagesProducts.product_3,
+      img_2: imagesProducts.product_4,
+    },
     name: "LARGE CHARLOTTE HOOPS",
     price: "5,001,669₫",
     preOrder: false,
