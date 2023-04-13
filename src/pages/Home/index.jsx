@@ -13,15 +13,18 @@ import Slider from "react-slick";
 import styles from "./Home.module.scss";
 import images from "@/assets/images";
 import imagesHome from "@/assets/images/Home";
-import {categories} from '@/data/categories.mock';
-import { products } from '@/data/product.mock';
-import { bannerSettings, settings } from "@/services/settings.services";
+import CategoriesSlider from '@/components/CategoriesSlider';
+import { productList } from '@/services/product.service';
+import { bannerSettings, settings } from '@/services/settings.service';
+
+
 
 const cx = classNames.bind(styles);
 
 
-
 function Home() {
+  const products = productList.getAllProduct();
+
   return (
     <div className={cx("wrapper")}>
       <Slider {...bannerSettings} >
@@ -69,7 +72,7 @@ function Home() {
       <Row className={cx("banner")}>
           <Col flex="36.75%" className={cx("banner-item")}>
             <div className="box-border overflow-hidden">
-              <a href="/" className="block">
+              <a href="/" className="block overflow-hidden">
                 <img src={imagesHome.banner_1} alt="" />
               </a>
             </div>
@@ -80,7 +83,7 @@ function Home() {
           </Col>
           <Col flex="26.5%"className={cx("banner-item")}>
           <div className="box-border overflow-hidden">
-              <a href="/" className="block">
+              <a href="/" className="block overflow-hidden">
                 <img src={imagesHome.banner_2} alt="" />
               </a>
             </div>
@@ -91,7 +94,7 @@ function Home() {
           </Col>
           <Col  flex="36.75%" className={cx("banner-item")}>
           <div className="box-border overflow-hidden">
-              <a href="/" className="block">
+              <a href="/" className="block overflow-hidden">
                 <img src={imagesHome.banner_3} alt="" />
               </a>
             </div>
@@ -103,17 +106,7 @@ function Home() {
         </Row>
       <h3 className={cx("heading")} style={{margin: '30px auto'}}>TOP CATEGORIES</h3>
       <div className="w-[80%] m-auto ">
-        <Slider {...settings} className="px-[20px] ">
-          {categories.map((category) =>  (
-            <div key={category.id} className={cx("category-item")}>
-              <div className="rounded-[50%]">
-                <img src={category.image} alt="" className="rounded-[50%] cursor-pointer"/>
-              </div>
-              <a href="/" className={cx("category-item__title")}>{category.name}</a>
-            </div>
-          ))}
-          
-        </Slider>
+        <CategoriesSlider/>
       </div>
       <Row className={cx("collection-content")}>
         <Col flex="57.3%" className="gap-3 " >
@@ -146,13 +139,14 @@ function Home() {
         <Col flex="42.6%">
           <img src={imagesHome.collection_img} alt=""/>
         </Col>
+
       </Row>
       <h3 className={cx("heading")} style={{margin: '30px auto'}}>TRENDING PRODUCTS</h3>
       <div className="w-[95%] m-auto">
         <Slider {...settings}>
           {
             products.map((product) => (
-              <ProductCard img1={product.img_1} img2={product.img_2} name={product.name} price={product.price} key={product.id}/>
+              <ProductCard images={product.images} name={product.name} id={product.id} price={product.price} key={product.id} product = {product} button={true} qtyCart={true}/>
             ))
           }
         
@@ -161,7 +155,7 @@ function Home() {
       <Row className={cx("collection-banner")} >
         <Col flex="50%" className={cx("collection")}>
           <div className="box-border overflow-hidden">
-            <a href="/" className="block">
+            <a href="/" className="block overflow-hidden">
               <img src={imagesHome.banner_6} alt="" />
             </a>
           </div>
@@ -176,7 +170,7 @@ function Home() {
         </Col>
         <Col flex="50%" className={cx("collection")}>
         <div className="box-border overflow-hidden">
-            <a href="/" className="block">
+            <a href="/" className="block overflow-hidden">
               <img src={imagesHome.banner_7} alt="" />
             </a>
           </div>
