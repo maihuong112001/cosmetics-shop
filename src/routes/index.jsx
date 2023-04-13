@@ -10,7 +10,7 @@ import Login from "@/pages/Login";
 import MyAccount from "@/pages/MyAccount";
 import { useDispatch } from "react-redux";
 import GuardRoute from "./GuardRoute";
-import Cart from "@/pages/Card";
+import Cart from "@/pages/Cart";
 import { useEffect } from "react";
 import supabase from "@/services/supabase";
 
@@ -20,33 +20,30 @@ export const RoutesConfig = () => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       // setSession(session)
       console.log(session);
-      dispatch(setUser(session?.user||undefined))
-    })
+      dispatch(setUser(session?.user || undefined));
+    });
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       // setSession(session)
-    })
-    
-    return () => subscription.unsubscribe()
-  }, [dispatch])
+    });
+
+    return () => subscription.unsubscribe();
+  }, [dispatch]);
 
   return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>
         <Route index element={<Home />} />
+        <Route path="/collection" element={<Collection />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/account/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<GuardRoute />}>
           <Route path="/cart" element={<Cart />} />
           <Route path="/account" element={<MyAccount />} />
         </Route>
-
       </Route>
-
-      <Route path="/collection" element={<Collection />} />
-      <Route path="/product" element={<Product />} />
-      <Route path="/account/register" element={<Register />} />
-      <Route path="/account/login" element={<Login />} />
     </Routes>
   );
 };
