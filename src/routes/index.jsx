@@ -9,6 +9,7 @@ import Register from "@/pages/Register";
 import Login from "@/pages/Login";
 import MyAccount from "@/pages/MyAccount";
 import Wishlist from "@/pages/Wishlist";
+import Checkout from "@/pages/Checkout";
 import { useDispatch } from "react-redux";
 import GuardRoute from "./GuardRoute";
 import Cart from "@/pages/Cart";
@@ -61,6 +62,7 @@ export const RoutesConfig = ({
           <Route path="/account" element={<MyAccount />} />
         </Route>
       </Route>
+      <Route path="/checkouts" element={<Checkout />} />
     </Routes>
   );
 };

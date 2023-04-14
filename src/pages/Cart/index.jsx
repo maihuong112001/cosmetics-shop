@@ -1,10 +1,19 @@
 import { CarTwoTone, GiftFilled } from "@ant-design/icons";
-import { Divider, InputNumber } from "antd";
+import { Divider, InputNumber, Radio } from "antd";
 
 import { productCardsService } from "@/services/productsInCard.service";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Cart() {
-  const dataProductCard = productCardsService.getAllProductCard();
+  const [disabledCheckOut, setDisabledCheckOut] = useState(true);
+  const [defaultChecked, setDefaultChecked] = useState(false);
+  const toggleDisabledCheckOut = () => {
+    setDisabledCheckOut(!disabledCheckOut);
+    setDefaultChecked(!defaultChecked);
+  };
+  
+  const dataProductCart = productCardsService.getAllProductCard();
   const onChangeQuantity = (value) => {
     console.log("changed", value);
   };
@@ -33,7 +42,7 @@ function Cart() {
             </div>
             <div className="flow-root pt-10">
               <ul className="-my-6 divide-y divide-gray-200">
-                {dataProductCard.map((product) => (
+                {dataProductCart.map((product) => (
                   <li key={product.id} className="flex py-6">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
@@ -131,12 +140,20 @@ function Cart() {
               <p className="mt-0.5 text-[12px] font-semi text-gray-500 pt-3 pb-6">
                 Taxes and shipping calculated at checkout
               </p>
-              <a
-                href="./"
+              <Radio
+                defaultChecked={defaultChecked}
+                onClick={toggleDisabledCheckOut}
+                className="text-gray-600 py-4"
+              >
+                I agree with the terms and conditions
+              </Radio>
+              <Link
+                disabled={disabledCheckOut}
+                to="/checkouts"
                 className=" text-center bg-black px-6 py-4 block font-medium text-white shadow-sm hover:bg-[#cb8161] hover:text-white"
               >
                 CHECK OUT
-              </a>
+              </Link>
             </div>
           </div>
           <div className="w-full bg-gray-100 mt-14 p-12 text-center">
@@ -194,7 +211,3 @@ function Cart() {
 }
 
 export default Cart;
-
-// function getAll() {
-//   const data = productService.getAllProduct();
-// }
