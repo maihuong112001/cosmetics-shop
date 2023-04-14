@@ -73,7 +73,7 @@ function Checkout() {
 
               <Radio
                 value={2}
-                className="py-6 pl-4 w-full border-[1px] border-gray-300 rounded-b-lg focus-within:border-[1px] focus-within:border-blue-600"
+                className="py-6 pl-4 w-full border-[1px] border-t-0 border-gray-300 rounded-b-lg focus-within:border-[1px] focus-within:border-blue-600"
               >
                 <ShopOutlined /> Pick up
               </Radio>

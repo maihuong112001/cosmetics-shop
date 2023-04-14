@@ -1,4 +1,5 @@
 import classNames from "classnames/bind";
+import { useSelector } from 'react-redux'
 import styles from "./Card.module.scss";
 import {
   ShoppingCartOutlined,
@@ -11,15 +12,15 @@ import {
 } from "@ant-design/icons";
 import { useState } from "react";
 import { Button, Drawer, Badge, InputNumber, Radio } from "antd";
-
-import { productCardsService } from "@/services/productsInCard.service";
 import { Link, useLocation } from "react-router-dom";
+
+import { cartsSelector } from "@/store/slices/cart.slice";
 
 const cx = classNames.bind(styles);
 
 function Card({ isFixed }) {
+  const carts=useSelector(cartsSelector);
   const location = useLocation();
-  const dataProductsCard = productCardsService.getAllProductCard();
   const [isShowCardModal, setIsShowCardInModal] = useState(false);
   const onChangeQuantity = (value) => {
     console.log("changed", value);
@@ -77,7 +78,7 @@ function Card({ isFixed }) {
           <div className="mt-8">
             <div className="flow-root">
               <ul className="-my-6 divide-y divide-gray-200 max-h-[200px] overflow-y-auto">
-                {dataProductsCard.map((product) => (
+                {carts.map((product) => (
                   <li key={product.id} className="flex py-6">
                     <div className="h-[75px] w-[75px] flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img

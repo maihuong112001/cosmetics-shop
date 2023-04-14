@@ -34,7 +34,7 @@ export default function SignIn() {
       try {
         const { data, error } = await supabase.auth.signInWithPassword(form);
         if (error) {
-          navigate("/account/login");
+          navigate("/login");
           throw new Error(error.message);
         } else {
           navigate("/account");
