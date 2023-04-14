@@ -16,7 +16,7 @@ export const products = [
     },
     name: "CHARM CLUB BRACELET",
     price: "2,342,656₫",
-    preOrder: false,
+    preOrder: true,
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ export const products = [
     },
     name: "LARGE CHARLOTTE HOOPS",
     price: "5,017,485₫",
-    preOrder: false,
+    preOrder: true,
   },
   {
     id: 3,

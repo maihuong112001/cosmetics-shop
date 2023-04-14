@@ -16,7 +16,7 @@ import imagesHome from "@/assets/images/Home";
 import CategoriesSlider from '@/components/CategoriesSlider';
 import { productList } from '@/services/product.service';
 import { bannerSettings, settings } from '@/services/settings.service';
-
+import { useSelector } from 'react-redux';
 
 
 const cx = classNames.bind(styles);
@@ -24,7 +24,8 @@ const cx = classNames.bind(styles);
 
 function Home() {
   const products = productList.getAllProduct();
-
+  const {wishlists} = useSelector((item) => item.addWishlist)
+  const isWishlist = false;
   return (
     <div className={cx("wrapper")}>
       <Slider {...bannerSettings} >
@@ -146,10 +147,11 @@ function Home() {
         <Slider {...settings}>
           {
             products.map((product) => (
-              <ProductCard images={product.images} name={product.name} id={product.id} price={product.price} key={product.id} product = {product} button={true} qtyCart={true}/>
+              
+              <ProductCard images={product.images} name={product.name} id={product.id} price={product.price} preOrder={product.preOrder} key={product.id} product = {product} button={true} qtyCart={true} isWishlist={wishlists.some((item) => item.id === product.id)}/>
             ))
           }
-        
+          
         </Slider>
       </div>
       <Row className={cx("collection-banner")} >

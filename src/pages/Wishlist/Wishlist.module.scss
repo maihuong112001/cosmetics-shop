@@ -8,8 +8,16 @@
 
 .title {
           text-align: center;
+          margin: 50px auto 80px auto;
           h2 {
                     font-family: var(--heading-text);
           }
 }
 
+.content {
+          display: grid;
+          max-width: 1440px;
+          width: 100%;
+          padding: 0 15px;
+          grid-template-columns: repeat(4, 1fr);
+}
