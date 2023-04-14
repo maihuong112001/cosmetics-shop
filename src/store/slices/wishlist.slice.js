@@ -2,16 +2,20 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
           wishlists: [],
-          quantity: 0,
+          isWishlist: false,
+
 }
 
 const wishlist = createSlice({
           name: "addWishlist",
           initialState,
           reducers: {
-                    AddWishlist: (state, action) => {
-                              state.wishlists.push(action.payload)
-                    }
+                    AddWishlist: (state, action) => { 
+                              const temp = {...action.payload, isWishlist:true}
+                              state.wishlists.push(temp);
+          
+                              
+                    },
           }
 })
 

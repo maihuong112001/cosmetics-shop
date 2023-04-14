@@ -4,13 +4,17 @@ import styles from "./NormalButton.module.scss";
 
 const cx = classNames.bind(styles);
 
-function NormalButton({ children, onClick, showButton }) {
+function NormalButton({ children, onClick, showButton, wishlistAdded, normal }) {
   const Component = "button";
   const props = {
     onClick,
-    showButton
+    showButton,
+
   };
-  const classes = cx("wrapper", {});
+  const classes = cx("wrapper", {    
+    wishlistAdded,
+    normal
+  });
   return (
     <Component className={classes} {...props}>
       {children}

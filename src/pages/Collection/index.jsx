@@ -3,44 +3,17 @@ import styles from "./Collection.module.scss";
 import CategoriesSlider from "@/components/CategoriesSlider";
 import { Row, Col, Select, Menu } from "antd";
 import ProductCard from "@/components/ProductCard";
-
+import { productList } from "@/services/product.service";
+import { categoriesService } from "@/services/categories.service";
 const cx = classNames.bind(styles);
 
-function getItem(label, key, children, type, className) {
-    return {
-        className,
-      key,
-      children,
-      label,
-      type,
-    };
-  }
-  const items = [
-    getItem('Collections', 'sub1', [
-      getItem('Item 1', 'g1', null, [getItem('Option 1', '1'), getItem('Option 2', '2')], 'group'),
-      getItem('Item 2', 'g2', null, [getItem('Option 3', '3'), getItem('Option 4', '4')], 'group'),
-    ]),
-    getItem('Availability', 'sub2', [
-      getItem('Option 5', '5'),
-      getItem('Option 6', '6'),
-      getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
-    ]),
-    {
-      type: 'divider',
-    },
-    getItem('Price', 'sub4',  [
-      getItem('Option 9', '9'),
-      getItem('Option 10', '10'),
-      getItem('Option 11', '11'),
-      getItem('Option 12', '12'),
-    ]),
-  ];
-
-function Collection({productList}) {
+function Collection() {
+  const categories = categoriesService.getAllCategory();
+  const products = productList.getAllProduct();
     const handleFilter = (value) => {
         console.log(`selected ${value}`);
       };
-
+      
       const onClick = (e) => {
         console.log('click ', e);
       };
@@ -60,18 +33,18 @@ function Collection({productList}) {
             <div className="px-[15px] flex justify-center mt-[50px]">
                 <Row className="max-w-[1440px] w-full" > 
                     <Col flex="25%">
-                        <aside className="px-[15px]">
-                        <Menu
-                        className={cx("menu")}
-      onClick={onClick}
-      style={{
-        background: 'transparent',
-      }}
-      defaultSelectedKeys={['1']}
-      defaultOpenKeys={['sub1']}
-      mode="inline"
-      items={items}
-    />
+                        <aside className={cx("sidebar")}>
+                          <div className={cx("collections")}>
+                              <h4 className={cx("title")}>
+                                <label>Collections</label>
+                              </h4>
+                              <ul>
+                                <li className="flex justify-between">
+                                  <span></span>
+                                  <span>11</span>
+                                </li>
+                              </ul>
+                            </div>
                         </aside>
                     </Col>
                     <Col flex="75%" className={cx("collection-content")}>
@@ -105,7 +78,7 @@ function Collection({productList}) {
                                   </div>
                         </div>
                         <div className={cx("product" , "grid-2")}>
-                             {productList.map((item) => (
+                             {products.map((item) => (
                                 <div className={cx("product-col")}>
                                 <ProductCard images={item.images} name={item.name} 
                                                             id={item.id} price={item.price} key={item.id} button={true} qtyCart={true}/> 
