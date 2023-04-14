@@ -10,10 +10,10 @@ import {
   StarFilled,
 } from "@ant-design/icons";
 import { useState } from "react";
-import { Button, Drawer, Badge, InputNumber } from "antd";
+import { Button, Drawer, Badge, InputNumber, Radio } from "antd";
 
 import { productCardsService } from "@/services/productsInCard.service";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -23,6 +23,12 @@ function Card({ isFixed }) {
   const [isShowCardModal, setIsShowCardInModal] = useState(false);
   const onChangeQuantity = (value) => {
     console.log("changed", value);
+  };
+  const [disabledCheckOut, setDisabledCheckOut] = useState(true);
+  const [defaultChecked,setDefaultChecked]=useState(false);
+  const toggleDisabledCheckOut = () => {
+    setDisabledCheckOut(!disabledCheckOut);
+    setDefaultChecked(!defaultChecked);
   };
   return (
     <div className="ml-4 flow-root lg:ml-6">
@@ -140,16 +146,20 @@ function Card({ isFixed }) {
               <p>Subtotal: </p>
               <p>$262.00</p>
             </div>
-            <p className="mt-1 text-[15px] font-semi text-gray-500">
+            <p className="mt-1 text-[15px] font-semi text-gray-500 pt-2">
               Taxes and shipping calculated at checkout
             </p>
+            <Radio defaultChecked={defaultChecked} onClick={toggleDisabledCheckOut} className="text-gray-600 py-4">
+              I agree with the terms and conditions
+            </Radio>
             <div className="mt-8 tracking-wider flex space-x-12">
-              <a
-                href="./"
+              <Link
+                disabled={disabledCheckOut}
+                to="/checkouts"
                 className="w-[48%] text-center bg-black px-6 py-4 text-base font-medium text-white shadow-sm hover:bg-[#cb8161] hover:text-white"
               >
                 CHECK OUT
-              </a>
+              </Link>
 
               <a
                 href="./cart"
