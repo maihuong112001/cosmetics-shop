@@ -12,6 +12,7 @@ import GlideModal from "../Modal/GlideModal/GlideModal";
 import SignIn from "@/components/SignIn";
 import ProductCard from "@/components/Cart";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
 const onSearch = (value) => console.log(value);
@@ -19,6 +20,7 @@ const onSearch = (value) => console.log(value);
 export default function ActionHeader({ isFixed }) {
   const [isShowSearchModal, setIsShowSearchModal] = useState(false);
   const location = useLocation();
+  const {wishlists} = useSelector((item) => item.addWishlist)
   return (
     <div className="ml-auto mr-10 flex items-center">
       <div className="flex lg:ml-6">
@@ -91,7 +93,7 @@ export default function ActionHeader({ isFixed }) {
       />
       <div className="flex lg:ml-6">
         <Link to="/wishlist">
-        <Badge count={5} size="small">
+        <Badge count={wishlists.length} size="small">
           <HeartOutlined
             className={`${cx("ant-icon")} ${
               (isFixed || location.pathname !== "/") && "text-black"

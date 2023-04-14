@@ -141,5 +141,18 @@ input:focus-visible {
   font-family: var(--heading-text);
 }
 
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light:not(.ant-menu-horizontal) .ant-menu-submenu-title:hover, :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light>.ant-menu:not(.ant-menu-horizontal) .ant-menu-submenu-title:hover {
+  background-color: transparent;
+}
 
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline, :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light>.ant-menu.ant-menu-inline .ant-menu-sub.ant-menu-inline {
+  background: transparent;
+}
 
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light:not(.ant-menu-horizontal) .ant-menu-item:not(.ant-menu-item-selected):hover, :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light>.ant-menu:not(.ant-menu-horizontal) .ant-menu-item:not(.ant-menu-item-selected):hover {
+  background-color: transparent;
+}
+
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light.ant-menu-root.ant-menu-inline, :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light>.ant-menu.ant-menu-root.ant-menu-inline, :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light.ant-menu-root.ant-menu-vertical, :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light>.ant-menu.ant-menu-root.ant-menu-vertical {
+  border-inline-end: none;
+}

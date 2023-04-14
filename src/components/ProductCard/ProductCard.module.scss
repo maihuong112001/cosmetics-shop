@@ -1,3 +1,29 @@
+
+@mixin btn-hover {
+	color: #fff;
+				-webkit-animation-name: beat;
+				animation-name: beat;
+				-webkit-animation-duration: .9s;
+				animation-duration: .9s;
+				-webkit-animation-timing-function: ease-in-out;
+				animation-timing-function: ease-in-out;
+				-webkit-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+				svg path {
+					color: #fff !important;
+					fill: #fff;
+					stroke: #fff !important;
+				}
+				svg polyline {
+					stroke: #fff !important;
+					color: #fff !important;
+				}
+				svg g {
+					stroke: #fff !important;
+					color: #fff !important;
+				}
+}
+
 .wrapper {
 	display: flex;
 	flex-direction: column;
@@ -23,28 +49,7 @@
 			visibility: visible;
 			transform: translateY(0);
 			&:hover {
-				color: #fff;
-				-webkit-animation-name: beat;
-				animation-name: beat;
-				-webkit-animation-duration: .9s;
-				animation-duration: .9s;
-				-webkit-animation-timing-function: ease-in-out;
-				animation-timing-function: ease-in-out;
-				-webkit-animation-iteration-count: infinite;
-				animation-iteration-count: infinite;
-				svg path {
-					color: #fff !important;
-					fill: #fff;
-					stroke: #fff !important;
-				}
-				svg polyline {
-					stroke: #fff !important;
-					color: #fff !important;
-				}
-				svg g {
-					stroke: #fff !important;
-					color: #fff !important;
-				}
+				@include btn-hover;
 			      }
 		}
 		.button button:nth-child(2) , .button-type2 button:nth-child(1) {
@@ -67,6 +72,7 @@
 	}
 		
 }
+
 
 @keyframes beat {
 	0% {
@@ -95,6 +101,7 @@
 .image {
 		  position: relative;
 		  overflow: hidden;
+		  
 }
 
 .content {
@@ -141,9 +148,37 @@
 	overflow: hidden;
 }
 
+.btn-trash {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	opacity: 1;
+	visibility: visible;
+	button {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0)
+	}
+	&:hover {
+		@include btn-hover;
+	}
+}
+
+.btn-trash-2 {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	opacity: 0;
+	visibility: hidden;
+}
+
 .button {
 	@include button-theme;
 	bottom: 60px;
+	.btn-wishlish-added {
+		background: var(--btn-hover-color) !important;
+	}
+
 		  
 }
 
