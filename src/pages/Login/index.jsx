@@ -1,8 +1,9 @@
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { useState, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import MyAccount from "../MyAccount";
 import supabase from "@/services/supabase";
-import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/store/slices/user.slice";
 
 function Login() {

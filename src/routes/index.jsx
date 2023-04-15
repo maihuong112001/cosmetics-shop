@@ -10,11 +10,13 @@ import Login from "@/pages/Login";
 import MyAccount from "@/pages/MyAccount";
 import Wishlist from "@/pages/Wishlist";
 import Checkout from "@/pages/Checkout";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GuardRoute from "./GuardRoute";
 import Cart from "@/pages/Cart";
 import { useEffect } from "react";
 import supabase from "@/services/supabase";
+import { fetchCartData } from "@/services/supabase/resource/cart.service";
+import { setCart } from "@/store/slices/cart.slice";
 
 export const RoutesConfig = ({
   wishlist,
@@ -23,6 +25,8 @@ export const RoutesConfig = ({
   wishlistt,
 }) => {
   const dispatch = useDispatch();
+  const { user } = useSelector((st) => st.user);
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       // setSession(session)
@@ -37,6 +41,16 @@ export const RoutesConfig = ({
 
     return () => subscription.unsubscribe();
   }, [dispatch]);
+
+  useEffect(() => {
+
+   const fetchData =async ()=>{
+    const products = await fetchCartData(user);
+    dispatch(setCart(products));
+   }
+   fetchData();
+    return () => {};
+  }, [dispatch, user]);
 
   return (
     <Routes>
