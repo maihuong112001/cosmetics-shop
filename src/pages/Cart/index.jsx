@@ -1,11 +1,11 @@
 import { CarTwoTone, GiftFilled } from "@ant-design/icons";
 import { Divider, InputNumber, Radio } from "antd";
-
-import { productCardsService } from "@/services/productsInCard.service";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function Cart() {
+  const {products}=useSelector(st=>st.carts);
   const [disabledCheckOut, setDisabledCheckOut] = useState(true);
   const [defaultChecked, setDefaultChecked] = useState(false);
   const toggleDisabledCheckOut = () => {
@@ -13,7 +13,6 @@ function Cart() {
     setDefaultChecked(!defaultChecked);
   };
   
-  const dataProductCart = productCardsService.getAllProductCard();
   const onChangeQuantity = (value) => {
     console.log("changed", value);
   };
@@ -42,11 +41,11 @@ function Cart() {
             </div>
             <div className="flow-root pt-10">
               <ul className="-my-6 divide-y divide-gray-200">
-                {dataProductCart.map((product) => (
+                {products.map((product) => (
                   <li key={product.id} className="flex py-6">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
-                        src={product.imageSrc}
+                        src={product.images.img_1}
                         alt={product.imageAlt}
                         className="h-full w-full object-cover object-center"
                       />
@@ -61,7 +60,7 @@ function Cart() {
                           <p className="ml-4">{product.price}</p>
                         </div>
                         <p className="mt-1 text-[14px] text-gray-500">
-                          {product.color}
+                          white
                         </p>
                       </div>
                       <div className="justify-center absolute text-center text-[14px] -mt-[5px] ml-[30%] space-y-3">
