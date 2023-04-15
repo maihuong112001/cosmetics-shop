@@ -7,20 +7,25 @@ export const fetchCartData = async (user) => {
       .select()
       .eq("id_user", user.id).single();
     if (data) {
+      const productIDs = data.items.map(item=>item.product_id);
       const response = await supabase
         .from("product")
-        .select()
-        .eq("id",data.id_product);
+        .select().in('id',productIDs)
 
         if (response.error) {
             console.warn(response.error);
+            return [];
         }
-
-        return response.error?[]:response.data;
+        else{
+          const items = data.items.map((item,index)=>({
+            product:response.data.find(prod=>prod.id===item?.product_id),
+            quantity:item.quantity
+          }))
+          return items;
+        }
 
     } else {
       console.warn(error);
-      
       return []
     }
   };

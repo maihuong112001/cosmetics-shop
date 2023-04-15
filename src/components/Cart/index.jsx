@@ -20,7 +20,7 @@ const cx = classNames.bind(styles);
 
 function Card({ isFixed }) {
   const dispatch = useDispatch();
-  const { products } = useSelector((st) => st.carts);
+  const { items } = useSelector((st) => st.carts);
   const location = useLocation();
   const [isShowCardModal, setIsShowCardInModal] = useState(false);
   const onChangeQuantity = (value) => {
@@ -34,7 +34,7 @@ function Card({ isFixed }) {
   };
   return (
     <div className="ml-4 flow-root lg:ml-6">
-      <Badge count={products.length} size="small">
+      <Badge count={items.length} size="small">
         <ShoppingCartOutlined
           size="large"
           className={`${cx("ant-icon")} ${
@@ -79,7 +79,7 @@ function Card({ isFixed }) {
           <div className="mt-8">
             <div className="flow-root">
               <ul className="-my-6 divide-y divide-gray-200 max-h-[200px] overflow-y-auto">
-                {products.map((product) => (
+                {items.map(({ product,quantity }) => (
                   <li key={product.id} className="flex py-6">
                     <div className="h-[75px] w-[75px] flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
@@ -93,7 +93,7 @@ function Card({ isFixed }) {
                       <div>
                         <div className="flex justify-between text-[14px] text-base font-medium text-gray-900">
                           <h3>
-                            <a href={product.href}>{product.name}</a>
+                            <Link to="/">{product.name}</Link>
                           </h3>
                           <p className="ml-4 mr-3">{product.price}$</p>
                         </div>
@@ -103,7 +103,7 @@ function Card({ isFixed }) {
                         <InputNumber
                           min={1}
                           max={100}
-                          defaultValue="1"
+                          defaultValue={quantity}
                           onChange={onChangeQuantity}
                         />
                         <div className="flex">
