@@ -14,12 +14,10 @@ import { useState } from "react";
 import { Button, Drawer, Badge, InputNumber, Radio } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
-import { cartsSelector } from "@/store/slices/cart.slice";
-
 const cx = classNames.bind(styles);
 
 function Card({ isFixed }) {
-  const carts=useSelector(cartsSelector);
+  const {products}=useSelector(st=>st.carts);
   const location = useLocation();
   const [isShowCardModal, setIsShowCardInModal] = useState(false);
   const onChangeQuantity = (value) => {
@@ -78,12 +76,12 @@ function Card({ isFixed }) {
           <div className="mt-8">
             <div className="flow-root">
               <ul className="-my-6 divide-y divide-gray-200 max-h-[200px] overflow-y-auto">
-                {carts.map((product) => (
+                {products.map((product) => (
                   <li key={product.id} className="flex py-6">
                     <div className="h-[75px] w-[75px] flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
-                        src={product.imageSrc}
-                        alt={product.imageAlt}
+                        src={product.images.img_1}
+                        alt="product"
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
@@ -97,14 +95,14 @@ function Card({ isFixed }) {
                           <p className="ml-4 mr-3">{product.price}</p>
                         </div>
                         <p className="mt-1 text-[13px] text-gray-500">
-                          {product.color}
+                          white
                         </p>
                       </div>
                       <div className="flex flex-1 items-end justify-between text-sm">
                         <InputNumber
                           min={1}
                           max={100}
-                          defaultValue={product.quantity}
+                          defaultValue="1"
                           onChange={onChangeQuantity}
                         />
                         <div className="flex">

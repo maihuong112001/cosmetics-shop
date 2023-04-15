@@ -10,6 +10,6 @@ export const store = configureStore({
   reducer: {
     user: usersReducer,
     addWishlist: AddWishlist,
-    cartsReducer,
+    carts:cartsReducer,
   },
 });
