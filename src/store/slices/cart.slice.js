@@ -12,7 +12,7 @@ const cartSlice = createSlice({
       state.products  =[...state.products,action.payload]
     },
     setCart: (state,action) => {
-      state.products  =action.payload
+      state.products  = action.payload
     },
     deleteProductCart:(state,action)=>{
       const productId=action.payload

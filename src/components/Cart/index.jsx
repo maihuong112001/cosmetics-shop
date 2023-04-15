@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import {
   ShoppingCartOutlined,
   CloseOutlined,
@@ -20,14 +20,14 @@ const cx = classNames.bind(styles);
 
 function Card({ isFixed }) {
   const dispatch = useDispatch();
-  const {products}=useSelector(st=>st.carts);
+  const { products } = useSelector((st) => st.carts);
   const location = useLocation();
   const [isShowCardModal, setIsShowCardInModal] = useState(false);
   const onChangeQuantity = (value) => {
     console.log("changed", value);
   };
   const [disabledCheckOut, setDisabledCheckOut] = useState(true);
-  const [defaultChecked,setDefaultChecked]=useState(false);
+  const [defaultChecked, setDefaultChecked] = useState(false);
   const toggleDisabledCheckOut = () => {
     setDisabledCheckOut(!disabledCheckOut);
     setDefaultChecked(!defaultChecked);
@@ -83,7 +83,7 @@ function Card({ isFixed }) {
                   <li key={product.id} className="flex py-6">
                     <div className="h-[75px] w-[75px] flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
-                        src={product.images.img_1}
+                        src={product.images}
                         alt="product"
                         className="h-full w-full object-cover object-center"
                       />
@@ -95,11 +95,9 @@ function Card({ isFixed }) {
                           <h3>
                             <a href={product.href}>{product.name}</a>
                           </h3>
-                          <p className="ml-4 mr-3">{product.price}</p>
+                          <p className="ml-4 mr-3">{product.price}$</p>
                         </div>
-                        <p className="mt-1 text-[13px] text-gray-500">
-                          white
-                        </p>
+                        <p className="mt-1 text-[13px] text-gray-500">white</p>
                       </div>
                       <div className="flex flex-1 items-end justify-between text-sm">
                         <InputNumber
@@ -110,7 +108,9 @@ function Card({ isFixed }) {
                         />
                         <div className="flex">
                           <button
-                          onClick={()=>dispatch(deleteProductCart(product.id))}
+                            onClick={() =>
+                              dispatch(deleteProductCart(product.id))
+                            }
                             type="button"
                             className="text-[12px] font-medium text-indigo-600 hover:text-indigo-500 mr-3"
                           >
@@ -152,7 +152,11 @@ function Card({ isFixed }) {
             <p className="mt-1 text-[15px] font-semi text-gray-500 pt-2">
               Taxes and shipping calculated at checkout
             </p>
-            <Radio defaultChecked={defaultChecked} onClick={toggleDisabledCheckOut} className="text-gray-600 py-4">
+            <Radio
+              defaultChecked={defaultChecked}
+              onClick={toggleDisabledCheckOut}
+              className="text-gray-600 py-4"
+            >
               I agree with the terms and conditions
             </Radio>
             <div className="mt-8 tracking-wider flex space-x-12">

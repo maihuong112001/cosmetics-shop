@@ -110,7 +110,7 @@ function ProductCard(product) {
               <div
                 className={cx("cart-btn") + " cursor-pointer"}
                 onClick={() => {
-                  dispatch(addCart(product));
+                  dispatch(addCart({...product,images:Object.values(product.images)}));
                 }}
               >
                 <ShoppingOutlined
