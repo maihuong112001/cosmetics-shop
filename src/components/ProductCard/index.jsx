@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./ProductCard.module.scss";
 import { ReactComponent as CompareIcon } from "@/assets/images/Products/down-up-arrow-svgrepo-com.svg";
@@ -17,11 +17,14 @@ import { Rate, Tooltip } from "antd";
 import { AddWishlist } from "@/store/slices/wishlist.slice";
 import { addCart } from "@/store/slices/cart.slice";
 import { useDispatch, useSelector } from "react-redux";
+import supabase from "@/services/supabase";
 const cx = classNames.bind(styles);
 
 function ProductCard(product) {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
+  const carts = useSelector((s) => s.carts);
+  const { user } = useSelector((s) => s.user);
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
   };
@@ -30,6 +33,33 @@ function ProductCard(product) {
       setQuantity(quantity - 1);
     }
   };
+
+  const handleAddCart = useCallback(async () => {
+    dispatch(addCart(product));
+    try {
+      const cartItems = carts.items.map((item) => ({
+        product_id: item.product.id,
+        quantity: item.quantity,
+      }));
+      const item = cartItems.find((item) => item.product_id === product.id);
+      if (item) {
+        item.quantity += 1;
+      } else {
+        cartItems.push({ product_id: product.id, quantity: 1 });
+      }
+      const { data, error } = await supabase
+        .from("cart")
+        .update({ items: cartItems })
+        .eq("id_user", user?.id);
+      if (error) {
+        throw new Error(error.message);
+      } else {
+        console.log("data", data);
+      }
+    } catch (error) {
+      alert(error);
+    }
+  }, [carts.items, dispatch, product, user?.id]);
 
   const button = product.button ? cx("button") : cx("button-type2");
   const cartForm = product.qtyCart ? cx("cart-form") : cx("cart-form-type-2");
@@ -109,9 +139,7 @@ function ProductCard(product) {
               </div>
               <div
                 className={cx("cart-btn") + " cursor-pointer"}
-                onClick={() => {
-                  dispatch(addCart({...product,images:Object.values(product.images)}));
-                }}
+                onClick={handleAddCart}
               >
                 <ShoppingOutlined
                   style={{ fontSize: "20px", color: "#fff" }}

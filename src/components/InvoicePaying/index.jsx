@@ -1,4 +1,5 @@
 import { productCardsService } from "@/services/productsInCard.service";
+import { Link } from "react-router-dom";
 function InvoicePaying() {
   const dataProductsCard = productCardsService.getAllProductCard();
   return (
@@ -18,7 +19,7 @@ function InvoicePaying() {
               <div>
                 <div className="flex justify-between text-[14px] text-base font-medium text-gray-900">
                   <h3>
-                    <a href={product.href}>{product.name}</a>
+                    <Link to="/">{product.name}</Link>
                   </h3>
                   <p className="ml-4 mr-3">{product.price}</p>
                 </div>
