@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
-import { useSelector } from 'react-redux'
-import styles from "./Card.module.scss";
+import { useDispatch, useSelector } from 'react-redux'
 import {
   ShoppingCartOutlined,
   CloseOutlined,
@@ -14,9 +13,13 @@ import { useState } from "react";
 import { Button, Drawer, Badge, InputNumber, Radio } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
+import styles from "./Card.module.scss";
+import { deleteProductCart } from "@/store/slices/cart.slice";
+
 const cx = classNames.bind(styles);
 
 function Card({ isFixed }) {
+  const dispatch = useDispatch();
   const {products}=useSelector(st=>st.carts);
   const location = useLocation();
   const [isShowCardModal, setIsShowCardInModal] = useState(false);
@@ -31,7 +34,7 @@ function Card({ isFixed }) {
   };
   return (
     <div className="ml-4 flow-root lg:ml-6">
-      <Badge count={5} size="small">
+      <Badge count={products.length} size="small">
         <ShoppingCartOutlined
           size="large"
           className={`${cx("ant-icon")} ${
@@ -107,6 +110,7 @@ function Card({ isFixed }) {
                         />
                         <div className="flex">
                           <button
+                          onClick={()=>dispatch(deleteProductCart(product.id))}
                             type="button"
                             className="text-[12px] font-medium text-indigo-600 hover:text-indigo-500 mr-3"
                           >
