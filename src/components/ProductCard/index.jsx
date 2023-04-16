@@ -35,6 +35,7 @@ function ProductCard(product) {
     }
   };
 
+
   const handleAddCart = useCallback(async () => {
     // dispatch(addCart(product));
     try {
@@ -92,7 +93,7 @@ function ProductCard(product) {
             {product.isWishlist ? (
               <Tooltip placement="top" title="Remove Wishlist">
                 <NormalButton wishlistAdded>
-                  <HeartFilled style={{ color: "white" }} />
+                  <HeartFilled style={{ color: "white", fontSize: '17px' }} />
                 </NormalButton>
               </Tooltip>
             ) : (
@@ -101,7 +102,7 @@ function ProductCard(product) {
                   onClick={() => dispatch(AddWishlist(product))}
                   normal
                 >
-                  <HeartOutlined />
+                  <HeartOutlined style={{fontSize: '17px'}} />
                 </NormalButton>
               </Tooltip>
             )}

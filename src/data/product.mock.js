@@ -18,6 +18,7 @@ export const products = [
     name: "CHARM CLUB BRACELET",
     price: "2,342,656₫",
     preOrder: true,
+    color: []
   },
   {
     id: 2,
@@ -76,3 +77,47 @@ export const products = [
     preOrder: false,
   },
 ];
+
+
+export const colors = [
+  {
+    id: 1,
+    name: 'Antique',
+    color: '#d4937d'
+  },
+  {
+    id: 2,
+    name: 'Bone',
+    color: '#e5d4c2'
+  },
+  {
+    id: 3,
+    name: 'Chestnut',
+    color: '#9d443e'
+  },
+  {
+    id: 4,
+    name: 'Crimson',
+    color: '#94440e'
+  },
+  {
+    id: 5,
+    name: 'Eggshell',
+    color: '#f1ead7'
+  },
+  {
+    id: 6,
+    name: 'Gadien',
+    color: '#d9bf7a'
+  },
+  {
+    id: 7,
+    name: 'Grullo',
+    color: '#a19d80'
+  },
+  {
+    id: 8,
+    name: 'PineTree',
+    color: '#2c2f1e'
+  }
+]

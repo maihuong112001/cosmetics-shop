@@ -1,4 +1,4 @@
-import { listShirt, products } from "@/data/product.mock";
+import { listShirt, products, colors } from "@/data/product.mock";
 
 export const productService = {
   getAllProduct() {
@@ -11,3 +11,9 @@ export const productList = {
     return products;
   },
 };
+
+export const colorList = {
+  getAllColor() {
+    return colors;
+  }
+}

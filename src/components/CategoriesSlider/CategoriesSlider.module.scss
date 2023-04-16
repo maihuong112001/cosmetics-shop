@@ -1,69 +1,133 @@
+.wrapper {
+    
+}
+
+.inner {
+    max-width: 750px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+@keyframes shake {
+    16.65% {
+        transform: rotate(15deg);
+    }
+    33.33% {
+        transform: rotate(-13deg);
+    }
+    49.95% {
+        transform: rotate(10deg);
+    }
+    66.6% {
+        transform: rotate(-8deg);
+    }
+    83.25% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
 
 .category-item {
-          display: flex;
+          display: flex !important;
           flex-direction: column;
           align-items: center;
           overflow: hidden;
-          img {
-              &:hover {
-                  animation-name: shake;
-                  animation-duration: 1s;
-                  animation-timing-function: ease-in-out;
-                  animation-iteration-count: 1;
-              }
+          .category-item__title {
+            text-align: center;
+            font-size: 14px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 2px;
+            color: #000;
+            letter-spacing: 2px;
+            cursor: pointer;
           }
-          
-      }
-      
-      @keyframes shake {
-          16.65% {
-              transform: rotate(15deg);
-          }
-          33.33% {
-              transform: rotate(-13deg);
-          }
-          49.95% {
-              transform: rotate(10deg);
-          }
-          66.6% {
-              transform: rotate(-8deg);
-          }
-          83.25% {
-              transform: rotate(5deg);
-          }
-          100% {
-              transform: rotate(0);
-          }
-      }
-      
-      .category-item__title {
-          text-align: center;
-          font-size: 14px;
-          text-transform: uppercase;
-          margin-top: 20px;
-          position: relative;
-          display: inline-block;
-          padding-bottom: 2px;
-          color: #000;
-          letter-spacing: 2px;
-          cursor: pointer;
-          left: 50%;
-          transform: translateX(-60%);
-          &:hover {
-              color: #000;
-              &::before {
-                  width: 100%;
-                  left: 0;
-              }
-          }
-          &::before {
-              content: "";
-              width: 0;
-              bottom: 0;
-              height: 1px;
-              position: absolute;
-              background: black;
-              right: 0;
-              transition: all .4s ease;
-          }
+
+               
+}
+
+.style-1 {
+    img {
+        &:hover {
+            animation-name: shake;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: 1;
+        }
+    }
+    .category-item__title {
+        margin-top: 20px;
+        &:hover {
+            color: #000;
+            &::before {
+                width: 100%;
+                left: 0;
+            }
+        }
+        &::before {
+            content: "";
+            width: 0;
+            bottom: 0;
+            height: 1px;
+            position: absolute;
+            background: black;
+            right: 0;
+            transition: all .4s ease;
+        }
+    }
+}
+
+.style-2 {
+    width: 195px;
+    .category-item__title {
+        font-size: 12px;
+        font-family: var(--heading-text);
+        &:before {
+            content: "";
+            width: 0;
+            bottom: 0;
+            height: 1px;
+            position: absolute;
+            background: var(--btn-hover-color);
+            right: 0;
+            transition: all .4s ease;
+        }
+    }
+
+    .image {
+        position: relative;
+        max-width: 115px;
+        margin: 10px auto;
+        &:before {
+            position: absolute;
+            content: "";
+            width: calc(100% + 11px);
+            height: calc(100% + 11px);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+            border: 1px solid #cb8161;
+            opacity: 0;
+        }
+    }
+    &:hover {
+        .image {
+            &:before{
+                opacity: 1;
+            }
+        }
+        .category-item__title {
+            color: var(--btn-hover-color);
+            &:before {
+                width: 100%;
+                left: 0;
+            }
+        }
+    }
+
 }

@@ -2,27 +2,27 @@ import imagesHome from "@/assets/images/Home";
 export const categories = [
   {
     id: 1,
-    name: "NECKLACES",
+    name: "necklaces",
     image: imagesHome.top_cate_1,
   },
   {
     id: 2,
-    name: "WEDDING & BRIDAL",
+    name: "wedding & bridal",
     image: imagesHome.top_cate_2,
   },
   {
     id: 3,
-    name: "EARNINGS",
+    name: "earnings",
     image: imagesHome.top_cate_3,
   },
   {
     id: 4,
-    name: "BRACELETS",
+    name: "bracelets",
     image: imagesHome.top_cate_4,
   },
   {
     id: 5,
-    name: "CHARMS",
+    name: "charms",
     image: imagesHome.top_cate_5,
   },
 ];

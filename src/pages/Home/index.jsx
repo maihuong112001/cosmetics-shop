@@ -25,7 +25,6 @@ const cx = classNames.bind(styles);
 function Home() {
   const products = productList.getAllProduct();
   const {wishlists} = useSelector((item) => item.addWishlist)
-  const isWishlist = false;
   return (
     <div className={cx("wrapper")}>
       <Slider {...bannerSettings} >
@@ -107,7 +106,7 @@ function Home() {
         </Row>
       <h3 className={cx("heading")} style={{margin: '30px auto'}}>TOP CATEGORIES</h3>
       <div className="w-[80%] m-auto ">
-        <CategoriesSlider/>
+        <CategoriesSlider medium={true}/>
       </div>
       <Row className={cx("collection-content")}>
         <Col flex="57.3%" className="gap-3 " >
