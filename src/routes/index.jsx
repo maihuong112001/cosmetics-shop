@@ -1,4 +1,3 @@
-import { setUser } from "@/store/slices/user.slice";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { Routes, Route } from "react-router-dom";
 // Pages
@@ -10,13 +9,14 @@ import Login from "@/pages/Login";
 import MyAccount from "@/pages/MyAccount";
 import Wishlist from "@/pages/Wishlist";
 import Checkout from "@/pages/Checkout";
+import Cart from "@/pages/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import GuardRoute from "./GuardRoute";
-import Cart from "@/pages/Cart";
 import { useEffect } from "react";
 import supabase from "@/services/supabase";
 import { fetchCartData } from "@/services/supabase/resource/cart.service";
 import { setCart } from "@/store/slices/cart.slice";
+import { setUser } from "@/store/slices/user.slice";
 
 export const RoutesConfig = ({
   wishlist,
@@ -72,7 +72,6 @@ export const RoutesConfig = ({
         <Route path="/account/register" element={<Register />} />
         <Route path="/" element={<GuardRoute />}>
           <Route path="/cart" element={<Cart />} />
-
           <Route path="/account" element={<MyAccount />} />
         </Route>
       </Route>

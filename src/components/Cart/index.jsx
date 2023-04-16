@@ -9,18 +9,22 @@ import {
   CodepenSquareFilled,
   StarFilled,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Button, Drawer, Badge, InputNumber, Radio } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
 import styles from "./Card.module.scss";
-import { deleteProductCart } from "@/store/slices/cart.slice";
+import { setCart } from "@/store/slices/cart.slice";
+import supabase from "@/services/supabase";
+import { fetchCartData } from "@/services/supabase/resource/cart.service";
 
 const cx = classNames.bind(styles);
 
 function Card({ isFixed }) {
   const dispatch = useDispatch();
-  const { items } = useSelector((st) => st.carts);
+  const { items } = useSelector((state) => state.carts);
+  const carts = useSelector((state) => state.carts);
+  const { user } = useSelector((state) => state.user);
   const location = useLocation();
   const [isShowCardModal, setIsShowCardInModal] = useState(false);
   const onChangeQuantity = (value) => {
@@ -32,6 +36,30 @@ function Card({ isFixed }) {
     setDisabledCheckOut(!disabledCheckOut);
     setDefaultChecked(!defaultChecked);
   };
+  const handleDeleteCart = useCallback(
+    async (product) => {
+      // dispatch(deleteProductCart(product.id));
+      try {
+        const cartItems = carts.items.map((item) => ({
+          product_id: item.product.id,
+          quantity: item.quantity,
+        }));
+        const Items = cartItems.filter((cartItem) => cartItem.product_id !== product.id);
+        const { error } = await supabase
+          .from("cart")
+          .update({ items: Items })
+          .eq("id_user", user?.id);
+        if (error) {
+          throw new Error(error.message);
+        } else {
+          dispatch(setCart(await fetchCartData(user)));
+        }
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [carts.items, dispatch, user]
+  );
   return (
     <div className="ml-4 flow-root lg:ml-6">
       <Badge count={items.length} size="small">
@@ -79,7 +107,7 @@ function Card({ isFixed }) {
           <div className="mt-8">
             <div className="flow-root">
               <ul className="-my-6 divide-y divide-gray-200 max-h-[200px] overflow-y-auto">
-                {items.map(({ product,quantity }) => (
+                {items.map(({ product, quantity }) => (
                   <li key={product.id} className="flex py-6">
                     <div className="h-[75px] w-[75px] flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
@@ -108,9 +136,9 @@ function Card({ isFixed }) {
                         />
                         <div className="flex">
                           <button
-                            onClick={() =>
-                              dispatch(deleteProductCart(product.id))
-                            }
+                            onClick={() => {
+                              handleDeleteCart(product);
+                            }}
                             type="button"
                             className="text-[12px] font-medium text-indigo-600 hover:text-indigo-500 mr-3"
                           >

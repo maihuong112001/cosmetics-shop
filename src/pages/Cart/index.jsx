@@ -1,21 +1,52 @@
 import { CarTwoTone, GiftFilled } from "@ant-design/icons";
 import { Divider, InputNumber, Radio } from "antd";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import supabase from "@/services/supabase";
+import { fetchCartData } from "@/services/supabase/resource/cart.service";
+import { setCart } from "@/store/slices/cart.slice";
 
 function Cart() {
-  const { items } = useSelector((st) => st.carts);
+  const { items } = useSelector((state) => state.carts);
+  const carts = useSelector((state) => state.carts);
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [disabledCheckOut, setDisabledCheckOut] = useState(true);
   const [defaultChecked, setDefaultChecked] = useState(false);
   const toggleDisabledCheckOut = () => {
     setDisabledCheckOut(!disabledCheckOut);
     setDefaultChecked(!defaultChecked);
   };
-  
   const onChangeQuantity = (value) => {
     console.log("changed", value);
   };
+  const handleDeleteCart = useCallback(
+    async (product) => {
+      // dispatch(deleteProductCart(product.id));
+      try {
+        const cartItems = carts.items.map((item) => ({
+          product_id: item.product.id,
+          quantity: item.quantity,
+        }));
+        const Items = cartItems.filter(
+          (cartItem) => cartItem.product_id !== product.id
+        );
+        const {error } = await supabase
+          .from("cart")
+          .update({ items: Items })
+          .eq("id_user", user?.id);
+        if (error) {
+          throw new Error(error.message);
+        } else {
+          dispatch(setCart(await fetchCartData(user)));
+        }
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [carts.items, dispatch, user]
+  );
   return (
     <div className="w-full pt-[220px]">
       <div className=" flow-root">
@@ -41,7 +72,7 @@ function Cart() {
             </div>
             <div className="flow-root pt-10">
               <ul className="-my-6 divide-y divide-gray-200">
-                {items.map(({ product,quantity }) => (
+                {items.map(({ product, quantity }) => (
                   <li key={product.id} className="flex py-6">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
@@ -59,9 +90,7 @@ function Cart() {
                           </h3>
                           <p className="ml-4">{product.price}$</p>
                         </div>
-                        <p className="mt-1 text-[14px] text-gray-500">
-                          white
-                        </p>
+                        <p className="mt-1 text-[14px] text-gray-500">white</p>
                       </div>
                       <div className="justify-center absolute text-center text-[14px] -mt-[5px] ml-[30%] space-y-3">
                         <InputNumber
@@ -73,6 +102,9 @@ function Cart() {
 
                         <div className="">
                           <button
+                            onClick={() => {
+                              handleDeleteCart(product);
+                            }}
                             type="button"
                             className="font-medium text-indigo-600 hover:text-indigo-500"
                           >
