@@ -17,8 +17,7 @@ function Wishlist () {
                                         <h2 className="text-[60px]">Wishlist</h2>
                                         <Breadcrumb className="text-center w-fit mx-auto my-0">
                                                   <Breadcrumb.Item className="cursor-pointer hover:text-text-hover-color">Home</Breadcrumb.Item>
-                                                  <Breadcrumb.Item className="cursor-pointer hover:text-text-hover-color">List</Breadcrumb.Item>
-                                                  <Breadcrumb.Item>App</Breadcrumb.Item>
+                                                  <Breadcrumb.Item>Wishlist</Breadcrumb.Item>
                                         </Breadcrumb>
                               </div>
                               

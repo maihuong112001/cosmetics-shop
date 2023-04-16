@@ -126,20 +126,6 @@ input:focus-visible {
   }
 }
 
-.ant-menu-submenu-title span {
-
-  color: #000;
-  background: transparent;
-  margin: 0 0 25px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-family: var(--heading-text);
-}
 
 :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light:not(.ant-menu-horizontal) .ant-menu-submenu-title:hover, :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light>.ant-menu:not(.ant-menu-horizontal) .ant-menu-submenu-title:hover {
   background-color: transparent;
