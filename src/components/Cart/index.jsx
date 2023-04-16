@@ -9,7 +9,7 @@ import {
   CodepenSquareFilled,
   StarFilled,
 } from "@ant-design/icons";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Button, Drawer, Badge, InputNumber, Radio } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
@@ -34,6 +34,14 @@ function Card({ isFixed }) {
     setDisabledCheckOut(!disabledCheckOut);
     setDefaultChecked(!defaultChecked);
   };
+  const total = useMemo(
+    () =>
+      carts.items.reduce((total, item) => {
+        return total + item.product.price * item.quantity;
+      }, 0),
+    [carts]
+  );
+  
   const handleDeleteCart = useCallback(
     async (product) => {
       // dispatch(deleteProductCart(product.id));
@@ -42,7 +50,9 @@ function Card({ isFixed }) {
           product_id: item.product.id,
           quantity: item.quantity,
         }));
-        const Items = cartItems.filter((cartItem) => cartItem.product_id !== product.id);
+        const Items = cartItems.filter(
+          (cartItem) => cartItem.product_id !== product.id
+        );
         const { error } = await supabase
           .from("cart")
           .update({ items: Items })
@@ -59,14 +69,16 @@ function Card({ isFixed }) {
     [carts.items, dispatch, user]
   );
   const handleUpdateQuantityCart = useCallback(
-    async (product,value) => {
+    async (product, value) => {
       // dispatch(deleteProductCart(product.id));
       try {
         const cartItems = carts.items.map((item) => ({
           product_id: item.product.id,
           quantity: item.quantity,
         }));
-        const item = cartItems.find((cartItem) => cartItem.product_id === product.id);
+        const item = cartItems.find(
+          (cartItem) => cartItem.product_id === product.id
+        );
         item.quantity = value;
         const { error } = await supabase
           .from("cart")
@@ -155,8 +167,8 @@ function Card({ isFixed }) {
                           min={1}
                           max={100}
                           defaultValue={quantity}
-                          onChange={(value)=>{
-                            handleUpdateQuantityCart(product,value)
+                          onChange={(value) => {
+                            handleUpdateQuantityCart(product, value);
                           }}
                         />
                         <div className="flex">
@@ -200,7 +212,7 @@ function Card({ isFixed }) {
           <div className=" px-4 py-6 sm:px-6">
             <div className="flex justify-between text-3xl font-semi text-gray-900">
               <p>Subtotal: </p>
-              <p>$262.00</p>
+              <p>{total}$</p>
             </div>
             <p className="mt-1 text-[15px] font-semi text-gray-500 pt-2">
               Taxes and shipping calculated at checkout

@@ -48,14 +48,13 @@ function ProductCard(product) {
       } else {
         cartItems.push({ product_id: product.id, quantity: 1 });
       }
-      const { data, error } = await supabase
+      const {error } = await supabase
         .from("cart")
         .update({ items: cartItems })
         .eq("id_user", user?.id);
       if (error) {
         throw new Error(error.message);
       } else {
-        console.log("data", data);
         dispatch(setCart(await fetchCartData(user)));
       }
     } catch (error) {
