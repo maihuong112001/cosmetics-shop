@@ -15,16 +15,17 @@ import {
 } from "@ant-design/icons";
 import { Rate, Tooltip } from "antd";
 import { AddWishlist } from "@/store/slices/wishlist.slice";
-import { addCart } from "@/store/slices/cart.slice";
+import { setCart } from "@/store/slices/cart.slice";
 import { useDispatch, useSelector } from "react-redux";
 import supabase from "@/services/supabase";
+import { fetchCartData } from "@/services/supabase/resource/cart.service";
 const cx = classNames.bind(styles);
 
 function ProductCard(product) {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
-  const carts = useSelector((s) => s.carts);
-  const { user } = useSelector((s) => s.user);
+  const carts = useSelector((state) => state.carts);
+  const { user } = useSelector((state) => state.user);
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
   };
@@ -35,7 +36,7 @@ function ProductCard(product) {
   };
 
   const handleAddCart = useCallback(async () => {
-    dispatch(addCart(product));
+    // dispatch(addCart(product));
     try {
       const cartItems = carts.items.map((item) => ({
         product_id: item.product.id,
@@ -55,11 +56,12 @@ function ProductCard(product) {
         throw new Error(error.message);
       } else {
         console.log("data", data);
+        dispatch(setCart(await fetchCartData(user)));
       }
     } catch (error) {
       alert(error);
     }
-  }, [carts.items, dispatch, product, user?.id]);
+  }, [carts.items, dispatch, product.id, user]);
 
   const button = product.button ? cx("button") : cx("button-type2");
   const cartForm = product.qtyCart ? cx("cart-form") : cx("cart-form-type-2");
