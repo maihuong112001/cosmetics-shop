@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import { useCallback, useMemo, useState } from "react";
 import { Button, Drawer, Badge, InputNumber, Radio } from "antd";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import styles from "./Card.module.scss";
 import { setCart } from "@/store/slices/cart.slice";
@@ -21,6 +21,7 @@ import { fetchCartData } from "@/services/supabase/resource/cart.service";
 const cx = classNames.bind(styles);
 
 function Card({ isFixed }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.carts);
   const carts = useSelector((state) => state.carts);
@@ -34,14 +35,14 @@ function Card({ isFixed }) {
     setDisabledCheckOut(!disabledCheckOut);
     setDefaultChecked(!defaultChecked);
   };
-  const total = useMemo(
+  const totalPrice = useMemo(
     () =>
       carts.items.reduce((total, item) => {
         return total + item.product.price * item.quantity;
       }, 0),
     [carts]
   );
-  
+
   const handleDeleteCart = useCallback(
     async (product) => {
       // dispatch(deleteProductCart(product.id));
@@ -95,6 +96,14 @@ function Card({ isFixed }) {
     },
     [carts.items, dispatch, user]
   );
+  const handleDisableOrder = (e) => {
+    e.preventDefault();
+    if (disabledCheckOut) {
+      return;
+    } else {
+      navigate("/checkouts");
+    }
+  };
   return (
     <div className="ml-4 flow-root lg:ml-6">
       <Badge count={items.length} size="small">
@@ -212,7 +221,7 @@ function Card({ isFixed }) {
           <div className=" px-4 py-6 sm:px-6">
             <div className="flex justify-between text-3xl font-semi text-gray-900">
               <p>Subtotal: </p>
-              <p>{total}$</p>
+              <p>{totalPrice}$</p>
             </div>
             <p className="mt-1 text-[15px] font-semi text-gray-500 pt-2">
               Taxes and shipping calculated at checkout
@@ -227,6 +236,7 @@ function Card({ isFixed }) {
             <div className="mt-8 tracking-wider flex space-x-12">
               <Link
                 disabled={disabledCheckOut}
+                onClick={handleDisableOrder}
                 to="/checkouts"
                 className="w-[48%] text-center bg-black px-6 py-4 text-base font-medium text-white shadow-sm hover:bg-[#cb8161] hover:text-white"
               >

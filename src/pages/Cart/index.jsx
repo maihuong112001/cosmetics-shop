@@ -1,6 +1,6 @@
 import { CarTwoTone, GiftFilled } from "@ant-design/icons";
 import { Divider, InputNumber, Radio } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import supabase from "@/services/supabase";
@@ -8,6 +8,7 @@ import { fetchCartData } from "@/services/supabase/resource/cart.service";
 import { setCart } from "@/store/slices/cart.slice";
 
 function Cart() {
+  const navigate = useNavigate();
   const { items } = useSelector((state) => state.carts);
   const carts = useSelector((state) => state.carts);
   const { user } = useSelector((state) => state.user);
@@ -18,7 +19,7 @@ function Cart() {
     setDisabledCheckOut(!disabledCheckOut);
     setDefaultChecked(!defaultChecked);
   };
-  const total = useMemo(
+  const totalPrice = useMemo(
     () =>
       carts.items.reduce((total, item) => {
         return total + item.product.price * item.quantity;
@@ -27,7 +28,6 @@ function Cart() {
   );
   const handleDeleteCart = useCallback(
     async (product) => {
-      // dispatch(deleteProductCart(product.id));
       try {
         const cartItems = carts.items.map((item) => ({
           product_id: item.product.id,
@@ -78,6 +78,14 @@ function Cart() {
     },
     [carts.items, dispatch, user]
   );
+  const handleDisableOrder = (e) => {
+    e.preventDefault();
+    if (disabledCheckOut) {
+      return;
+    } else {
+      navigate("/checkouts");
+    }
+  };
   return (
     <div className="w-full pt-[220px]">
       <div className=" flow-root">
@@ -105,7 +113,7 @@ function Cart() {
               <ul className="-my-6 divide-y divide-gray-200">
                 {items.map(({ product, quantity }) => (
                   <li key={product.id} className="flex py-6">
-                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                    <div className="h-[11%] w-[11%] flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
                         src={product.images}
                         alt="product"
@@ -128,7 +136,9 @@ function Cart() {
                           min={1}
                           max={100}
                           defaultValue={quantity}
-                          onChange={(value)=>{handleUpdateQuantityCart(product,value)}}
+                          onChange={(value) => {
+                            handleUpdateQuantityCart(product, value);
+                          }}
                         />
 
                         <div className="">
@@ -194,12 +204,12 @@ function Cart() {
                 />
               </div>
             </div>
-            <div>
+            <div className="">
               <div className="flex justify-end text-md font-semi text-gray-900 mt-2">
                 <p>Subtotal: </p>
-                <p>{total}$</p>
+                <p>{totalPrice}$</p>
               </div>
-              <p className="mt-0.5 text-[12px] font-semi text-gray-500 pt-3 pb-6">
+              <p className="mt-0.5text-2xl text-gray-500 pt-3 pb-6">
                 Taxes and shipping calculated at checkout
               </p>
               <Radio
@@ -209,8 +219,10 @@ function Cart() {
               >
                 I agree with the terms and conditions
               </Radio>
+
               <Link
                 disabled={disabledCheckOut}
+                onClick={handleDisableOrder}
                 to="/checkouts"
                 className=" text-center bg-black px-6 py-4 block font-medium text-white shadow-sm hover:bg-[#cb8161] hover:text-white"
               >
@@ -219,7 +231,7 @@ function Cart() {
             </div>
           </div>
           <div className="w-full bg-gray-100 mt-14 p-12 text-center">
-            <p className="text-base text-[16px]">Get shipping estimates</p>
+            <p className="text-md">Get shipping estimates</p>
             <div className="flex justify-between py-12">
               <div className="sm:col-span-3">
                 <div className="mt-2">
