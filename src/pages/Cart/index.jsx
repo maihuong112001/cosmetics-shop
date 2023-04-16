@@ -32,9 +32,36 @@ function Cart() {
         const Items = cartItems.filter(
           (cartItem) => cartItem.product_id !== product.id
         );
-        const {error } = await supabase
+        const { error } = await supabase
           .from("cart")
           .update({ items: Items })
+          .eq("id_user", user?.id);
+        if (error) {
+          throw new Error(error.message);
+        } else {
+          dispatch(setCart(await fetchCartData(user)));
+        }
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [carts.items, dispatch, user]
+  );
+  const handleUpdateQuantityCart = useCallback(
+    async (product, value) => {
+      // dispatch(deleteProductCart(product.id));
+      try {
+        const cartItems = carts.items.map((item) => ({
+          product_id: item.product.id,
+          quantity: item.quantity,
+        }));
+        const item = cartItems.find(
+          (cartItem) => cartItem.product_id === product.id
+        );
+        item.quantity = value;
+        const { error } = await supabase
+          .from("cart")
+          .update({ items: cartItems })
           .eq("id_user", user?.id);
         if (error) {
           throw new Error(error.message);
@@ -97,7 +124,7 @@ function Cart() {
                           min={1}
                           max={100}
                           defaultValue={quantity}
-                          onChange={onChangeQuantity}
+                          onChange={(value)=>{handleUpdateQuantityCart(product,value)}}
                         />
 
                         <div className="">
