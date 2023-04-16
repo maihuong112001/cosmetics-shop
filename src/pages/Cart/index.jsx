@@ -1,7 +1,7 @@
 import { CarTwoTone, GiftFilled } from "@ant-design/icons";
 import { Divider, InputNumber, Radio } from "antd";
 import { Link } from "react-router-dom";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import supabase from "@/services/supabase";
 import { fetchCartData } from "@/services/supabase/resource/cart.service";
@@ -18,9 +18,13 @@ function Cart() {
     setDisabledCheckOut(!disabledCheckOut);
     setDefaultChecked(!defaultChecked);
   };
-  const onChangeQuantity = (value) => {
-    console.log("changed", value);
-  };
+  const total = useMemo(
+    () =>
+      carts.items.reduce((total, item) => {
+        return total + item.product.price * item.quantity;
+      }, 0),
+    [carts]
+  );
   const handleDeleteCart = useCallback(
     async (product) => {
       // dispatch(deleteProductCart(product.id));
@@ -193,7 +197,7 @@ function Cart() {
             <div>
               <div className="flex justify-end text-md font-semi text-gray-900 mt-2">
                 <p>Subtotal: </p>
-                <p>$262.00</p>
+                <p>{total}$</p>
               </div>
               <p className="mt-0.5 text-[12px] font-semi text-gray-500 pt-3 pb-6">
                 Taxes and shipping calculated at checkout
