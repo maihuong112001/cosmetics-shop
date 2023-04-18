@@ -37,6 +37,7 @@ function Wishlist () {
                                                                                 brand={item.brand}
                                                                                 description={item.description}
                                                                                 color={item.color}
+                                                                                discount={item.discount}
                                                                                 key={item.id} 
                                                                                 button={false} 
                                                                                 qtyCart={false} 

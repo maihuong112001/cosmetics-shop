@@ -280,6 +280,7 @@ function Collection() {
 											quantity={item.quantity}
 											description={item.description}
 											color={item.color}
+											discount={item.discount}
 											key={item.id} 
 											button={true} 
 											qtyCart={true}
@@ -303,6 +304,7 @@ function Collection() {
 											description={item.description}
 											quantity={item.quantity}
 											color={item.color}
+											discount={item.discount}
 											key={item.id} 
 											button={true} 
 											qtyCart={true}
@@ -328,6 +330,7 @@ function Collection() {
 											quantity={item.quantity}
 											brand={item.brand}
 											color={item.color}
+											discount={item.discount}
 											key={item.id} 
 											button={true} 
 											qtyCart={true}
@@ -352,6 +355,7 @@ function Collection() {
 											quantity={item.quantity}
 											brand={item.brand}
 											color={item.color}
+											discount={item.discount}
 											key={item.id} 
 											button={true} 
 											qtyCart={true}

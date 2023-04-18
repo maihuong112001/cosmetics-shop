@@ -3,15 +3,11 @@ import styles from "./Compare.module.scss";
 import { Modal } from "antd";
 import { ReactComponent as InStock } from "@/assets/images/Products/in-stock.svg";
 import { ReactComponent as OutOfStock } from "@/assets/images/Products/out-of-stock.svg";
-
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { removeCompare } from "@/store/slices/compare.slice";
+import { useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
 
 function Compare(props) {
-	const dispatch = useDispatch();
     const {compares} = useSelector((compare) => compare.compare)
     return (
         <Modal

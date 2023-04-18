@@ -159,6 +159,7 @@ function Home() {
 								brand={product.brand}
                 description={product.description}
                 color={product.color}
+                discount={product.discount}
                 key={product.id} 
                 product = {product} 
                 button={true} 

@@ -52,6 +52,7 @@ export const products = [
     ],
     brand: 'Aristino Store',
     quantity: 0,
+    discount: 33,
   },
   {
     id: 2,
@@ -72,6 +73,7 @@ export const products = [
     color: [],
     brand: 'Maria Store',
     quantity: 2,
+    discount: 33,
   },
   {
     id: 3,
@@ -92,6 +94,7 @@ export const products = [
     color: [],
     brand: 'Owen Store',
     quantity: 2,
+    discount: 0,
   },
   {
     id: 4,
@@ -113,6 +116,7 @@ export const products = [
     color: [],
     brand: 'PNJ Store',
     quantity: 2,
+    discount: 33,
   },
   {
     id: 5,
@@ -135,6 +139,7 @@ export const products = [
     color: [],
     brand: 'Wpbigo',
     quantity: 2,
+    discount: 33,
   },
   {
     id: 6,
@@ -155,6 +160,7 @@ export const products = [
     color: [],
     brand: 'Wpbigo',
     quantity: 2,
+    discount: 0,
   },
 ];
 
