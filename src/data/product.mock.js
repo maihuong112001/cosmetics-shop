@@ -19,13 +19,37 @@ export const products = [
       {
         id: 2,
         image: imagesProducts.product_2,
+      },
+      {
+        id: 3,
+        image: imagesProducts.product_3,
+      },
+      {
+        id: 4,
+        image: imagesProducts.product_4,
       }
     ],
     name: "charm club bracelet",
     price: "2,342,656₫",
     preOrder: true,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
-    color: [],
+    color: [
+      {
+        id: 1,
+        name: 'Antique',
+        color: '#d4937d'
+      },
+      {
+        id: 2,
+        name: 'Bone',
+        color: '#e5d4c2'
+      },
+      {
+        id: 3,
+        name: 'Chestnut',
+        color: '#9d443e'
+      },
+    ],
     brand: 'Aristino Store',
     quantity: 0,
   },
@@ -45,6 +69,7 @@ export const products = [
     price: "5,017,485₫",
     preOrder: true,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [],
     brand: 'Maria Store',
     quantity: 2,
   },
@@ -64,6 +89,7 @@ export const products = [
     price: "2,342,656₫",
     preOrder: false,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [],
     brand: 'Owen Store',
     quantity: 2,
   },
@@ -84,6 +110,7 @@ export const products = [
     price: "5,001,669₫",
     preOrder: false,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [],
     brand: 'PNJ Store',
     quantity: 2,
   },
@@ -105,6 +132,7 @@ export const products = [
     price: "2,342,656₫",
     preOrder: false,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [],
     brand: 'Wpbigo',
     quantity: 2,
   },
@@ -124,6 +152,7 @@ export const products = [
     price: "5,001,669₫",
     preOrder: false,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [],
     brand: 'Wpbigo',
     quantity: 2,
   },

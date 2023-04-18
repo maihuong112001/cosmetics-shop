@@ -161,8 +161,8 @@ function Sidebar() {
 };
 
 function Collection() {
-    	const {wishlists} = useSelector((wishlist) => wishlist.wishlist)
-	
+    	const {wishlists} = useSelector((wishlist) => wishlist.wishlist);
+	const {compares} = useSelector((compare) => compare.compare);
 	const products = productList.getAllProduct();
 
    	const [display, setDisplay] = useState(2);
@@ -279,10 +279,12 @@ function Collection() {
 											brand={item.brand}
 											quantity={item.quantity}
 											description={item.description}
+											color={item.color}
 											key={item.id} 
 											button={true} 
 											qtyCart={true}
-											isWishlist={wishlists.some((wishlist) => wishlist.id === item.id)}/> 
+											isWishlist={wishlists.some((wishlist) => wishlist.id === item.id)}
+											isCompare={compares.some((compare) => compare.id === item.id)}/> 
 									</div>
 								))} 
 							</div> 
@@ -300,11 +302,13 @@ function Collection() {
 											preOrder={item.preOrder}
 											description={item.description}
 											quantity={item.quantity}
+											color={item.color}
 											key={item.id} 
 											button={true} 
 											qtyCart={true}
 											brand={item.brand}
-											isWishlist={wishlists.some((wishlist) => wishlist.id === item.id)}/> 
+											isWishlist={wishlists.some((wishlist) => wishlist.id === item.id)}
+											isCompare={compares.some((compare) => compare.id === item.id)}/> 
 									</div>
 								))} 
 							</div> 
@@ -323,10 +327,12 @@ function Collection() {
 											description={item.description}
 											quantity={item.quantity}
 											brand={item.brand}
+											color={item.color}
 											key={item.id} 
 											button={true} 
 											qtyCart={true}
-											isWishlist={wishlists.some((wishlist) => wishlist.id === item.id)}/> 
+											isWishlist={wishlists.some((wishlist) => wishlist.id === item.id)}
+											isCompare={compares.some((compare) => compare.id === item.id)}/> 
 									</div>
 								))} 
 							</div> 
@@ -345,10 +351,12 @@ function Collection() {
 											description={item.description}
 											quantity={item.quantity}
 											brand={item.brand}
+											color={item.color}
 											key={item.id} 
 											button={true} 
 											qtyCart={true}
-											isWishlist={wishlists.some((wishlist) => wishlist.id === item.id)}/> 
+											isWishlist={wishlists.some((wishlist) => wishlist.id === item.id)}
+											isCompare={compares.some((compare) => compare.id === item.id)}/> 
 									</div>
 								))} 
 							</div>

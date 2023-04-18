@@ -16,6 +16,7 @@ import {
   HeartFilled,
 } from "@ant-design/icons";
 import { Rate, Tooltip, Modal, Row, Col } from "antd";
+import Compare from "./Compare";
 import { AddWishlist, RemoveWishlist } from "@/store/slices/wishlist.slice";
 import { setCart } from "@/store/slices/cart.slice";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +24,7 @@ import supabase from "@/services/supabase";
 import { quickView } from "@/services/settings.service";
 import { fetchCartData } from "@/services/supabase/resource/cart.service";
 import Slider from "react-slick";
+import { addCompare, removeCompare } from "@/store/slices/compare.slice";
 
 const cx = classNames.bind(styles);
 function ProductCard(product) {
@@ -40,14 +42,25 @@ function ProductCard(product) {
     }
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
-  const showModal = () => {
-    setIsModalOpen(true);
+  const showQuickView = () => {
+    setIsQuickViewOpen(true);
   };
 
   const handleCancel = () => {
-    setIsModalOpen(false);
+    setIsQuickViewOpen(false);
+  };
+
+  const [isCompareOpen, setIsCompareOpen] = useState(false);
+
+  const showCompare = () => {
+		setIsCompareOpen(true);
+    dispatch(addCompare(product))
+	};
+
+   const cancelCompare = () => {
+    setIsCompareOpen(false);
   };
 
   const image_1 = product.images.find(img => img.id === 1)
@@ -124,26 +137,41 @@ function ProductCard(product) {
                 </NormalButton>
               </Tooltip>
             )}
-
             <NormalButton normal>
               <ShoppingBag />
             </NormalButton>
-            <Tooltip placement="top" title="Compare">
-              <NormalButton normal>
-                <CompareIcon />
-              </NormalButton>
-            </Tooltip>
+            {
+              product.isCompare ?
+                <Tooltip placement="top" title="Compare">
+                  <NormalButton compare_added onClick={() => dispatch(removeCompare(product))} >
+                    <CompareIcon/>
+                  </NormalButton>
+                </Tooltip>
+            :
+                <Tooltip placement="top" title="Compare">
+                  <NormalButton normal onClick={showCompare}>
+                    <CompareIcon />
+                  </NormalButton>
+                </Tooltip>
+              
+                
+            }
+           
 
-            <NormalButton normal onClick={showModal}>
+            <NormalButton normal onClick={showQuickView}>
               <SearchIcon />
             </NormalButton>
           </div>
+          <Compare 
+            isCompareOpen={isCompareOpen}
+            cancelCompare={cancelCompare}
+            removeCompare={() => dispatch(removeCompare(product))}/>
           <Modal 
             centered 
             footer={[null]}
             style={{maxWidth: '900px', width: '100%'}}
             width="100%"
-            open={isModalOpen}
+            open={isQuickViewOpen}
             onCancel={handleCancel} >
               <div className={cx("quick-view")}>
                 <div className={cx("image")}>
@@ -266,6 +294,13 @@ function ProductCard(product) {
               {product.preOrder ? (
                 <div className="text-green-color">( Pre-Order ) </div>
               ) : null}
+            </div>
+            <div className="flex gap-4">
+              {
+                product.color.map(color => (
+                  <div className={cx("color")} style={{backgroundColor: color.color}}></div>
+                ))
+              }
             </div>
         </div>
         :

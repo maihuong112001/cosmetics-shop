@@ -25,6 +25,7 @@ const cx = classNames.bind(styles);
 function Home() {
   const products = productList.getAllProduct();
   const {wishlists} = useSelector((item) => item.wishlist)
+  const {compares} = useSelector((compare) => compare.compare);
   return (
     <div className={cx("wrapper")}>
       <Slider {...bannerSettings} >
@@ -157,11 +158,14 @@ function Home() {
                 quantity={product.quantity}
 								brand={product.brand}
                 description={product.description}
+                color={product.color}
                 key={product.id} 
                 product = {product} 
                 button={true} 
                 qtyCart={true} 
-                isWishlist={wishlists.some((item) => item.id === product.id)}/>
+                isWishlist={wishlists.some((item) => item.id === product.id)}
+                isCompare={compares.some((compare) => compare.id === product.id)}
+                />
             ))
           }
           

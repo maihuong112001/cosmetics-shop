@@ -24,9 +24,37 @@
 				}
 }
 
+
+
 .row {
 	flex-direction: column;
 }
+
+.color {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	border: 1px solid #eee;
+	display: inline-block;
+	position: relative;
+	margin-right: 10px;
+	top: 4px;
+	left: 4px;
+	cursor: pointer;
+	&:hover {
+
+		&::before{
+			content: "";
+			position: absolute;
+			top: -4px;
+			left: -4px;
+			border: 1px solid #cdcdcd;
+			border-radius: 50%;
+			width: calc(100% + 8px);
+			height: calc(100% + 8px);
+		}
+	}
+ }
 
 .column {
 	flex-direction: row;
@@ -408,10 +436,9 @@
 		height: 100%;
 		overflow: auto;
 		width: 100%;
-		padding: 50px 30px 50px 30px;
+		margin: 50px 30px 50px 30px;
 		display: flex;
 		max-height: 400px;
-		
 		flex-direction: column;
 		.name {
 			margin: 10px 0 18px 0;

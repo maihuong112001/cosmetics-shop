@@ -149,3 +149,7 @@ input:focus-visible {
 :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light .ant-menu-submenu-selected >.ant-menu-submenu-title, :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-light>.ant-menu .ant-menu-submenu-selected >.ant-menu-submenu-title {
   color: black;
 }
+
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-modal .ant-modal-content {
+  padding: 0 !important;
+}

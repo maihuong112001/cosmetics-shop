@@ -20,6 +20,23 @@
           background: var(--btn-hover-color);
 }
 
+.compare_added {
+          background: var(--btn-hover-color);
+          svg path {
+		color: #fff !important;
+		fill: #fff;
+		stroke: #fff !important;
+	}
+	svg polyline {
+		stroke: #fff !important;
+		color: #fff !important;
+	}
+	svg g {
+		stroke: #fff !important;
+		color: #fff !important;
+	}
+}
+
 .normal {
           background: white;
 }

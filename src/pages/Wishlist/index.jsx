@@ -8,8 +8,8 @@ import { useSelector } from "react-redux";
 const cx = classNames.bind(styles);
 
 function Wishlist () {
-          const {wishlists} = useSelector((item) => item.wishlist)
-
+          const {wishlists} = useSelector((item) => item.wishlist);
+          const {compares} = useSelector((compare) => compare.compare);
           return (
                     
                     <div className={cx("wrapper")}>
@@ -33,15 +33,16 @@ function Wishlist () {
                                                                                 id={item.id} 
                                                                                 price={item.price} 
                                                                                 preOrder={item.preOrder}
-                                                                                 
                                                                                 quantity={item.quantity}
                                                                                 brand={item.brand}
                                                                                 description={item.description}
+                                                                                color={item.color}
                                                                                 key={item.id} 
                                                                                 button={false} 
                                                                                 qtyCart={false} 
                                                                                 isWishlist={item.isWishlist}
-                                                                                onWishlistPage={true}/> 
+                                                                                onWishlistPage={true}
+                                                                                isCompare={compares.some((compare) => compare.id === item.id)}/> 
                                                             ))
                                                   }
 
