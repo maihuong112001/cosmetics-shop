@@ -9,7 +9,7 @@ import AddWishlist from "./slices/wishlist.slice";
 export const store = configureStore({
   reducer: {
     user: usersReducer,
-    addWishlist: AddWishlist,
+    wishlist: AddWishlist,
     carts:cartsReducer,
   },
 });

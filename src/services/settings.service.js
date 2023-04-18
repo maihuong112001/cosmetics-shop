@@ -11,6 +11,23 @@ export const bannerSettings = {
   },
 };
 
+export const quickView = {
+  dots: false,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  nextArrow: (
+    <ArrowButton small right circle>
+      <RightOutlined />
+    </ArrowButton>
+  ),
+  prevArrow: (
+    <ArrowButton small left circle>
+      <LeftOutlined />
+    </ArrowButton>
+  ),
+}
 
 export const settingsInCollection = {
   dots: false,

@@ -24,7 +24,7 @@ const cx = classNames.bind(styles);
 
 function Home() {
   const products = productList.getAllProduct();
-  const {wishlists} = useSelector((item) => item.addWishlist)
+  const {wishlists} = useSelector((item) => item.wishlist)
   return (
     <div className={cx("wrapper")}>
       <Slider {...bannerSettings} >
@@ -147,7 +147,21 @@ function Home() {
           {
             products.map((product) => (
               
-              <ProductCard images={product.images} name={product.name} id={product.id} price={product.price} preOrder={product.preOrder} key={product.id} product = {product} button={true} qtyCart={true} isWishlist={wishlists.some((item) => item.id === product.id)}/>
+              <ProductCard 
+                row 
+                images={product.images} 
+                name={product.name} 
+                id={product.id} 
+                price={product.price} 
+                preOrder={product.preOrder} 
+                quantity={product.quantity}
+								brand={product.brand}
+                description={product.description}
+                key={product.id} 
+                product = {product} 
+                button={true} 
+                qtyCart={true} 
+                isWishlist={wishlists.some((item) => item.id === product.id)}/>
             ))
           }
           

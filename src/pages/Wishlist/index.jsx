@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const cx = classNames.bind(styles);
 
 function Wishlist () {
-          const {wishlists} = useSelector((item) => item.addWishlist)
+          const {wishlists} = useSelector((item) => item.wishlist)
 
           return (
                     
@@ -27,11 +27,16 @@ function Wishlist () {
                                                   {
                                                             wishlists?.map((item) => (
                                                                       <ProductCard 
+                                                                                row
                                                                                 images={item.images} 
                                                                                 name={item.name} 
                                                                                 id={item.id} 
                                                                                 price={item.price} 
                                                                                 preOrder={item.preOrder}
+                                                                                 
+                                                                                quantity={item.quantity}
+                                                                                brand={item.brand}
+                                                                                description={item.description}
                                                                                 key={item.id} 
                                                                                 button={false} 
                                                                                 qtyCart={false} 
