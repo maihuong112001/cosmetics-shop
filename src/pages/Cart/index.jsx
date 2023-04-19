@@ -53,7 +53,6 @@ function Cart() {
   );
   const handleUpdateQuantityCart = useCallback(
     async (product, value) => {
-      // dispatch(deleteProductCart(product.id));
       try {
         const cartItems = carts.items.map((item) => ({
           product_id: item.product.id,

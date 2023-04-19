@@ -5,17 +5,32 @@ import {
   ShopOutlined,
 } from "@ant-design/icons";
 import { Checkbox, Radio } from "antd";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import InvoicePaying from "@/components/InvoicePaying";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import supabase from "@/services/supabase";
+import { useSelector } from "react-redux";
 function Checkout() {
-  const [disableCheckOut,setDisableCheckOut]=useState(false);
+  const navigate = useNavigate();
+  const [disableCheckOut, setDisableCheckOut] = useState(false);
+  const [form, setForm] = useState({
+    email: "",
+    phoneNumber: "",
+    address: "",
+    firstName: "",
+    lastName: "",
+  });
   const [valueShip, setValueShip] = useState(1);
+  const carts = useSelector((state) => state.carts);
+  const { user } = useSelector((state) => state.user);
+  const handleChangeForm = useCallback((e) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }, []);
   const onChangeDelivery = (e) => {
-    if(e.target.value===1){
+    if (e.target.value === 1) {
       setDisableCheckOut(false);
-    }else{
+    } else {
       setDisableCheckOut(true);
     }
     setValueShip(e.target.value);
@@ -23,11 +38,62 @@ function Checkout() {
   const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
   };
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      try {
+        const responseDataOrder = await supabase
+          .from("order")
+          .insert({
+            user_id: user?.id,
+            email: form.email,
+            address: form.address,
+            phoneNumber: form.phoneNumber,
+            customerName: form.firstName + " " + form.lastName,
+          })
+          .select()
+          .single();
+        if (responseDataOrder.error) {
+          throw new Error(responseDataOrder.message);
+        } else {
+          const { error } = await supabase
+            .from("orderDetails")
+            .insert(
+              carts.items.map((item) => ({
+                product_id: item.product.id,
+                order_id: responseDataOrder.data.id,
+                quantity: item.quantity,
+                price: item.product.price,
+                name: item.product.name,
+                image: item.product?.images[0] || null,
+              }))
+            )
+            .select();
+          if (error) {
+            throw new Error(responseDataOrder.message);
+          } else {
+            const { error } = await supabase
+              .from("cart")
+              .update({ items: {} })
+              .eq("id_user", user?.id);
+            if (error) {
+              throw new Error(error.message);
+            } else {
+              navigate("/orderSuccess");
+            }
+          }
+        }
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [carts.items, form.address, form.email, form.firstName, form.lastName, form.phoneNumber, navigate, user?.id]
+  );
   return (
     <div className="w-full flex">
       <div className="w-[50%] pt-16 px-28">
         <p className="py-2 font-semibold tracking-wider text-gray-900 text-[20px]">
-          Mojuri – Jewelry & Fashion Store Shopify Theme
+          Majuro – Jewelry & Fashion Store Shopify Theme
         </p>
         <div className="flex space-x-3 text-[11px] text-gray-500 py-2 cursor-pointer">
           <p className="text-[13px] text-blue-500">Cart</p>
@@ -42,19 +108,21 @@ function Checkout() {
           <p className="text-gray-900 font-semibold text-[18px]">Contact</p>
           <p className="text-[14px]">Already have an account?</p>
         </div>
-        <form className="space-y-12 py-2" action="#" method="POST">
-          <div class="relative">
+        <form className="space-y-12 py-2" onSubmit={handleSubmit}>
+          <div className="relative">
             <input
               type="email"
               name="email"
+              onChange={handleChangeForm}
+              value={form.email}
               id="floating_filled"
               required
-              class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
             />
             <label
-              for="floating_filled"
-              class="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+              htmlFor="floating_filled"
+              className="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
             >
               Email
             </label>
@@ -88,9 +156,9 @@ function Checkout() {
               <p>Shipping address</p>
               <select
                 id="countries"
-                class="mt-2 border border-gray-300 text-gray-500 text-2lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="mt-2 border border-gray-300 text-gray-500 text-2lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
-                <option selected>Choose a country</option>
+                <option defaultValue>Choose a country</option>
                 <option value="US">TP. Hồ Chí Minh</option>
                 <option value="US">Hà Nội</option>
                 <option value="US">TP. Đà Nẵng</option>
@@ -99,88 +167,96 @@ function Checkout() {
               </select>
 
               <div className="w-full flex py-5 justify-between">
-                <div class="relative w-[47%]">
+                <div className="relative w-[47%]">
                   <input
                     type="text"
                     name="firstName"
+                    onChange={handleChangeForm}
+                    value={form.firstName}
                     id="firstName"
                     required
-                    class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    className="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                   />
                   <label
-                    for="firstName"
-                    class="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+                    htmlFor="firstName"
+                    className="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
                   >
                     First name
                   </label>
                 </div>
 
-                <div class="relative w-[47%]">
+                <div className="relative w-[47%]">
                   <input
                     type="text"
                     name="lastName"
+                    onChange={handleChangeForm}
+                    value={form.lastName}
                     id="lastName"
                     required
-                    class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    className="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                   />
                   <label
-                    for="lastName"
-                    class="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+                    htmlFor="lastName"
+                    className="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
                   >
                     Last name
                   </label>
                 </div>
               </div>
 
-              <div class="relative w-full">
+              <div className="relative w-full">
                 <input
                   type="text"
                   name="address"
+                  onChange={handleChangeForm}
+                  value={form.address}
                   id="address"
                   required
-                  class="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                 />
                 <label
-                  for="address"
-                  class="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+                  htmlFor="address"
+                  className="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
                 >
                   Address
                 </label>
               </div>
 
-              <div class="relative w-full">
+              <div className="relative w-full">
                 <input
                   type="text"
                   name="apartment"
                   id="apartment"
                   required
-                  class="mt-5 block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className="mt-5 block rounded-lg px-2.5 pb-2.5 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                 />
                 <label
-                  for="apartment"
-                  class="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+                  htmlFor="apartment"
+                  className="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
                 >
                   Apartment
                 </label>
               </div>
 
               <div className="w-full flex py-5 justify-between">
-                <div class="relative w-[30%]">
+                <div className="relative w-[30%]">
                   <input
                     type="text"
                     name="phoneNumber"
+                    onChange={handleChangeForm}
+                    value={form.phoneNumber}
                     id="phoneNumber"
                     required
-                    class="block rounded-lg p-4 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    className="block rounded-lg p-4 pt-5 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                   />
                   <label
-                    for="phoneNumber"
-                    class="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+                    htmlFor="phoneNumber"
+                    className="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
                   >
                     Phone number
                   </label>
@@ -188,9 +264,9 @@ function Checkout() {
 
                 <select
                   id="countries"
-                  class=" border border-gray-300 text-gray-500 text-2lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[30%] p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className=" border border-gray-300 text-gray-500 text-2lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[30%] p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  <option selected>country</option>
+                  <option defaultValue>country</option>
                   <option value="US">TP. Hồ Chí Minh</option>
                   <option value="US">Hà Nội</option>
                   <option value="US">TP. Đà Nẵng</option>
@@ -198,18 +274,18 @@ function Checkout() {
                   <option value="US">TP. Đồng Hới</option>
                 </select>
 
-                <div class="relative w-[30%]">
+                <div className="relative w-[30%]">
                   <input
                     type="text"
                     name="ZIPcode"
                     id="ZIPcode"
                     required
-                    class="block rounded-lg p-4 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    className="block rounded-lg p-4 w-full text-2lg text-gray-900 dark:bg-gray-700 border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                   />
                   <label
-                    for="ZIPcode"
-                    class="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+                    htmlFor="ZIPcode"
+                    className="absolute text-2lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
                   >
                     ZIP code
                   </label>
@@ -222,12 +298,16 @@ function Checkout() {
             </div>
           ) : (
             <div>
-              <p className="text-black text-3lg font-semibold">Pickup locations</p>
+              <p className="text-black text-3lg font-semibold">
+                Pickup locations
+              </p>
               <div className="border-[1px] border-gray-300 rounded-lg py-8 text-center mt-10 text-md text-gray-600">
-                <p>Your order isn't available for pickup. Enter a shipping address.</p>
+                <p>
+                  Your order isn't available for pickup. Enter a shipping
+                  address.
+                </p>
               </div>
             </div>
-
           )}
 
           <div className="w-full flex justify-between">

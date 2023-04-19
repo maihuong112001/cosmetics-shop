@@ -17,6 +17,7 @@ import supabase from "@/services/supabase";
 import { fetchCartData } from "@/services/supabase/resource/cart.service";
 import { setCart } from "@/store/slices/cart.slice";
 import { setUser } from "@/store/slices/user.slice";
+import OrderSuccess from "@/pages/OrderSuccess";
 
 export const RoutesConfig = ({
   wishlist,
@@ -30,7 +31,6 @@ export const RoutesConfig = ({
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       // setSession(session)
-      console.log(session);
       dispatch(setUser(session?.user || undefined));
     });
     const {
@@ -73,6 +73,7 @@ export const RoutesConfig = ({
         <Route path="/" element={<GuardRoute />}>
           <Route path="/cart" element={<Cart />} />
           <Route path="/account" element={<MyAccount />} />
+          <Route path="/orderSuccess" element={<OrderSuccess />} />
         </Route>
       </Route>
       <Route path="/checkouts" element={<Checkout />} />

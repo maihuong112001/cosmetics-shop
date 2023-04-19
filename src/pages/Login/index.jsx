@@ -18,7 +18,6 @@ function Login() {
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-
       try {
         const { data, error } = await supabase.auth.signInWithPassword(form)
         if (error) {
@@ -32,11 +31,9 @@ function Login() {
         alert(error);
         console.error(error);
       }
-      
     },
     [dispatch, form]
   );
-
   return (
     <div>
       {isLoggedIn || user ? (

@@ -32,8 +32,13 @@ function Card({ isFixed }) {
   const [disabledCheckOut, setDisabledCheckOut] = useState(true);
   const [defaultChecked, setDefaultChecked] = useState(false);
   const toggleDisabledCheckOut = () => {
-    setDisabledCheckOut(!disabledCheckOut);
-    setDefaultChecked(!defaultChecked);
+    if (user) {
+      setDisabledCheckOut(!disabledCheckOut);
+      setDefaultChecked(!defaultChecked);
+    } else {
+      navigate("/login");
+      setIsShowCardInModal(false);
+    }
   };
   const totalPrice = useMemo(
     () =>
@@ -71,7 +76,6 @@ function Card({ isFixed }) {
   );
   const handleUpdateQuantityCart = useCallback(
     async (product, value) => {
-      // dispatch(deleteProductCart(product.id));
       try {
         const cartItems = carts.items.map((item) => ({
           product_id: item.product.id,
