@@ -240,7 +240,7 @@ function ProductCard(product) {
             <div className="flex gap-4">
               {
                 product.color.map(color => (
-                  <div className={cx("color")} style={{backgroundColor: color.color}}></div>
+                  <div className={cx("color")} key={color.id} style={{backgroundColor: color.color}}></div>
                 ))
               }
             </div>
@@ -268,7 +268,7 @@ function ProductCard(product) {
           <div className="flex gap-4 mt-2">
               {
                 product.color.map(color => (
-                  <div className={cx("color")} style={{backgroundColor: color.color}}></div>
+                  <div className={cx("color")} key={color.id} style={{backgroundColor: color.color}}></div>
                 ))
               }
             </div>

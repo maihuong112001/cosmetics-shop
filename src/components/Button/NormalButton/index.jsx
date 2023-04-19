@@ -4,11 +4,11 @@ import styles from "./NormalButton.module.scss";
 
 const cx = classNames.bind(styles);
 
-function NormalButton({ children, onClick, showButton, wishlistAdded, compare_added, normal }) {
+function NormalButton({ children, onClick, showbutton, wishlistAdded, compare_added, normal }) {
   const Component = "button";
   const props = {
     onClick,
-    showButton,
+    showbutton,
 
   };
   const classes = cx("wrapper", {    
