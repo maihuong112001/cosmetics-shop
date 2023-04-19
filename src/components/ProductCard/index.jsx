@@ -22,7 +22,6 @@ import { useDispatch, useSelector } from "react-redux";
 import supabase from "@/services/supabase";
 import { fetchCartData } from "@/services/supabase/resource/cart.service";
 import { useNavigate } from "react-router-dom";
-const cx = classNames.bind(styles);
 import { addCompare, removeCompare } from "@/store/slices/compare.slice";
 import QuickView from "./QuickView";
 import CountdownTimer from "./CountdownTimer";
@@ -32,7 +31,6 @@ function ProductCard(product) {
 
   const dispatch = useDispatch();
   const navigate=useNavigate();
-  const [quantity, setQuantity] = useState(1);
   const [quantityCart, setQuantityCart] = useState(1);
   const carts = useSelector((state) => state.carts);
   const { user } = useSelector((state) => state.user);
