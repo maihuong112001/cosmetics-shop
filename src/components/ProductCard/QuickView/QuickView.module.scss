@@ -1,0 +1,230 @@
+ 
+.quick-view {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	width: 100%;
+	max-width: 900px;
+	.image {
+		position: relative;
+		width: 100%;
+		max-width: 450px;
+	}
+
+	.info {
+		opacity: 1;
+		visibility: visible;
+		z-index: unset;
+		height: 100%;
+		overflow: auto;
+		width: 100%;
+		margin: 50px 30px 50px 30px;
+                    padding: 0 10px;
+		display: flex;
+		max-height: 400px;
+		flex-direction: column;
+		.name {
+			margin: 10px 0 18px 0;
+			a{
+				font-size: 30px;
+				text-transform: capitalize;
+				line-height: 35px;
+				font-family: var(--heading-text);
+				font-weight: 300;
+				cursor: text;
+				color: #000;
+			}
+		}
+		.brand {
+			margin-bottom: 20px;
+			font-size: 1.8rem;
+			span {
+				margin-right: 5px;
+			}
+			a {
+				text-decoration: underline;
+				color: var(--btn-hover-color);
+			}
+		}
+		.price {
+			color: #000;
+			font-size: 2rem;
+		}
+		.description{
+			display: block;
+			margin-top: 30px;
+			margin-bottom: 15px;
+			padding-top: 30px;
+			width: 100%;
+			border-top: 1px solid #ccc ;
+			color: var(--title-text-color);
+			font-size: 1.4rem;
+
+		}
+		.cart-btn {
+			background: #000;
+			color: #fff;
+			height: 50px;
+                              text-align: center;
+                              width: 100%;
+                              &:hover {
+                                        background: #cb8161;
+                                        -webkit-animation-name: text-indent;
+                                        animation-name: text-indent;
+                                        -webkit-animation-duration: 1.5s;
+                                        animation-duration: 1.5s;
+                                        -webkit-animation-timing-function: ease-in-out;
+                                        animation-timing-function: ease-in-out;
+                                        -webkit-animation-iteration-count: 1;
+                                        animation-iteration-count: 1;
+                              }
+		}
+
+		.quantity {
+			margin: 0 10px 0 0;
+			border: 1px solid #e6e6e6;
+			height: 50px;
+			display: flex;
+			position: relative;
+			align-items: center;
+		}
+		.qty-btn {
+			display: flex;
+			background: transparent;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			width: 3.8rem;
+			span {
+				color: var(--title-text-color) !important;
+			}
+			&:hover {
+				background: transparent;
+		
+				span {
+					color: #000 !important;
+				}
+		
+			}
+		}
+		.available {
+			display: flex;
+			gap: 5px;
+			margin: 5px 0 15px;
+			align-items: center;
+			position: relative;
+			p {
+				font-size: 1.4rem;
+				font-weight: 100;
+			}
+			.icon {
+				// padding-left: 25px;
+				// position: relative;
+				// color: #108043;
+				// &::before {
+				// 	content: "";
+				// 	width: 14px;
+				// 	height: 14px;
+				// 	background: white;
+				// 	border-radius: 50%;
+				// 	left: 0;
+				// 	position: absolute;
+				// 	top: calc(50% - 7px);
+				// 	line-height: 14px;
+				// 	font-family: bwpfont;
+				// }
+				// &::after {
+				// 	z-index: -1;
+				// 	position: absolute;
+				// 	content: "";
+				// 	width: 14px;
+				// 	height: 14px;
+				// 	background: #108043;
+				// 	display: inline-block;
+				// 	border-radius: 50%;
+				// 	opacity: .25;
+				// 	top: calc(50% - 7px);
+				// 	left: 0;
+				// 	-webkit-transform: scale(1);
+				// 	-moz-transform: scale(1);
+				// 	-ms-transform: scale(1);
+				// 	-o-transform: scale(1);
+				// 	transform: scale(1);
+				// 	-webkit-animation-name: scale;
+				// 	animation-name: scale;
+				// 	-webkit-animation-duration: 1.5s;
+				// 	animation-duration: 1.5s;
+				// 	-webkit-animation-timing-function: ease-out;
+				// 	animation-timing-function: ease-out;
+				// 	-webkit-animation-iteration-count: infinite;
+				// 	animation-iteration-count: infinite;
+				// }
+			}
+		}
+                    .variants {
+                              transition: all .3s ease;
+                              margin: 7px 0 20px;
+                              display: flex;
+                              flex-direction: column;
+                              gap: 5px;
+                              label {
+                                        text-transform: uppercase;
+                                        margin-bottom: 15px;
+                                        font-weight: 400;
+                                        font-size: 1.2rem;
+                                        white-space: nowrap;
+                                        font-family: var(--heading-text);
+                              }
+                              .color {
+                                        width: 24px;
+                                        height: 24px;
+                                        border-radius: 50%;
+                                        border: 1px solid #eee;
+                                        display: inline-block;
+                                        position: relative;
+                                        margin-right: 10px;
+                                        top: 4px;
+                                        left: 4px;
+                                        &::before{
+                                             content: "";
+                                             position: absolute;
+                                             top: -4px;
+                                             left: -4px;
+                                             border: 1px solid #cdcdcd;
+                                             border-radius: 50%;
+                                             width: calc(100% + 8px);
+                                             height: calc(100% + 8px);
+                                        }
+                              }
+                    }
+	}
+
+}
+
+
+@keyframes text-indent {
+          0% {
+               text-indent: 30px;
+          }
+          15% {
+               text-indent: -25px;
+          }
+          30% {
+               text-indent: 20px;
+          }
+          45% {
+               text-indent: -15px;
+          }
+          60% {
+               text-indent: 10px;
+          }
+          75% {
+               text-indent: -5px;
+          }
+          90% {
+               text-indent: 2px;
+          }
+          100% {
+               text-indent: 0px;
+          }
+     }

@@ -1,4 +1,5 @@
 import imagesProducts from "@/assets/images/Products";
+
 export const listShirt = [
   {
     price: 500,
@@ -10,71 +11,156 @@ export const listShirt = [
 export const products = [
   {
     id: 1,
-    images: {
-      img_1:
-        "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/8_1ff11030-ee3a-4db5-8c6d-1d34aec5c9bc_720x.jpg?v=1667484771",
-      img_2: imagesProducts.product_2,
-    },
-    name: "CHARM CLUB BRACELET",
-    price: "2,342,656₫",
+    images: [
+      {
+        id: 1,
+        image: "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/8_1ff11030-ee3a-4db5-8c6d-1d34aec5c9bc_720x.jpg?v=1667484771",
+      },
+      {
+        id: 2,
+        image: imagesProducts.product_2,
+      },
+      {
+        id: 3,
+        image: imagesProducts.product_3,
+      },
+      {
+        id: 4,
+        image: imagesProducts.product_4,
+      }
+    ],
+    name: "charm club bracelet",
+    price: 2342656,
     preOrder: true,
-    color: []
+    description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [
+      {
+        id: 1,
+        name: 'Antique',
+        color: '#d4937d'
+      },
+      {
+        id: 2,
+        name: 'Bone',
+        color: '#e5d4c2'
+      },
+      {
+        id: 3,
+        name: 'Chestnut',
+        color: '#9d443e'
+      },
+    ],
+    brand: 'Aristino Store',
+    quantity: 0,
+    discount: 33,
   },
   {
     id: 2,
-    images: {
-      img_1:
-        "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/4_96149665-b978-43e5-861a-d16bb62ac181_360x.jpg?v=1667484764",
-      img_2: imagesProducts.product_4,
-    },
-    name: "LARGE CHARLOTTE HOOPS",
-    price: "5,017,485₫",
+    images: [
+      {
+        id: 1,
+        image: "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/4_96149665-b978-43e5-861a-d16bb62ac181_360x.jpg?v=1667484764",
+      },
+      {
+        id: 2,
+        image: imagesProducts.product_4,
+      }
+    ],
+    name: "large charlotte hoops",
+    price: 5017485,
     preOrder: true,
+    description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [],
+    brand: 'Maria Store',
+    quantity: 2,
+    discount: 33,
   },
   {
     id: 3,
-    images: {
-      img_1:
-        "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/6_871f8a23-8df7-4a5e-ab2c-2f77009b043c_360x.jpg?v=1667484840",
-      img_2: imagesProducts.product_2,
-    },
-    name: "CHARM CLUB BRACELET",
-    price: "2,342,656₫",
+    images: [
+      {
+        id: 1,
+        image: "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/6_871f8a23-8df7-4a5e-ab2c-2f77009b043c_360x.jpg?v=1667484840",
+      },
+      {
+        id: 2,
+        image: imagesProducts.product_2,
+      }
+    ],
+    name: "charm club bracelet",
+    price: 2342656,
     preOrder: false,
+    description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [],
+    brand: 'Owen Store',
+    quantity: 2,
+    discount: 0,
   },
   {
     id: 4,
-    images: {
-      img_1:
-        "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/6_871f8a23-8df7-4a5e-ab2c-2f77009b043c_360x.jpg?v=1667484840",
-      img_2: imagesProducts.product_4,
-    },
-    name: "LARGE CHARLOTTE HOOPS",
-    price: "5,001,669₫",
+    images: [
+      {
+        id: 1,
+        image: "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/6_871f8a23-8df7-4a5e-ab2c-2f77009b043c_360x.jpg?v=1667484840",
+
+      },
+      {
+        id: 2,
+        image: imagesProducts.product_4,
+      }
+    ],
+    name: "large charlotte hoops",
+    price: 5001669,
     preOrder: false,
+    description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [],
+    brand: 'PNJ Store',
+    quantity: 2,
+    discount: 33,
   },
   {
     id: 5,
-    images: {
-      img_1:
-        "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/3_4ceb4202-3e03-46cf-af94-9b5effbc3e5b_720x.jpg?v=1667484833",
-      img_2: imagesProducts.product_4,
-    },
-    name: "CHARM CLUB BRACELET",
-    price: "2,342,656₫",
+    images: [
+      {
+        id: 1,
+        image: "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/3_4ceb4202-3e03-46cf-af94-9b5effbc3e5b_720x.jpg?v=1667484833",
+
+
+      },
+      {
+        id: 2,
+        image: imagesProducts.product_4,
+      }
+    ],
+    name: "charm club bracelet",
+    price: 2342656,
     preOrder: false,
+    description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [],
+    brand: 'Wpbigo',
+    quantity: 2,
+    discount: 33,
   },
   {
     id: 6,
-    images: {
-      img_1:
-        "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/17_4672eb08-38ec-4056-90a2-894d2e763d74_720x.jpg?v=1667484812",
-
-      img_2: imagesProducts.product_4,
-    },
-    name: "LARGE CHARLOTTE HOOPS",
-    price: "5,001,669₫",
+    images: [
+      {
+        id: 1,
+        image: "https://cdn.shopify.com/s/files/1/0673/3588/1018/products/17_4672eb08-38ec-4056-90a2-894d2e763d74_720x.jpg?v=1667484812",
+      },
+      {
+        id: 2,
+        image: imagesProducts.product_4,
+      }
+    ],
+    name: "large charlotte hoops",
+    price: 5001669,
     preOrder: false,
+    description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
+    color: [],
+    brand: 'Wpbigo',
+    quantity: 2,
+    discount: 0,
   },
 ];
 

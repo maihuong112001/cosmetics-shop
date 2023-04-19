@@ -20,7 +20,7 @@ const onSearch = (value) => console.log(value);
 export default function ActionHeader({ isFixed }) {
   const [isShowSearchModal, setIsShowSearchModal] = useState(false);
   const location = useLocation();
-  const {wishlists} = useSelector((item) => item.addWishlist)
+  const {wishlists} = useSelector((item) => item.wishlist)
   return (
     <div className="ml-auto mr-10 flex items-center">
       <div className="flex lg:ml-6">
