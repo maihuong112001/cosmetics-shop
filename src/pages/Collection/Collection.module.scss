@@ -28,7 +28,7 @@
 }
 
 .collection-content {
-					flex: 1;
+					flex: 0 0 75%;
 					.product {
 								 width: 100%;   
 					}
@@ -50,10 +50,26 @@
 					}
 }
 
+.sidebar-contain {
+	flex: 0 0 25%;
+}
+
 .sidebar {
 			 .display {
 							display: none;
 			 }
+
+			 .checked {
+				span {
+					background: var(--btn-hover-color) !important;
+				}
+			 }
+			 .not-checked {
+				span {
+					background: #f1f1f1 !important;
+				}
+			 }
+
 			 .subtitle {
 							font-family: 'Lato';
 							display: flex;
@@ -99,6 +115,7 @@
 				}
 			 }
 			 .size {
+				cursor: pointer;
 				font-size: 12px;
 				padding: 10px;
 				line-height: 20px;
@@ -108,6 +125,10 @@
 				border: 1px solid #ddd;
 				box-sizing: content-box;
 				text-align: center;
+				&:hover {
+					background-color: var(--btn-hover-color);
+					color: #fff;
+				}
 			 }
 }
 .product-col {
@@ -120,7 +141,12 @@
 					.item {
 										.row {
 															flex-direction: column;
-										}
+															gap: 2px;
+															span {
+																width: 10px !important;
+																height: 2px !important;
+															}
+										}	
 										.btn {
 															display: inline-flex;
 															text-align: center;
@@ -159,6 +185,12 @@
 																				text-decoration: none;
 															}
 										}
+										.two, .three , .four , .list {
+											background-color: var(--btn-hover-color);
+											span {
+												background: #fff;
+											}
+										}	
 					}
 }
 
@@ -177,4 +209,73 @@
 							letter-spacing: 2px;
 							font-family: var(--heading-text);
 			 }
+}
+
+.filter-collection {
+	visibility: hidden;
+	opacity: 0;
+	display: none;
+	button{
+		font-weight: 700;
+		display: inline-block;
+		position: relative;
+		font-size: 12px;
+		cursor: pointer;
+		color: #000;
+		float: left;
+		text-transform: uppercase;
+		background: transparent;
+		border: 0;
+		letter-spacing: 2px;
+		line-height: 35px;
+		padding: 0 20px;
+		border: 1px solid black;
+		&:hover {
+			color: #fff;
+			background-color: #000;
+
+		}
+	}
+}
+
+.drawer {
+	visibility: hidden;
+	opacity: 0;
+}
+
+@media screen and (max-width: 993px) {
+	.sidebar-contain {
+		flex: 0 0 0;
+		width: 0;
+	}
+	.sidebar {
+		display: hidden;
+		opacity: 0;
+		visibility: hidden;
+		
+	} 
+	.collection-content {
+		flex: 0 0 100%;
+		
+	}
+
+	.collection-view {
+		visibility: hidden;
+		opacity: 0;
+		width: 0;
+		display: none;
+	}
+	.drawer {
+		opacity: 1;
+		visibility: visible;
+		.sidebar {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+	.filter-collection {
+		opacity: 1;
+		visibility: visible;
+		display: inline;
+	}
 }

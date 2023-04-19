@@ -7,7 +7,7 @@ const initialState = {
 }
 
 const wishlist = createSlice({
-          name: "addWishlist",
+          name: "wishlist",
           initialState,
           reducers: {
                     AddWishlist: (state, action) => { 
@@ -16,8 +16,12 @@ const wishlist = createSlice({
           
                               
                     },
+                    RemoveWishlist : (state, action) => {
+                              
+                              state.wishlists.pop(action.payload);
+                    }
           }
 })
 
-export const {AddWishlist} = wishlist.actions;
+export const {AddWishlist, RemoveWishlist} = wishlist.actions;
 export default wishlist.reducer;

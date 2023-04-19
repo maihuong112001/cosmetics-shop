@@ -1,0 +1,173 @@
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-modal .ant-modal-content {
+     padding: 0 !important;
+}
+.compare {
+     overflow: auto;
+     .table {
+          width: 100%;
+          margin: 0;
+          background: white;
+          position: relative;
+          overflow: auto;
+		color: var(--title-text-color);
+          font-size: 1.8rem;
+          ul {
+               width: 100%;
+               margin: 0;
+               padding: 0;
+               list-style: none;
+               display: flex;
+          }
+          li {
+               padding: 20px;
+               border-right: 1px solid #e5e5e5;
+               border-bottom: 1px solid #e5e5e5;
+               width: 20%;
+               max-width: 25%;
+               min-width: 14.29%;
+          }
+
+          .remove {
+               text-align: center;
+               button {
+                    display: inline-block;
+                    line-height: 28px;
+                    padding: 0;
+                    background: transparent;
+                    border: 0;
+                    color: #868686;
+                    font-size: 1.8rem;
+                    &:hover {
+                         color: var(--btn-hover-color);
+                    }
+               }
+          }
+          .name {
+               text-align: center;
+               a {
+                    text-transform: capitalize;
+                    white-space: nowrap;
+                    color: #000;
+                    &:hover {
+                         color: var(--btn-hover-color);
+                    }
+               }
+               
+          }
+          .price {
+               font-size: 2rem;
+               font-weight: 400;
+               color: var(--btn-hover-color);
+               text-align: center;
+          }
+
+          .cart-btn {
+			background: #000;
+			color: #fff;
+			height: 50px;
+               text-align: center;
+               width: 100%;
+               &:hover {
+                    background: #cb8161;
+                    -webkit-animation-name: text-indent;
+                    animation-name: text-indent;
+                    -webkit-animation-duration: 1.5s;
+                    animation-duration: 1.5s;
+                    -webkit-animation-timing-function: ease-in-out;
+                    animation-timing-function: ease-in-out;
+                    -webkit-animation-iteration-count: 1;
+                    animation-iteration-count: 1;
+               }
+		}
+
+          .available {
+			display: flex;
+			gap: 5px;
+			align-items: center;
+               justify-content: center;
+			p {
+				font-size: 1.4rem;
+				font-weight: 100;
+			}
+          }
+          .variant {
+               display: flex;
+               flex-wrap: wrap;
+               justify-content: center;
+               .color {
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    border: 1px solid #eee;
+                    display: inline-block;
+                    position: relative;
+                    margin-right: 10px;
+                    top: 4px;
+                    left: 4px;
+                    &::before{
+                         content: "";
+                         position: absolute;
+                         top: -4px;
+                         left: -4px;
+                         border: 1px solid #cdcdcd;
+                         border-radius: 50%;
+                         width: calc(100% + 8px);
+                         height: calc(100% + 8px);
+                    }
+               }
+          }
+          .image {
+               img {
+                    max-width: 100%;
+               }
+          }
+     }
+
+     .label {
+          background: #f5f5f5;
+          text-align: left;
+          font-size: 16px;
+          color: #000;
+          font-weight: 500;
+     }
+                
+}
+
+@keyframes text-indent {
+     0% {
+          text-indent: 30px;
+     }
+     15% {
+          text-indent: -25px;
+     }
+     30% {
+          text-indent: 20px;
+     }
+     45% {
+          text-indent: -15px;
+     }
+     60% {
+          text-indent: 10px;
+     }
+     75% {
+          text-indent: -5px;
+     }
+     90% {
+          text-indent: 2px;
+     }
+     100% {
+          text-indent: 0px;
+     }
+}
+
+@media (max-width: 1199px){
+
+     .compare {
+          .table {
+               li {
+               min-width: 25%;
+
+               }
+          }
+     }
+}

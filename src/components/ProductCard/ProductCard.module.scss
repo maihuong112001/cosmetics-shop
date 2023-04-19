@@ -24,12 +24,83 @@
 				}
 }
 
+
+
+.row {
+	flex-direction: column;
+}
+
+.color {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	border: 1px solid #eee;
+	display: inline-block;
+	position: relative;
+	margin-right: 10px;
+	top: 4px;
+	left: 4px;
+	cursor: pointer;
+	&:hover {
+
+		&::before{
+			content: "";
+			position: absolute;
+			top: -4px;
+			left: -4px;
+			border: 1px solid #cdcdcd;
+			border-radius: 50%;
+			width: calc(100% + 8px);
+			height: calc(100% + 8px);
+		}
+	}
+ }
+
+.column {
+	flex-direction: row;
+	gap: 30px;
+	.image {
+		flex: 0 0 35%
+	}
+
+	margin-bottom: 20px;
+	.content {
+		align-items: flex-start;
+		text-transform:capitalize;
+		.name {
+			a {
+				font-size: 2.7rem;		
+				text-transform:capitalize;
+				&:hover {
+					
+					color: var(--btn-hover-color);
+					
+					
+				}
+			}
+		}
+		.price {
+			font-size: 2rem;
+		}
+
+		.description{
+			display: block;
+			margin-top: 30px;
+			padding-top: 30px;
+			width: 100%;
+			border-top: 1px solid #ccc ;
+			color: var(--title-text-color);
+			font-size: 1.4rem;
+
+		}
+	}
+}
+
 .wrapper {
 	display: flex;
-	flex-direction: column;
-	margin: 0 2px;
+	margin: 7px 2px 25px 2px;
 	padding: 0 7.5px;
-	position: relative;
+	position: relative;	
 	&:hover {
 		.image {
 			overflow: hidden;
@@ -68,6 +139,10 @@
 			opacity: 1;
 			visibility: visible;
 			transform: translateY(0);
+		}
+		.countdown-card {
+			visibility: hidden !important;
+			opacity: 0;
 		}
 	}
 		
@@ -119,13 +194,17 @@
 }
 
 .name {
-	font-size: 11px;
+	font-size: 1.2rem;
 	margin: 0 0 5px;
 	font-weight: 400;
 	text-transform: uppercase;
 	letter-spacing: 1.5px;
-	&:hover {
-		color: var(--btn-hover-color);
+	color: #000;
+	a {
+
+		&:hover {
+			color: var(--btn-hover-color);
+		}
 	}
 
 }
@@ -341,4 +420,95 @@
 		}
 	}
 }
- 
+
+.countdown-card {
+          position: absolute;
+          bottom: 10px;
+          left: 0;
+          width: 100%;
+          padding: 0 10px;
+          transition: all .3s ease;
+          .countdown {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    justify-content: center;
+                    text-align: center;
+                    padding: 10px 15px;
+                    background: white;
+                    box-shadow: 0 0 10px #0000000d;
+                    max-width: 250px;
+                    margin: auto;
+                    .item {
+                              &:nth-child(1) {
+                                        margin-right: 20px;
+                              }
+                              span {
+                                        font-size: 2rem;
+                              }
+                    }
+          }
+	
+}
+
+.countdown-more {
+	bottom: unset;
+	left: unset;
+	position: relative;
+	margin-bottom: 30px;
+	color: #f11e1e;
+	display: flex;
+	line-height: 26px;
+	.countdown {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    justify-content: start;
+                    text-align: center;
+                    padding: 10px 10px;
+		flex: 1;
+                    background: white;
+                    box-shadow: 0 0 10px #0000000d;
+                    max-width: 250px;
+                    margin: 0;
+                    .item {
+                              &:nth-child(1) {
+                                        margin-right: 20px;
+                              }
+                              span {
+                                        font-size: 2rem;
+				color: #f11e1e;
+                              }
+                    }
+          }
+	.icon {
+		font-size: 18px;
+		width: 50px;
+		left: 0;
+		top: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: #f11e1e;
+		color: #fff;
+		svg {
+			height: 30px;
+    			animation: hourglass 1s linear infinite;
+		}
+		
+	}
+	@keyframes hourglass {
+		0% {
+			transform: rotate(0);
+			box-shadow: inset #fff 0 0, inset #f11e1e 0 0, inset #fff 0 -15px;
+		}
+		      
+		80% {
+			transform: rotate(0);
+			box-shadow: inset #fff 0 15px, inset #f11e1e 0 0, inset #fff 0 0;
+		}
+		100% {
+			transform: rotate(180deg);
+			box-shadow: inset #fff 0 15px, inset #f11e1e 0 0, inset #fff 0 0;
+		}
+	}
+
+}
