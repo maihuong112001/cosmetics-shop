@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./Compare.module.scss";
 import { Modal } from "antd";
+import { NumericFormat } from "react-number-format";
 import { ReactComponent as InStock } from "@/assets/images/Products/in-stock.svg";
 import { ReactComponent as OutOfStock } from "@/assets/images/Products/out-of-stock.svg";
 import { useSelector } from "react-redux";
@@ -76,9 +77,8 @@ function Compare(props) {
 					<ul className={cx("price")}>
 						<li className={cx("label")}>Price</li>
 						{compares?.map(compare => (
-							<li className={cx("price")}>
-								{compare.price}
-							</li>
+							<NumericFormat thousandSeparator="," value={compare.price} suffix='₫' displayType="text" customInput="span" renderText={(value, props) => <li {...props} className={cx("price")}>{value}</li>} ></NumericFormat>
+
 						))}
 					</ul>
 					<ul className={cx("add-to-cart")}>

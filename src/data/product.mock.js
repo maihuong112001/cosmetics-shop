@@ -30,7 +30,7 @@ export const products = [
       }
     ],
     name: "charm club bracelet",
-    price: "2,342,656₫",
+    price: 2342656,
     preOrder: true,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
     color: [
@@ -67,7 +67,7 @@ export const products = [
       }
     ],
     name: "large charlotte hoops",
-    price: "5,017,485₫",
+    price: 5017485,
     preOrder: true,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
     color: [],
@@ -88,7 +88,7 @@ export const products = [
       }
     ],
     name: "charm club bracelet",
-    price: "2,342,656₫",
+    price: 2342656,
     preOrder: false,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
     color: [],
@@ -110,7 +110,7 @@ export const products = [
       }
     ],
     name: "large charlotte hoops",
-    price: "5,001,669₫",
+    price: 5001669,
     preOrder: false,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
     color: [],
@@ -133,7 +133,7 @@ export const products = [
       }
     ],
     name: "charm club bracelet",
-    price: "2,342,656₫",
+    price: 2342656,
     preOrder: false,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
     color: [],
@@ -154,7 +154,7 @@ export const products = [
       }
     ],
     name: "large charlotte hoops",
-    price: "5,001,669₫",
+    price: 5001669,
     preOrder: false,
     description: 'Curabitur egestas malesuada volutpat. Nunc vel vestibulum odio, ac pellentesque lacus. Pellentesque dapibus nunc nec est imperdiet, a malesuada sem rutrum',
     color: [],
