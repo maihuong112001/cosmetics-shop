@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./ProductCard.module.scss";
+import { NumericFormat } from "react-number-format";
 import { ReactComponent as CompareIcon } from "@/assets/images/Products/down-up-arrow-svgrepo-com.svg";
 import { ReactComponent as SearchIcon } from "@/assets/images/Products/search-svgrepo-com.svg";
 import { ReactComponent as ShoppingBag } from "@/assets/images/Products/bag-2-svgrepo-com.svg";
@@ -230,7 +231,7 @@ function ProductCard(product) {
             </div>
             <div className="flex justify-center gap-2">
               <div className={cx("price")}>
-                <span>{product.price}</span>
+              <NumericFormat thousandSeparator="," value={product.price} suffix='₫' displayType="text" customInput="span" renderText={(value, props) => <span {...props}>{value}</span>} ></NumericFormat>
               </div>
               {product.preOrder ? (
                 <div className="text-green-color">( Pre-Order ) </div>
@@ -254,7 +255,7 @@ function ProductCard(product) {
           </div>
           <div className="flex justify-center gap-2 items-center">
             <div className={cx("price")}>
-              <span>{product.price}</span>
+              <NumericFormat thousandSeparator="," value={product.price} suffix='₫' displayType="text" customInput="span" renderText={(value, props) => <span {...props}>{value}</span>} ></NumericFormat>
             </div>
             {product.preOrder ? (
               <div className="text-green-color">( Pre-Order ) </div>

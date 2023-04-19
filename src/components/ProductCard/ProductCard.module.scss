@@ -212,6 +212,10 @@
 .price {
 		  color: var(--btn-hover-color);
 		  font-size: 16px;
+		  input {
+			background-color: transparent;
+			width: min-content;
+		  }
 }
 
 @mixin button-theme {

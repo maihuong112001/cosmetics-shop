@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./QuickView.module.scss";
 import { Modal, Rate } from "antd";
+import { NumericFormat } from "react-number-format";
 import { PlusOutlined, MinusOutlined} from "@ant-design/icons";
 import Slider from "react-slick";
 import { quickView } from "@/services/settings.service";
@@ -42,7 +43,7 @@ function QuickView(props) {
 					</div>
 					<div className="flex gap-2 items-center">
 						<div className={cx("price")}>
-							<span>{props.price}</span>
+							<NumericFormat thousandSeparator="," value={props.price} suffix='₫' displayType="text" customInput="span" renderText={(value, props) => <span {...props}>{value}</span>} ></NumericFormat>
 						</div>
 						{props.preOrder ? (
 							<div className="text-green-color">( Pre-Order ) </div>
