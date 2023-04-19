@@ -21,6 +21,8 @@ import { setCart } from "@/store/slices/cart.slice";
 import { useDispatch, useSelector } from "react-redux";
 import supabase from "@/services/supabase";
 import { fetchCartData } from "@/services/supabase/resource/cart.service";
+import { useNavigate } from "react-router-dom";
+const cx = classNames.bind(styles);
 import { addCompare, removeCompare } from "@/store/slices/compare.slice";
 import QuickView from "./QuickView";
 import CountdownTimer from "./CountdownTimer";
@@ -29,6 +31,8 @@ const cx = classNames.bind(styles);
 function ProductCard(product) {
 
   const dispatch = useDispatch();
+  const navigate=useNavigate();
+  const [quantity, setQuantity] = useState(1);
   const [quantityCart, setQuantityCart] = useState(1);
   const carts = useSelector((state) => state.carts);
   const { user } = useSelector((state) => state.user);
@@ -66,7 +70,6 @@ function ProductCard(product) {
   const image_2 = product.images.find(img => img.id === 2)
 
   const handleAddCart = useCallback(async () => {
-    // dispatch(addCart(product));
     try {
       const cartItems = carts.items.map((item) => ({
         product_id: item.product.id,
@@ -83,14 +86,15 @@ function ProductCard(product) {
         .update({ items: cartItems })
         .eq("id_user", user?.id);
       if (error) {
-        throw new Error(error.message);
+        navigate("/login");
+        // throw new Error(error.message);
       } else {
         dispatch(setCart(await fetchCartData(user)));
       }
     } catch (error) {
       alert(error);
     }
-  }, [carts.items, dispatch, product.id, user]);
+  }, [carts.items, dispatch, navigate, product.id, user]);
 
   const button = product.button ? cx("button") : cx("button-type2");
   const cartForm = product.qtyCart ? cx("cart-form") : cx("cart-form-type-2");
