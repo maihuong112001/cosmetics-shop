@@ -10,6 +10,9 @@ export const productList = {
   getAllProduct() {
     return products;
   },
+  getFeaturedProduct() {
+    return products.slice(0, 3);
+  }
 };
 
 export const colorList = {
@@ -17,3 +20,4 @@ export const colorList = {
     return colors;
   }
 }
+

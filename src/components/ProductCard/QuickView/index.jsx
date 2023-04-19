@@ -19,13 +19,14 @@ function QuickView(props) {
 			style={{maxWidth: '900px', width: '100%'}}
 			width="100%"
 			open={props.isQuickViewOpen}
-			onCancel={props.handleCancel} >
+			onCancel={props.handleCancel}
+			key={props.id} >
 			<div className={cx("quick-view")}>
 				<div className={cx("image")}>
 					<Slider {...quickView}>
 					{
 						props.images.map((image) => (
-							<img src={image.image} alt=""/>
+							<img src={image.image} key={image.id} alt=""/>
 						))
 					}
 					</Slider>
@@ -65,7 +66,7 @@ function QuickView(props) {
 						<div className="flex gap-2">
 
 							{props.color.map(color => (
-								<div className={cx("color")} style={{backgroundColor: color.color}}></div>
+								<div className={cx("color")} key={color.id} style={{backgroundColor: color.color}}></div>
 							))}
 						</div>
 					</div>
@@ -95,7 +96,7 @@ function QuickView(props) {
 								/>
 							</div>
 							<input
-								className="bg-transparent w-[30px] leading-[40px] text-center w-[56px] text-[1.8rem] text-black"
+								className="bg-transparent  leading-[40px] text-center w-[56px] text-[1.8rem] text-black"
 								value={props.quantityCart}
 								readOnly
 								pattern="[0-9]"
