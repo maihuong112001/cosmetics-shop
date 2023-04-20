@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import styles from "./RangSlider.module.scss";
+import styles from "./RangeSlider.module.scss";
 import { useState, useEffect } from "react";
 const cx = classNames.bind(styles);
 

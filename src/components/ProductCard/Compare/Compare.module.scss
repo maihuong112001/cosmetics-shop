@@ -54,11 +54,20 @@
                }
                
           }
+
+          .sale {
+               display: flex;
+               flex-direction: column;
+          }
           .price {
                font-size: 2rem;
                font-weight: 400;
                color: var(--btn-hover-color);
                text-align: center;
+               .price-on-sale {
+                    text-decoration: line-through;
+                    color: var(--title-text-color);
+               }
           }
 
           .cart-btn {

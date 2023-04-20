@@ -1,17 +1,17 @@
 import classNames from "classnames/bind";
 import styles from "./Collection.module.scss";
-import { Menu, Checkbox, Slider, Badge, Rate } from "antd";
+import { Menu, Badge, Rate } from "antd";
 import { categoriesService } from "@/services/categories.service";
 import { NumericFormat } from "react-number-format";
 import { productList, colorList } from "@/services/product.service";
-import RangeSlider from "@/components/RangSlider";
-import { useState, useEffect } from "react";
+import RangeSlider from "@/components/RangeSlider";
+import { useState } from "react";
 import { brandsService } from "@/services/brands.service";
 
 const cx = classNames.bind(styles);
 
 function FeaturedProduct(props) {
-    const image = props.images.find((img) => img.id === 2);
+    const image = props.images.find((img) => img.id === 1);
     return (
         <div className={cx("featured-product")}>
             <div className={cx("image")}>
@@ -28,13 +28,15 @@ function FeaturedProduct(props) {
                     <Rate
                         disabled
                         defaultValue={5}
-                        style={{ fontSize: "5px" }}
+                        style={{ fontSize: "12px" }}
                     />
                 </div>
                 <h3 className={cx("name")}>
                     <a href="/">{props.name}</a>
                 </h3>
+
                 <div className={cx("price")}>
+                    
                     <NumericFormat
                         thousandSeparator=","
                         value={props.price}
@@ -57,12 +59,6 @@ function Sidebar() {
     const brands = brandsService.getAllBrand();
     const colors = colorList.getAllColor();
     const [price, setPrice] = useState({ min: 0, max: 5031210 });
-    const [checkbox, setCheckbox] = useState(false);
-
-    const setViewCheckbox = () => {
-        setCheckbox((checkbox) => !checkbox);
-    };
-    const isChecked = checkbox ? "checked" : "not-checked";
 
     function getItem(label, key, children, type) {
         return {
@@ -154,16 +150,9 @@ function Sidebar() {
             "brand",
             brands.map((brand) =>
                 getItem(
-                    <div
-                        className={cx("subtitle", isChecked)}
-                        onClick={setViewCheckbox}
-                    >
+                    <div className={cx("subtitle")}>
                         <div className="flex gap-2">
-                            {checkbox ? (
-                                <input type="checkbox" checked />
-                            ) : (
-                                <input type="checkbox" />
-                            )}
+                            <input type="checkbox" />
                             <p>{brand.name}</p>
                         </div>
                         <span>11</span>
@@ -227,10 +216,6 @@ function Sidebar() {
         <aside className={cx("sidebar")}>
             <div className={cx("collections")}>
                 <Menu
-                    //onClick={onClick}
-                    style={{
-                        width: 256,
-                    }}
                     defaultOpenKeys={[
                         "collections",
                         "availability",
