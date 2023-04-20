@@ -97,21 +97,51 @@ function Compare(props) {
                     </ul>
                     <ul className={cx("price")}>
                         <li className={cx("label")}>Price</li>
-                        {compares?.map((compare) => (
-                            <NumericFormat
-                                thousandSeparator=","
-                                key={compare.id}
-                                value={compare.price}
-                                suffix="₫"
-                                displayType="text"
-                                customInput="span"
-                                renderText={(value, props) => (
-                                    <li {...props} className={cx("price")}>
-                                        {value}
-                                    </li>
-                                )}
-                            ></NumericFormat>
-                        ))}
+                        {compares?.map((compare) =>
+                            compare.discount > 0 ? (
+                                <li className={cx("price", "sale")}>
+                                    <NumericFormat
+                                        thousandSeparator=","
+                                        value={compare.price}
+                                        suffix="₫"
+                                        displayType="text"
+                                        customInput="span"
+                                        renderText={(value, props) => (
+                                            <span
+                                                {...props}
+                                                className={cx("price-on-sale")}
+                                            >
+                                                {value}
+                                            </span>
+                                        )}
+                                    ></NumericFormat>
+                                    <NumericFormat
+                                        thousandSeparator=","
+                                        value={compare.price - compare.price * (compare.discount / 100)}
+                                        suffix="₫"
+                                        displayType="text"
+                                        customInput="span"
+                                        renderText={(value, props) => (
+                                            <span {...props}>{value}</span>
+                                        )}
+                                    ></NumericFormat>
+                                </li>
+                            ) : (
+                                <NumericFormat
+                                    thousandSeparator=","
+                                    key={compare.id}
+                                    value={compare.price}
+                                    suffix="₫"
+                                    displayType="text"
+                                    customInput="span"
+                                    renderText={(value, props) => (
+                                        <li {...props} className={cx("price")}>
+                                            {value}
+                                        </li>
+                                    )}
+                                ></NumericFormat>
+                            )
+                        )}
                     </ul>
                     <ul className={cx("add-to-cart")}>
                         <li className={cx("label")}></li>

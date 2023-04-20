@@ -18,12 +18,12 @@ export const quickView = {
   slidesToShow: 1,
   slidesToScroll: 1,
   nextArrow: (
-    <ArrowButton small right circle>
+    <ArrowButton small rightIn square>
       <RightOutlined />
     </ArrowButton>
   ),
   prevArrow: (
-    <ArrowButton small left circle>
+    <ArrowButton small leftIn square>
       <LeftOutlined />
     </ArrowButton>
   ),

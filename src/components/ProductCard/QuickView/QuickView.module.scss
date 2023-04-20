@@ -49,6 +49,12 @@
 		.price {
 			color: #000;
 			font-size: 2rem;
+			.price-on-sale {
+				text-decoration: line-through;
+				margin-right: 5px;
+				color: var(--title-text-color);
+				font-size: 15px;
+			}
 		}
 		.description{
 			display: block;
