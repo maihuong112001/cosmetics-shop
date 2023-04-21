@@ -18,6 +18,7 @@ import { fetchCartData } from "@/services/supabase/resource/cart.service";
 import { setCart } from "@/store/slices/cart.slice";
 import { setUser } from "@/store/slices/user.slice";
 import OrderSuccess from "@/pages/OrderSuccess";
+import Transactions from "@/pages/Transactions";
 
 export const RoutesConfig = ({
   wishlist,
@@ -43,14 +44,14 @@ export const RoutesConfig = ({
   }, [dispatch]);
 
   useEffect(() => {
-
-   const fetchData =async ()=>{
-    const products = await fetchCartData(user);
-    dispatch(setCart(products));
-   }
-   fetchData();
+    const fetchData = async () => {
+      const products = await fetchCartData(user);
+      dispatch(setCart(products));
+    };
+    fetchData();
     return () => {};
   }, [dispatch, user]);
+
 
   return (
     <Routes>
@@ -74,6 +75,7 @@ export const RoutesConfig = ({
           <Route path="/cart" element={<Cart />} />
           <Route path="/account" element={<MyAccount />} />
           <Route path="/orderSuccess" element={<OrderSuccess />} />
+          <Route path="/orderDetail" element={<Transactions />} />
         </Route>
       </Route>
       <Route path="/checkouts" element={<Checkout />} />
