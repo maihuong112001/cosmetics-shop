@@ -188,10 +188,10 @@ input:focus-visible {
     padding: 0 !important;
 }
 
-.ant-menu-submenu-title, .ant-menu-item {
-  padding: 0 10px 0 0 !important;
+.ant-menu-submenu-title,
+.ant-menu-item {
+    padding: 0 10px 0 0 !important;
 }
-
 
 :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-inline.ant-menu-root
     .ant-menu-item
@@ -208,4 +208,41 @@ input:focus-visible {
 
 :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-inline .ant-menu-item {
     height: auto !important;
+}
+
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-tabs
+    .ant-tabs-tab.ant-tabs-tab-active
+    .ant-tabs-tab-btn {
+    color: #000;
+}
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-tabs .ant-tabs-tab {
+    font-family: var(--heading-text);
+    font-weight: 400;
+    font-size: 25px !important;
+}
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-tabs .ant-tabs-tab:hover {
+    color: #000;
+}
+
+.ant-tabs-tab {
+    color: var(--title-text-color) !important;
+}
+
+.ant-tabs-tab-active {
+    color: var(--title-text-color) !important;
+}
+
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-tabs
+    .ant-tabs-tab
+    + .ant-tabs-tab {
+    font-size: 25px;
+}
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-tabs-top
+    > .ant-tabs-nav
+    .ant-tabs-ink-bar,
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-tabs-top
+    > div
+    > .ant-tabs-nav
+    .ant-tabs-ink-bar {
+    background: #000 !important;
 }
