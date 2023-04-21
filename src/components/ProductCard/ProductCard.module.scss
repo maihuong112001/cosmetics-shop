@@ -461,11 +461,14 @@
                 margin-right: 20px;
             }
             span {
-                font-size: 2rem;
+                font-size: 1.7rem;
             }
         }
     }
+    
 }
+
+
 
 .countdown-more {
     bottom: unset;
@@ -475,16 +478,15 @@
     color: #f11e1e;
     display: flex;
     line-height: 26px;
-    .countdown {
+    @mixin countdown-theme {
         display: flex;
-        flex-wrap: nowrap;
         justify-content: start;
         text-align: center;
         padding: 10px 10px;
         flex: 1;
         background: white;
         box-shadow: 0 0 10px #0000000d;
-        max-width: 250px;
+        
         margin: 0;
         .item {
             &:nth-child(1) {
@@ -495,6 +497,17 @@
                 color: #f11e1e;
             }
         }
+    }
+    .countdown {
+        @include countdown-theme;
+        
+        flex-wrap: nowrap;
+        max-width: 250px;
+    }
+    .hurry-up {
+        @include countdown-theme;
+        flex-wrap: wrap;
+        max-width: 100%;
     }
     .icon {
         font-size: 18px;
