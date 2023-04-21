@@ -1,7 +1,7 @@
 import OrderDetail from "@/components/OrderDetail";
 import { fetchOrderDetailData } from "@/services/supabase/resource/orderDetail";
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Transactions = () => {
   //   const { orderDetails } = useSelector((st) => st.orderDetail);
