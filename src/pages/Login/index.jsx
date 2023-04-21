@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MyAccount from "../MyAccount";
 import supabase from "@/services/supabase";
 import { setUser } from "@/store/slices/user.slice";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -19,10 +20,10 @@ function Login() {
     async (e) => {
       e.preventDefault();
       try {
-        const { data, error } = await supabase.auth.signInWithPassword(form)
+        const { data, error } = await supabase.auth.signInWithPassword(form);
         if (error) {
           throw new Error(error.message);
-        }else{
+        } else {
           setIsLoggedIn(true);
           dispatch(setUser(data.user));
           console.log(data);
@@ -129,12 +130,12 @@ function Login() {
                 and promotions. To opt out, click unsubscribe in our emails.
               </p>
               <div>
-                <button
-                  type="submit"
+                <Link
+                  to={"/account/register"}
                   className="group relative tracking-wider flex w-[35%] justify-center bg-black px-3 py-4 text-md font-semi text-white hover:bg-[#cb8161]"
                 >
                   REGISTER
-                </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -21,7 +21,7 @@ function Register() {
           throw new Error(error.message);
         } else {
           console.log(data);
-          navigate("/account/login");
+          navigate("/login");
         }
       } catch (error) {
         alert(error);

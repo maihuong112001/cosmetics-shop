@@ -1,6 +1,7 @@
 import {
   CaretRightOutlined,
   CarryOutOutlined,
+  CheckCircleTwoTone,
   RightOutlined,
 } from "@ant-design/icons";
 import { Collapse } from "antd";
@@ -33,25 +34,35 @@ function OrderDetail({ orders }) {
                   </div>
                   <RightOutlined className="text-xl text-gray-600 mt-4" />
                 </div>
-                <div className="text-xl space-y-1 tracking-wider mt-3">
-                  <div className="flex space-x-3">
-                    <p className="font-semibold tracking-wider">Customer Name: </p>
-                    <p className="text-gray-700">{order.customerName}</p>
-                  </div>
+                <div className="flex justify-between">
+                  <div className="text-xl space-y-1 tracking-wider mt-3">
+                    <div className="flex space-x-3">
+                      <p className="font-semibold tracking-wider">
+                        Customer Name:{" "}
+                      </p>
+                      <p className="text-gray-700">{order.customerName}</p>
+                    </div>
 
-                  <div className="flex space-x-3">
-                    <p className="font-semibold tracking-wider">Address: </p>
-                    <p className="text-gray-700">{order.address}</p>
-                  </div>
+                    <div className="flex space-x-3">
+                      <p className="font-semibold tracking-wider">Address: </p>
+                      <p className="text-gray-700">{order.address}</p>
+                    </div>
 
-                  <div className="flex space-x-3">
-                    <p className="font-semibold tracking-wider">Phone Number: </p>
-                    <p className="text-gray-700">{order.phoneNumber}</p>
-                  </div>
+                    <div className="flex space-x-3">
+                      <p className="font-semibold tracking-wider">
+                        Phone Number:{" "}
+                      </p>
+                      <p className="text-gray-700">{order.phoneNumber}</p>
+                    </div>
 
-                  <div className="flex space-x-3">
-                    <p className="font-semibold tracking-wider">Email: </p>
-                    <p className="text-gray-700">{order.email}</p>
+                    <div className="flex space-x-3">
+                      <p className="font-semibold tracking-wider">Email: </p>
+                      <p className="text-gray-700">{order.email}</p>
+                    </div>
+                  </div>
+                  <div className="text-center text-5xl border-[1px] border-transparent mr-28 mt-4 p-2 hover:border-[1px] hover:border-red-300 hover:rounded-lg hover:bg-red-300 hover:text-blue-700">
+                    <CheckCircleTwoTone />
+                    <p className="text-2xl mt-2">You have received the item</p>
                   </div>
                 </div>
               </>
