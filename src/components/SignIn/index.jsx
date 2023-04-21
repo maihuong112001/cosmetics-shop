@@ -22,10 +22,15 @@ export default function SignIn() {
   const handleChangeForm = useCallback((e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }, []);
-  const handleLogout = () => {
-    supabase.auth.signOut();
-    setIsShowSignInModal(false);
-    navigate("/login");
+  const handleLogout = async () => {
+    const { data, error } = await supabase.auth.signOut();
+    if (error) {
+      throw new Error(error.message);
+    } else {
+      setIsShowSignInModal(false);
+      navigate("/login");
+      dispatch(setUser(data));
+    }
   };
   const handleSubmit = useCallback(
     async (e) => {
@@ -60,7 +65,7 @@ export default function SignIn() {
       {isShowSignInModal &&
         (user ? (
           <>
-          <div
+            <div
               className=" bg-transparent inset-0 absolute h-screen"
               onClick={() => {
                 setIsShowSignInModal(false);
@@ -83,7 +88,6 @@ export default function SignIn() {
                 Sign out
               </p>
             </div>
-            
           </>
         ) : (
           <div className="inset-0 h[40%] z-[99] fixed">

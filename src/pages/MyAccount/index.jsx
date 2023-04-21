@@ -1,14 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { InfoCircleTwoTone } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import supabase from "@/services/supabase";
-
+import { setUser } from "@/store/slices/user.slice";
 
 export default function MyAccount() {
-  const {user} = useSelector(state=>state.user)
-  const handleLogout = () => {
-    supabase.auth.signOut();
+  const { user } = useSelector((state) => state.user);
+  const handleLogout = async () => {
+    const { data, error } = await supabase.auth.signOut();
+    if (error) {
+      throw new Error(error.message);
+    } else {
+      Navigate("/login");
+      dispatchEvent(setUser(data));
+    }
   };
   return (
     <div className="mt-96 p-28">
@@ -32,19 +38,13 @@ export default function MyAccount() {
           </Link>
           <Link
             to={"/"}
-            onClick={handleLogout}
             className="border-b-[1px] border-gray-200 flex w-full pl-8 px-3 py-5 text-md font-semi text-black bg-gray-100 hover:text-[#cb8161]"
           >
-            Log out
+            Addresses (2)
           </Link>
         </div>
         <div className="w-[60%] pl-10">
-          <p className="text-gray-500 pb-6">
-            Hello:  {user?.email}
-            <Link to="/" onClick={handleLogout} className="text-red-600">
-              (Log Out)
-            </Link>
-          </p>
+          <p className="text-gray-500 pb-6">Hello: {user?.email}</p>
           <p className="text-gray-500 pb-6">Email: {user?.email}</p>
           <h1 className="text-[18px] pb-6">Order History</h1>
           <div className="text-gray-500">
