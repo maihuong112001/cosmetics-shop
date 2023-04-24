@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ProductItem = ({ product }) => {
-  console.log(product);
   return (
     <div>
       <ul className="divide-y divide-gray-200">

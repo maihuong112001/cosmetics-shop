@@ -7,7 +7,7 @@ export const fetchCartData = async (user) => {
       .select()
       .eq("id_user", user.id).single();
     if (data) {
-      const productIDs = data.items.map(item=>item.product_id);
+      const productIDs = data.items?.map((item)=>item.product_id);
       const response = await supabase
         .from("product")
         .select().in('id',productIDs)
@@ -17,7 +17,7 @@ export const fetchCartData = async (user) => {
             return [];
         }
         else{
-          const items = data.items.map((item,index)=>({
+          const items = data.items.map((item)=>({
             product:response.data.find(prod=>prod.id===item?.product_id),
             quantity:item.quantity
           }))
