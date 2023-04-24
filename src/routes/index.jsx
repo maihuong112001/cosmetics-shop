@@ -19,6 +19,7 @@ import { setCart } from "@/store/slices/cart.slice";
 import { setUser } from "@/store/slices/user.slice";
 import OrderSuccess from "@/pages/OrderSuccess";
 import Transactions from "@/pages/Transactions";
+import OrderHistory from "@/pages/OderHistory";
 
 export const RoutesConfig = ({
   wishlist,
@@ -76,6 +77,7 @@ export const RoutesConfig = ({
           <Route path="/account" element={<MyAccount />} />
           <Route path="/orderSuccess" element={<OrderSuccess />} />
           <Route path="/orderDetail" element={<Transactions />} />
+          <Route path="/orderHistory" element={<OrderHistory />} />
         </Route>
       </Route>
       <Route path="/checkouts" element={<Checkout />} />
